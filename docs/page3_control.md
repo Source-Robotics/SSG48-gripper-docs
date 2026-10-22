@@ -24,10 +24,10 @@ Primary control interface for SSG48 gripper is **CAN bus**. Secondary control mo
 * After activation, gripper can be used (If there are any errors they need to be cleared also)
 * Now you can issues "Send_gripper_data_pack" commands that will move the gripper to the specified position with desired speed and torque presets.
 
-The gripper will never send CAN commands on its own. Gripper will only respod to "Send_gripper_data_pack" with "Respond_Gripper_data_pack".
+The gripper will never send CAN commands on its own. Gripper will only respond to "Send_gripper_data_pack" with "Respond_Gripper_data_pack".
 
 !!! Note annotate "Empty commands" 
-    Note that Send_gripper_data_pack can be an empty command containg no data. The gripper will still respond to that with Respond_Gripper_data_pack. This options works great if you have a lot of devices on the can bus of the gripper and dont want to overload it with big data packets. The workflow here would be to send one Send_gripper_data_pack that contains the needed move and after that call Send_gripper_data_pack with no data to get responses from the gripper.
+    Note that Send_gripper_data_pack can be an empty command containing no data. The gripper will still respond to that with Respond_Gripper_data_pack. This options works great if you have a lot of devices on the can bus of the gripper and dont want to overload it with big data packets. The workflow here would be to send one Send_gripper_data_pack that contains the needed move and after that call Send_gripper_data_pack with no data to get responses from the gripper.
 
 !!! Tip annotate "Command rate" 
     It is recommended to send commands to the gripper with rate of 50Hz or higher!
@@ -130,7 +130,7 @@ while True:
 
 ## **Using UART**
 
-To use uart you will have to acces UART port on the SSG48 gripper. Unscrew coupler connector and connect uart adapter to the connector on the image. Note that it uses 3v3, using 5V can destroy your driver/gripper.
+To use uart you will have to access UART port on the SSG48 gripper. Unscrew coupler connector and connect uart adapter to the connector on the image. Note that it uses 3v3, using 5V can destroy your driver/gripper.
 To read mode about how to use UART with SSG48/Spectral micro BLDC go to this [link!](https://docs.source-robotics.com/Spectral-BLDC-docs/apage6_uart/)
 
 Compatible USB to uart adapter can be bought here: [Link](https://source-robotics.com/products/usb-to-serial-adapter)

@@ -1,6 +1,6 @@
 # **Safety and Maintenance**
 
-SSG48 gripper is not ment to be used with industrial robots. The gripper, robot and equipment used need to be evaluated with risk assessment and it is duty of the gripper integrator.
+SSG48 gripper is not meant to be used with industrial robots. The gripper, robot and equipment used need to be evaluated with risk assessment and it is duty of the gripper integrator.
 
 !!! Warning annotate "Warning" 
     The operator must read and understand all of the instructions noted in this manual before using and handling the gripper.
@@ -11,17 +11,17 @@ SSG48 gripper is not ment to be used with industrial robots. The gripper, robot 
 
 ## **Temperature warning**
 
-The gripper has built in termistor in motor coils that will stop it from reaching too high temperatures. That limit is 75 degrees. After it is reached the temperature error will be triggered and the gripper will go do idle mode. This temperature limit can be changed via UART commands-
+The gripper has built in thermistor in motor coils that will stop it from reaching too high temperatures. That limit is 75 degrees. After it is reached the temperature error will be triggered and the gripper will go do idle mode. This temperature limit can be changed via UART commands-
 
 ## **Gripper force**
 
 This gripper can exert large amount of force (80N) on top of that it reach really high speeds.
-Those 2 combined can be dangerous for humans and other objects. It is recommneded to always keep current preset and speed at low values while testing. Those values could be:
+Those 2 combined can be dangerous for humans and other objects. It is recommended to always keep current preset and speed at low values while testing. Those values could be:
 
 * Current: 300
 * Speed: 30
 
-After you confirm your aplication works increase the values.
+After you confirm your application works increase the values.
 
 !!! Danger annotate "Danger" 
     **NEVER PLACE YOUR FINGER INSIDE THE GRIPPER.**

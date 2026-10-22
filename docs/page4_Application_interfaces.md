@@ -40,7 +40,7 @@ Size (bytes) | Variable (Spectral_BLDC Lib python attribute)  | Type | Details
 1-2 | gripper_current |  16 bit signed |
 3(bit 0) | gripper_activated | bit (0/1) | gripper activated (1) / deactivated (0)
 3(bit 1) | gripper_action_status | bit (0/1) |  1 is goto, 0 is idle or performing auto release or in calibration
-3(bit 2 and 3) | gripper_object_detection | 2 bit | 0 in motion, 1 object detected closing, 2 object detected opening, 3 at positon
+3(bit 2 and 3) | gripper_object_detection | 2 bit | 0 in motion, 1 object detected closing, 2 object detected opening, 3 at position
 3(bit 4) | gripper_temperature_error | bit (0/1) | gripper_temperature_error
 3(bit 5) | gripper_timeout_error | bit (0/1) | gripper_timeout_error
 3(bit 6) | gripper_estop_error | bit (0/1) | gripper_estop_error
@@ -81,7 +81,7 @@ Alternatively you can send empty Send_gripper_data_pack command
 * Type of frame: standard <br />
 * Length: 0 byte 
 
-Driver will respons to this command with:<br />
+Driver will respond to this command with:<br />
 **Respond_Gripper_data_pack**
 
 ---
@@ -180,11 +180,11 @@ Commands used when in gripper mode. Procedure:
 * Gripcur x (x is value from 0 - 1000 [mA])
 * Grippos x (x is vale from 0 - 255; 0 being fully open 255 fully closed)
 
- Name | Type | Input Data type | Desciption | Response
+ Name | Type | Input Data type | Description | Response
 ---- | ---- | ---- | ---- | ----
 `Gripper` | Set/Get | bool | `Set/get Am I a gripper` | Is this device gripper or not
 `Gripcal` | Action |  | `Start gripper calibration` |   None
-`Grippos` | Set/Get | uint8_t | `Set/get desired gripper setpoint position (from 0 to 255). Also will set gripper into GOTO mode and execute the command` | Gripper positon value
+`Grippos` | Set/Get | uint8_t | `Set/get desired gripper setpoint position (from 0 to 255). Also will set gripper into GOTO mode and execute the command` | Gripper position value
 `Gripvel` | Set/Get | uint8_t | `Set/get desired gripper velocity setpoint (from 0 to 255)` | Gripper velocity value setpoint
 `Gripcur` | Set/Get | int | `Set/get desired gripper current in mA from 0 - 1000 (Note value below 150 are unstable)` | Gripper current value setpoint; to get current current value use #Iq
 `Gripact` | Set/Get | bool | `Set/get gripper activation bit` | Is gripper activated or not

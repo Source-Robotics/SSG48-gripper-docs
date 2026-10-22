@@ -9,7 +9,7 @@ These tests represent termal performance of the SSG48 gripper under different co
 
 * Testing: cycle open and close every 2.5s
 * No load present; current/torque applied is near 0
-* Continous testing for 7 days
+* Continuous testing for 7 days
 * Motor temperature: 42
 * Ambient temperature:  33 
 
