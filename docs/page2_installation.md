@@ -6,7 +6,7 @@
 
 SSG-48 allows you to adapt it to any robotic arm by 3D printing custom adapters.
 
-You can download [Coupler connector template STEP file]() here and adapt its design to fit your robot or application.
+You can download [Coupler connector template STEP file](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/STEPS/coupler_connector_generic_STEP.STEP) here and adapt its design to fit your robot or application.
 <p align="left"> <img src="../assets/Capture.PNG" alt="drawing" width="500"/> <br /> </p> 
 
 !!! Note annotate "" 
@@ -36,7 +36,7 @@ Connect one end of the cable to the gripper and another to the parol6 gripper co
 
 ## **Jaw adapter template**
 
-You can download [jaw template STEP file]() here and adapt your gripper jaws to your specifications.
+You can download [jaw template STEP file](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/STEPS/Jaw_plate.STEP) here and adapt your gripper jaws to your specifications.
 
 <p align="left"> <img src="../assets/jaw_plate.PNG" alt="drawing" width="500"/> <br /> </p> 
 
