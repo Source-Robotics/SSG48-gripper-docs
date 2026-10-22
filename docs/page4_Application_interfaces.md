@@ -1,7 +1,7 @@
 # **Application interfaces**
 
-Since the SSG48 gripper is based on [spectral micro BLDC drivers](https://github.com/PCrnjak/Spectral-Micro-BLDC-controller), it inherits all of their control methods and functionality. <br />
-Here we will describe only ones that are needed for gripper operation. For full list of commands go [Here](https://source-robotics.github.io/Spectral-BLDC-docs/apage7_can/). <br />
+Since the SSG48 gripper is based on [spectral micro BLDC drivers](https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller), it inherits all of their control methods and functionality. <br />
+Here we will describe only ones that are needed for gripper operation. For full list of commands go [Here](https://docs.source-robotics.com/Spectral-BLDC-docs/apage7_can/). <br />
 Also since the gripper is based on Spectral micro it has UART interface you can control it with.
 
 
@@ -169,7 +169,7 @@ Size (bytes) | Variable | Type
 
 ## **UART interface**
 
-For full list of UART commands available to the SSG48 gripper check this [link!](https://source-robotics.github.io/Spectral-BLDC-docs/apage6_uart/)
+For full list of UART commands available to the SSG48 gripper check this [link!](https://docs.source-robotics.com/Spectral-BLDC-docs/apage6_uart/)
 
 ### **Gripper commands**
 Commands used when in gripper mode. Procedure: 

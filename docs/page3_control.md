@@ -11,7 +11,7 @@ Primary control interface for SSG48 gripper is **CAN bus**. Secondary control mo
     * Gripper has built in object detection feature that will report back when a object is detected
 
 !!! Danger annotate "**Go to Application interfaces tab for more details about the gripper commands!**" 
-!!! Warning annotate "**The best way to learn how the gripper works is thru [examples!](https://github.com/PCrnjak/Spectral-BLDC-Python/tree/main/examples)**" 
+!!! Warning annotate "**The best way to learn how the gripper works is thru [examples!](https://github.com/Source-Robotics/Spectral-BLDC-Python/tree/main/examples)**" 
 
 
 !!! Note annotate "" 
@@ -38,7 +38,7 @@ The gripper will never send CAN commands on its own. Gripper will only respod to
 ## **Gripper GUI**
 
 
-You can install GUI from [here!](https://github.com/PCrnjak/SSG-gripper-GUI) <br /> 
+You can install GUI from [here!](https://github.com/Source-Robotics/SSG-gripper-GUI) <br /> 
 To connect to gripper GUI you will have to have [CAN bus adapter for PC](https://source-robotics.com/products/canvas-usb-to-can-adapter).   <br /> </p> 
 
 
@@ -59,7 +59,7 @@ To connect to gripper GUI you will have to have [CAN bus adapter for PC](https:/
 First you will need to know the COM port where your USB to CAN adapter is connected. After that enter it to the COM port box in section one. 
 **Press connect.**
 !!! Note annotate "Default CAN Node ID"
-    **Default CAN Node ID is 0. To change it you check out spectral micro docs on how to change CANID [Link](https://source-robotics.github.io/Spectral-BLDC-docs/apage1_specs/)**
+    **Default CAN Node ID is 0. To change it you check out spectral micro docs on how to change CANID [Link](https://docs.source-robotics.com/Spectral-BLDC-docs/apage1_specs/)**
 
 After you have connected to the GUI you will need to **calibrate the gripper**. Press the calibrate button in the section one. The gripper will start to move and if calibration was success you will see "**Calibrated**" in section 3.    
 
@@ -77,7 +77,7 @@ In the section 5 you will see live values of gripper position and current.
 ## **Using python API**
 
 This example will calibrate the gripper; after that it will open and close it. Note if the gripper is in error state you will have to first clear the error!  <br />
-Get the API [here!](https://github.com/PCrnjak/Spectral-BLDC-Python/tree/main)
+Get the API [here!](https://github.com/Source-Robotics/Spectral-BLDC-Python/tree/main)
 
 ``` py 
 import Spectral_BLDC as Spectral
@@ -131,7 +131,7 @@ while True:
 ## **Using UART**
 
 To use uart you will have to acces UART port on the SSG48 gripper. Unscrew coupler connector and connect uart adapter to the connector on the image. Note that it uses 3v3, using 5V can destroy your driver/gripper.
-To read mode about how to use UART with SSG48/Spectral micro BLDC go to this [link!](https://source-robotics.github.io/Spectral-BLDC-docs/apage6_uart/)
+To read mode about how to use UART with SSG48/Spectral micro BLDC go to this [link!](https://docs.source-robotics.com/Spectral-BLDC-docs/apage6_uart/)
 
 Compatible USB to uart adapter can be bought here: [Link](https://source-robotics.com/products/usb-to-serial-adapter)
 

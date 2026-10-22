@@ -12,8 +12,8 @@ SSG-48 adaptive electric gripper is available as a fully assembled gripper or yo
 The gripper has a single actuator for opening  both of its jaws. A system works like rack and pinion where motor is a pinion and jaws are on rack.
 
 
-If you plan to build SSG-48 adaptive electric gripper by yourself you will need to source all the parts from [this BOM](https://github.com/PCrnjak/SSG-48-adaptive-electric-gripper/tree/main/BOM).<br />
-After that you can follow the [assembly manual](https://github.com/PCrnjak/SSG-48-adaptive-electric-gripper/tree/main/Assembly%20manual) to assemble your gripper.
+If you plan to build SSG-48 adaptive electric gripper by yourself you will need to source all the parts from [this BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/BOM).<br />
+After that you can follow the [assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Assembly%20manual) to assemble your gripper.
 
 
 ## **General specs:**
@@ -68,7 +68,7 @@ The gripper is powered and controlled with single cable that carries CAN bus com
 
 ## **3D model**
 
-[Link to the STEP model](https://github.com/PCrnjak/SSG-48-adaptive-electric-gripper/tree/main/STEPS)
+[Link to the STEP model](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS)
 <p align="left"> <img src="../assets/GRIP_MODEL.PNG" alt="drawing" width="900"/> <br /> </p> 
 
 

@@ -1,6 +1,7 @@
 site_name: Adaptive gripper
-site_url: https://PCrnjak.github.io/Adaptive_gripper/
-repo_url: https://github.com/Source-robotics/SSG48-gripper-docs/ 
+site_url: https://docs.source-robotics.com/SSG48-gripper-docs/
+repo_url: https://github.com/Source-Robotics/SSG48-gripper-docs
+edit_uri: edit/main/docs/
 theme:
   name: material
   features:
