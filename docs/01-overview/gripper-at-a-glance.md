@@ -2,17 +2,11 @@
 
 The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control. The
 [Spectral Micro driver](https://docs.source-robotics.com/Spectral-BLDC-docs/) inside the body regulates the
-motor's current, so the gripper controls not only where its jaws are and how fast they move but how hard they
-press: the current limit of a move is the grip force, adjustable from about 5 N to 80 N. The jaws stop on an
-object and hold it with that force, and the driver reports that an object was found. That makes the gripper
-gentle enough for soft objects, firm enough for tools, and safe to use around people.
+motor's current, so a move sets not only where the jaws go and how fast, but how hard they press: the current
+limit is the grip force, from about 5 N to 80 N. The jaws stop on an object, hold it with that force, and the
+driver reports that an object was found.
 
-<figure markdown="span">
-  ![The SSG-48 gripper](../assets/GRIP_CVR.jpg){ width="900" }
-  <figcaption>Figure 1: The SSG-48 gripper with its cable.</figcaption>
-</figure>
-
-## How it works
+## The parts
 
 | Part | What it does |
 |---|---|
@@ -30,17 +24,13 @@ connector.
 
 ## What the firmware does
 
-The gripper runs the Spectral firmware with its gripper mode turned on. After power-up it calibrates by finding
-both end stops, then it accepts move commands: a jaw position from 0 (open) to 255 (closed), a speed from 0 to
-255 and a current limit in mA. During a move the driver watches speed and current: when the jaws stop before the
-target with the current at its limit, an object is in the way and the gripper holds it; when they reach the
-target, it holds the position. The state the gripper reports with every answer says which: moving, object found
-while closing, object found while opening, or at the position. [How the gripper works](../06-operation/how-it-works.md)
-has the details.
-
-The gripper protects itself: it stops on an over-temperature of the motor, on an E-stop bit from the host, on a
-CAN watchdog that runs out, and on every fault the driver itself detects (supply voltage, encoder, driver stage).
-[Errors and recovery](../06-operation/errors.md) says what each means.
+After power-up the gripper calibrates by finding both end stops. Then it takes move commands: a position from 0
+(open) to 255 (closed), a speed from 0 to 255 and a current limit in mA. When the jaws stop short of the target
+with the current at its limit, an object is in the way and is held; when they reach the target, the position is
+held. Every answer carries the state: moving, object found while closing or opening, or at the position. The
+gripper stops itself on an over-temperature, an E-stop bit from the host, a CAN watchdog that runs out, and every
+fault the driver detects. [How the gripper works](../06-operation/how-it-works.md) and
+[Errors and recovery](../06-operation/errors.md) have the details.
 
 ## How it is controlled
 
@@ -52,8 +42,6 @@ CAN watchdog that runs out, and on every fault the driver itself detects (supply
 - **UART**, the driver's serial port inside the body: for configuration, and for a self-built gripper. See
   [Over UART](../06-operation/uart.md).
 
-## The MSG gripper
-
 The [MSG gripper](https://docs.source-robotics.com/MSG-gripper-docs/) is the SSG-48's successor: the same
-protocol and the same software, with a stepper motor and the STEPFOC driver instead of the gimbal motor, three
-rail lengths and a camera mount. Programs written for one run on the other.
+protocol and software, with a stepper and the STEPFOC driver, three rail lengths and a camera mount. Programs
+written for one run on the other.

@@ -1,22 +1,14 @@
 # About this manual
 
-## Scope and audience
+The SSG-48 Gripper Manual covers the SSG-48 adaptive electric gripper from unpacking to a gripper that works on a robot: mounting and cabling, the
+first setup with Motor GUI, control over CAN and UART, from Python, from ROS 2 and from the PAROL6 and PAR6
+robots, and firmware updates. It is written for a maker, a student or an engineer who can plug in a cable and run
+a Python script. Read [Safety](02-safety.md) before you power anything; [First setup](05-setup/index.md) is the
+shortest path to a gripper that moves.
 
-The SSG-48 Gripper Manual covers the SSG-48 adaptive electric gripper from unpacking to a gripper that works on
-a robot: what the gripper is, how to mount it and cable it, the first setup with Motor GUI, how it is
-controlled over CAN and UART, from Python, from ROS 2 and from the PAROL6 and PAR6 robots, and how its firmware
-is updated. The API reference lists the gripper's CAN messages and UART commands for the firmware release named
-on the landing page. The Guides hold a teleoperation example.
-
-The gripper is a Spectral Micro BLDC driver in gripper mode. Everything about the driver itself, from its full
-command set to its calibration and its bootloader, is in the
-[Spectral Micro documentation](https://docs.source-robotics.com/Spectral-BLDC-docs/), and this manual links
-there instead of repeating it.
-
-It is written for someone who puts the gripper on a robot or builds one: a maker, a student or an engineer who
-can plug in a cable and run a Python script. Read the Safety chapter before you power anything; the
-chapters are in the order you need them, and [First setup](05-setup/index.md) is the shortest path to a gripper
-that moves.
+The gripper is a Spectral Micro BLDC driver in gripper mode. The driver itself, from its full command set to its calibration
+and its bootloader, is documented on the [Spectral site](https://docs.source-robotics.com/Spectral-BLDC-docs/); this manual links there instead of
+repeating it.
 
 ## Finding your way
 
@@ -24,29 +16,24 @@ that moves.
 
 ## Warnings and notes
 
-Three kinds of highlighted text appear in this documentation. Read every Danger and Notice before you act on the
-step it belongs to.
-
 --8<-- "symbols.md"
 
 ## Related documents
 
 <!-- documents-table -->
 
-The driver inside the gripper is documented at
-[docs.source-robotics.com/Spectral-BLDC-docs](https://docs.source-robotics.com/Spectral-BLDC-docs/). The MSG
-gripper, the SSG-48's successor built on the STEPFOC stepper driver, is documented at
-[docs.source-robotics.com/MSG-gripper-docs](https://docs.source-robotics.com/MSG-gripper-docs/). The robots the
-gripper is made for are documented at [docs.source-robotics.com/PAROL-docs](https://docs.source-robotics.com/PAROL-docs/)
-and [docs.source-robotics.com/par6](https://docs.source-robotics.com/par6/).
+The driver inside the gripper is documented at [https://docs.source-robotics.com/Spectral-BLDC-docs/](https://docs.source-robotics.com/Spectral-BLDC-docs/). The MSG gripper, the SSG-48's successor on the STEPFOC stepper driver, is at [docs.source-robotics.com/MSG-gripper-docs](https://docs.source-robotics.com/MSG-gripper-docs/). The robots the gripper is
+made for: [docs.source-robotics.com/PAROL-docs](https://docs.source-robotics.com/PAROL-docs/) and
+[docs.source-robotics.com/par6](https://docs.source-robotics.com/par6/).
 
 ## Document history
 
-The SSG-48 Gripper Manual is versioned by gripper release, the version the product repository tags; the version
-selector in the header switches between them. Within a gripper release the manual follows the Spectral firmware
-the gripper runs: a new firmware release updates the pages in place, with a new revision letter.
-
-The text and the images of this documentation are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), the code examples under the [MIT licence](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE). The gripper's hardware design is published under the Apache 2.0 licence in the [product repository](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper). The Source Robotics name, the product names and the logos are not covered by any of these.
+The manual is versioned by gripper release, the version the product repository tags (the selector in the header);
+within a release it follows the Spectral firmware the gripper runs, with a new revision letter per update. The
+text and the images are licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), the code
+examples [MIT](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE); the hardware design is published under the Apache 2.0 licence in the
+[product repository](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper). The Source Robotics name, the product names and the logos are not covered
+by any of these.
 
 | Revision | Date | Changes |
 |---|---|---|

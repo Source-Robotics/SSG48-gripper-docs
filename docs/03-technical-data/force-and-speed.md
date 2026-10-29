@@ -5,27 +5,29 @@ newtons and millimetres per second.
 
 ## Grip force
 
-The driver limits the motor's current to the value you command, and the force the jaws press with is
-proportional to it. The curve below was measured on a gripper from the shop:
+The driver limits the motor's current to the value you command, so the torque the motor produces is limited to
+$T = K_t \, I_q$, with $K_t$ the motor's torque constant in Nm/A and $I_q$ the current limit in amperes (the
+command is in mA). The pinion turns the torque into the force the jaws press with:
+
+$$
+F = \frac{K_t \, I_q}{r}, \qquad K_t = 0.325\ \text{Nm/A}, \quad r = 6\ \text{mm}
+$$
+
+$K_t$ is the effective torque constant of the shipped grippers' motors and $r$ the pitch radius of the pinion:
+about 54 N per ampere, from about 8 N at 150 mA to 80 N at 1.5 A.
 
 <figure markdown="span">
-  ![Grip force against current](../assets/Grip_force.PNG){ width="700" }
-  <figcaption>Figure 2: The grip force in newtons against the motor current in amperes, measured on a shipped gripper: about 48 N per ampere, from about 5 N at 0.1 A to 72 N at 1.5 A.</figcaption>
+  ![Grip force against the current limit](../assets/grip_force_light.png#only-light){ width="820" }
+  ![Grip force against the current limit](../assets/grip_force_dark.png#only-dark){ width="820" }
+  <figcaption>Figure 1: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
 </figure>
 
-As a formula, the torque is the torque constant times the current and the pinion turns it into a force on the
-racks:
-
-$$
-T = K_t \, I_q, \qquad F = \frac{T}{r}, \qquad r = 6\ \text{mm}
-$$
-
-with $K_t$ = 0.325 Nm/A, the effective constant fitted to the shipped grippers' motors, and $I_q$ in amperes. For a
-self-built gripper with another motor the constant differs: `#Kt` over UART prints what the driver measured for
-its motor, and a force measurement is the only reliable calibration.
+The curve is computed from the torque constant. A force gauge on a shipped gripper reads a little under it, about
+48 N per ampere; a self-built gripper with another motor has another $K_t$, which `#Kt` over UART prints, and a
+measurement is the only exact calibration. Below about 150 mA the motor does not move reliably.
 
 The force is a limit, not a controlled value: a hard object takes the full force the moment the jaws touch it; a
-soft object is squeezed until the force is reached. Below about 150 mA the motor does not move reliably.
+soft object is squeezed until the force is reached.
 
 !!! danger "Heat"
     The firmware does not clamp the gripper's current. A hold at 300 mA runs for days ([Performance tests](../appendix/performance.md));
