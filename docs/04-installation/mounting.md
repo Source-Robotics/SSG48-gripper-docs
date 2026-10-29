@@ -11,7 +11,7 @@ template lets you make a fifth.
 | your own | `coupler_connector_generic_STEP.STEP`, the template | [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) |
 
 <figure markdown="span">
-  ![The generic coupler connector](../assets/Capture.PNG){ width="520" }
+  ![The generic coupler connector](../assets/Capture.webp){ width="520" }
   <figcaption>Figure 10: The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle.</figcaption>
 </figure>
 
@@ -27,7 +27,7 @@ last joint.
    the robot's gripper port ([The cable](cable.md)).
 
 <div class="grid" markdown>
-![The gripper on the J6 shaft](../assets/gripper_parol1.PNG){ width="400" }
+![The gripper on the J6 shaft](../assets/gripper_parol1.webp){ width="400" }
 ![The coupler screws](../assets/gripper_parol4.png){ width="400" }
 </div>
 

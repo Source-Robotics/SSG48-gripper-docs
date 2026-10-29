@@ -7,7 +7,7 @@ The assembly manual's reference prints were made on a Prusa MK2S in PETG with 25
 part needs them: clean every support off before assembly, the bearing seats and the rail slot in particular.
 
 <figure markdown="span">
-  ![The body in black and in grey](../assets/SSG48_black_and_grey.jpg){ width="600" }
+  ![The body in black and in grey](../assets/SSG48_black_and_grey.webp){ width="600" }
   <figcaption>Figure 15: The body printed in black and in grey, the two colours the shop sells.</figcaption>
 </figure>
 

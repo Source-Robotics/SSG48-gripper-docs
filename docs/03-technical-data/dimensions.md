@@ -42,7 +42,7 @@ The STEP files of every part are in the product repository, the reference for an
   the fin-ray fingers and their jaw plate.
 
 <figure markdown="span">
-  ![The STEP model](../assets/GRIP_MODEL.PNG){ width="600" }
+  ![The STEP model](../assets/GRIP_MODEL.webp){ width="600" }
   <figcaption>Figure 9: The STEP model of the gripper.</figcaption>
 </figure>
 

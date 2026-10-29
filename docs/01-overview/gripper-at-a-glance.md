@@ -7,7 +7,7 @@ limit is the grip force, from about 5 N to 80 N. The jaws stop on an object, hol
 driver reports that an object was found.
 
 <figure markdown="span">
-  ![The SSG-48 gripper](../assets/SSG48_gripper_angle.jpg){ width="600" }
+  ![The SSG-48 gripper](../assets/SSG48_gripper_angle.webp){ width="600" }
   <figcaption>Figure 1: The SSG-48 gripper with pinch fingers.</figcaption>
 </figure>
 
