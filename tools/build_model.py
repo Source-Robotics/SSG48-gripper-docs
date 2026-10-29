@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Build the turnable 3D model of the gripper (docs/assets/models/ssg48.glb) from the repository's URDF.
+"""Build the 3D model the landing page's configurator shows, from the repository's URDF.
 
-    python tools/build_model.py [--repo PATH] [--opening 0.5]
+    python tools/build_model.py [--repo PATH]
 
-Reads SSG48_gripper_description/URDF/ssg48_gripper/urdf/par6_ssg48_urdf.urdf and its meshes from a clone of the
-product repository (--repo, else $GRIPPER_REPO_DIR, else a sibling folder or ../../projects/<name>), places every
-link's visual mesh with its joint and visual origins, opens the jaws to --opening of their travel (0 closed, 1 open),
-colours the links as the URDF does but in the shop's grey and black, turns the model so the jaws point up (glTF is
-Y-up), and writes a binary glTF that <model-viewer> shows on the landing page. Needs trimesh and numpy.
+Writes docs/assets/models/ssg48/: body.glb (the gripper body), one jaws_<option>.glb per finger option of the
+repository (ssg48_JAW_OPTIONS: fin-ray, solid, pinch, jaw plates only), both jaws at the closed position with
+their joint transforms baked in, and viewer.json: the finger options, the direction and travel of each jaw's
+opening, the colour swatches and the default opening. docs/javascripts/gripper-viewer.js reads them. The scene
+is turned so the jaws point up (glTF is Y-up) and centred on the body with the fin-ray fingers. Needs trimesh,
+numpy and pyyaml.
 """
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 import xml.etree.ElementTree as ET
@@ -22,10 +24,20 @@ import trimesh
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "docs" / "assets" / "models" / "ssg48.glb"
-URDF = Path("SSG48_gripper_description") / "URDF" / "ssg48_gripper" / "urdf" / "par6_ssg48_urdf.urdf"
-MESHES = Path("SSG48_gripper_description") / "URDF" / "ssg48_gripper" / "meshes"
-COLOURS = {"gripper": (0.82, 0.82, 0.80, 1.0), "jaw1": (0.10, 0.10, 0.10, 1.0), "jaw2": (0.10, 0.10, 0.10, 1.0)}
+OUT = ROOT / "docs" / "assets" / "models" / "ssg48"
+DESC = Path("SSG48_gripper_description") / "URDF" / "ssg48_gripper"
+URDF = DESC / "urdf" / "par6_ssg48_urdf.urdf"
+OPTIONS = [  # key, label, folder under ssg48_JAW_OPTIONS
+    ("finray", "Fin-ray fingers", "FIN_ray_jaws"),
+    ("solid", "Solid fingers", "solid_jaws"),
+    ("pinch", "Pinch fingers", "solid_jaws_pinch"),
+    ("none", "Jaw plates only", "No jaws"),
+]
+COLOURS = {
+    "body": {"Grey": "#d2d2cf", "Black": "#1a1a1a", "White": "#f2f2f0"},
+    "jaws": {"Black": "#1a1a1a", "Grey": "#9a9a98", "Yellow": "#f2c230"},
+}
+Y_UP = trimesh.transformations.rotation_matrix(np.pi / 2, [1, 0, 0])
 
 
 def find_repo(arg: str | None) -> Path:
@@ -37,7 +49,6 @@ def find_repo(arg: str | None) -> Path:
 
 
 def origin_matrix(el) -> np.ndarray:
-    """The 4x4 transform of a URDF <origin xyz rpy>."""
     if el is None:
         return np.eye(4)
     xyz = [float(v) for v in (el.get("xyz") or "0 0 0").split()]
@@ -47,68 +58,86 @@ def origin_matrix(el) -> np.ndarray:
     return m
 
 
+def material(hex_colour: str):
+    rgb = [int(hex_colour[i:i + 2], 16) for i in (1, 3, 5)]
+    return trimesh.visual.TextureVisuals(material=trimesh.visual.material.PBRMaterial(
+        baseColorFactor=rgb + [255], metallicFactor=0.0, roughnessFactor=0.65, doubleSided=True))
+
+
+def export(meshes: dict[str, trimesh.Trimesh], path: Path, colour: str):
+    scene = trimesh.Scene()
+    for name, mesh in meshes.items():
+        mesh.visual = material(colour)
+        scene.add_geometry(mesh, node_name=name, geom_name=name)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    scene.export(path)
+    return path.stat().st_size // 1024
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--repo", help="the clone of the gripper repository")
-    ap.add_argument("--opening", type=float, default=0.5, help="the jaws' opening, 0 closed to 1 open (default 0.5)")
     args = ap.parse_args(argv)
     repo = find_repo(args.repo)
     robot = ET.parse(repo / URDF).getroot()
-    links = {l.get("name"): l for l in robot.findall("link")}
     joints = {j.find("child").get("link"): j for j in robot.findall("joint")}
-    # the world transform of every link: the parent's, then the joint origin, then the joint motion
-    world: dict[str, np.ndarray] = {}
+    links = {l.get("name"): l for l in robot.findall("link")}
 
-    def transform(name: str) -> np.ndarray:
-        if name in world:
-            return world[name]
-        j = joints.get(name)
-        if j is None:
-            world[name] = np.eye(4)
-            return world[name]
-        parent = transform(j.find("parent").get("link"))
-        m = parent @ origin_matrix(j.find("origin"))
-        if j.get("type") == "prismatic":
-            axis = np.array([float(v) for v in (j.find("axis").get("xyz") if j.find("axis") is not None else "1 0 0").split()])
-            lim = j.find("limit")
-            lo, hi = float(lim.get("lower", 0)), float(lim.get("upper", 0))
-            mimic = j.find("mimic")
-            q = lo + (hi - lo) * args.opening
-            if mimic is not None:   # the second jaw mirrors the first
-                src = joints[[c for c, jj in joints.items() if jj.get("name") == mimic.get("joint")][0]]
-                slo, shi = float(src.find("limit").get("lower", 0)), float(src.find("limit").get("upper", 0))
-                q = (slo + (shi - slo) * args.opening) * float(mimic.get("multiplier", 1)) + float(mimic.get("offset", 0))
-            slide = np.eye(4)
-            slide[:3, 3] = axis * q
-            m = m @ slide
-        world[name] = m
-        return m
+    # the world transform of each jaw at the closed position (q = 0), and its opening direction and travel
+    jaw_world, jaw_dir, travel = {}, {}, 0.0
+    for jaw in ("jaw1", "jaw2"):
+        j = joints[jaw]
+        m = origin_matrix(j.find("origin"))
+        axis = np.array([float(v) for v in j.find("axis").get("xyz").split()])
+        lim = j.find("limit")
+        lo, hi = float(lim.get("lower", 0)), float(lim.get("upper", 0))
+        mimic = j.find("mimic")
+        if mimic is not None:                      # the second jaw mirrors the first: open = -(first's open)
+            src = joints[[c for c, jj in joints.items() if jj.get("name") == mimic.get("joint")][0]]
+            slo, shi = float(src.find("limit").get("lower", 0)), float(src.find("limit").get("upper", 0))
+            q_open = -(slo if abs(slo) > abs(shi) else shi) * float(mimic.get("multiplier", 1))
+        else:
+            q_open = lo if abs(lo) > abs(hi) else hi   # the limit away from 0 is the open end
+        d = (Y_UP[:3, :3] @ m[:3, :3] @ axis) * q_open
+        travel = float(np.linalg.norm(d))
+        jaw_dir[jaw] = (d / travel).round(6).tolist()
+        jaw_world[jaw] = Y_UP @ m @ origin_matrix(links[jaw].find("visual/origin"))
+    body_m = Y_UP @ origin_matrix(links["gripper"].find("visual/origin"))
 
-    scene = trimesh.Scene()
-    for name, link in links.items():
-        visual = link.find("visual")
-        if visual is None:
-            continue
-        mesh_el = visual.find("geometry/mesh")
-        if mesh_el is None:          # a link without a mesh (a box, or an empty visual)
-            continue
-        mesh_file = repo / MESHES / Path(mesh_el.get("filename")).name
-        mesh = trimesh.load(mesh_file, force="mesh")
-        mesh.apply_transform(transform(name) @ origin_matrix(visual.find("origin")))
-        rgba = COLOURS.get(name)
-        if rgba is None:
-            c = visual.find("material/color")
-            rgba = tuple(float(v) for v in (c.get("rgba") if c is not None else "0.7 0.7 0.7 1").split())
-        mesh.visual = trimesh.visual.TextureVisuals(material=trimesh.visual.material.PBRMaterial(
-            baseColorFactor=[int(v * 255) for v in rgba], metallicFactor=0.0, roughnessFactor=0.65, doubleSided=True))
-        scene.add_geometry(mesh, node_name=name, geom_name=name)
-    # URDF Z-up with the jaws along -Z -> glTF Y-up with the jaws pointing up
-    scene.apply_transform(trimesh.transformations.rotation_matrix(np.pi / 2, [1, 0, 0]))
-    scene.apply_translation(-scene.bounds.mean(axis=0))
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    scene.export(OUT)
-    ext = scene.extents * 1000
-    print(f"wrote {OUT.relative_to(ROOT)}: {len(links)} links, {OUT.stat().st_size // 1024} KB, {ext[0]:.0f} x {ext[1]:.0f} x {ext[2]:.0f} mm")
+    body = trimesh.load(repo / DESC / "meshes" / "gripper.STL", force="mesh")
+    body.apply_transform(body_m)
+    default = {jaw: trimesh.load(repo / DESC / "ssg48_JAW_OPTIONS" / "FIN_ray_jaws" / f"{jaw}.STL", force="mesh") for jaw in jaw_world}
+    for jaw, mesh in default.items():
+        mesh.apply_transform(jaw_world[jaw])
+    centre = np.vstack([body.bounds] + [m.bounds for m in default.values()])
+    offset = -(centre.min(axis=0) + centre.max(axis=0)) / 2
+    body.apply_translation(offset)
+    if OUT.exists():
+        for old in OUT.iterdir():
+            old.unlink()
+    sizes = {"body.glb": export({"gripper": body}, OUT / "body.glb", COLOURS["body"]["Grey"])}
+    options = []
+    for key, label, folder in OPTIONS:
+        meshes = {}
+        for jaw in jaw_world:
+            mesh = trimesh.load(repo / DESC / "ssg48_JAW_OPTIONS" / folder / f"{jaw}.STL", force="mesh")
+            mesh.apply_transform(jaw_world[jaw])
+            mesh.apply_translation(offset)
+            meshes[jaw] = mesh
+        sizes[f"jaws_{key}.glb"] = export(meshes, OUT / f"jaws_{key}.glb", COLOURS["jaws"]["Black"])
+        options.append({"key": key, "label": label, "file": f"jaws_{key}.glb"})
+    config = {
+        "body": "body.glb", "jaws": options, "travel_m": round(travel, 6), "dir": jaw_dir,
+        "colors": COLOURS, "default": {"jaws": "finray", "opening": 0.5, "body": "#d2d2cf", "jaws_color": "#1a1a1a"},
+        "camera": {"azimuth_deg": -35, "polar_deg": 72, "fill": 1.25},
+    }
+    (OUT / "viewer.json").write_text(json.dumps(config, indent=1) + "\n", encoding="utf-8")
+    for m in default.values():
+        m.apply_translation(offset)
+    allb = np.vstack([body.bounds] + [m.bounds for m in default.values()])
+    ext = (allb.max(axis=0) - allb.min(axis=0)) * 1000
+    print(f"wrote {OUT.relative_to(ROOT)}: " + ", ".join(f"{k} {v} KB" for k, v in sizes.items())
+          + f"; travel {travel * 1000:.0f} mm, model {ext[0]:.0f} x {ext[1]:.0f} x {ext[2]:.0f} mm")
     return 0
 
 

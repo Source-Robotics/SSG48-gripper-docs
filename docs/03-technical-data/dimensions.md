@@ -1,8 +1,17 @@
 # Dimensions and CAD
 
-<model-viewer class="hero-model" src="../../assets/models/ssg48.glb" alt="The SSG-48 gripper, turnable in 3D" camera-controls auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1.1" camera-orbit="-35deg 72deg auto" interaction-prompt="auto" loading="lazy"></model-viewer>
-<p class="hero-model-caption">Drag to turn the gripper, scroll to zoom. The model is the repository's URDF with the fin-ray fingers half open; the
-<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF and MJCF files</a> drive it in ROS 2, Gazebo and MuJoCo.</p>
+<div class="gripper-viewer" data-base="../../assets/models/ssg48/" markdown="0">
+  <canvas class="gripper-viewer__canvas" aria-label="The SSG-48 gripper in 3D: drag to turn, scroll to zoom"></canvas>
+  <div class="gripper-viewer__controls">
+    <label class="gripper-viewer__field">Opening <input type="range" name="opening" min="0" max="100" value="50"></label>
+    <label class="gripper-viewer__field">Fingers <select name="jaws"></select></label>
+    <label class="gripper-viewer__field">Body <span class="gripper-viewer__swatches" data-target="body"></span><input type="color" name="body" value="#d2d2cf" title="Any colour"></label>
+    <label class="gripper-viewer__field">Fingers colour <span class="gripper-viewer__swatches" data-target="jaws"></span><input type="color" name="jaws_color" value="#1a1a1a" title="Any colour"></label>
+    <button type="button" name="reset" class="md-button">Reset view</button>
+  </div>
+  <p class="gripper-viewer__hint">Drag to turn the gripper, scroll to zoom, open and close the jaws, try the fingers and the colours. The model is the
+repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF</a>, the fingers its printed options; the shop sells the body in black and grey.</p>
+</div>
 
 <figure markdown="span">
   ![Front view](../assets/DIM2.PNG){ width="700" }

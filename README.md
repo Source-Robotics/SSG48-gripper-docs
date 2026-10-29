@@ -23,7 +23,7 @@ the gripper runs the firmware of the Spectral Micro driver,
 | `versions.yml` | every version fact: the gripper release the site is versioned by, the firmware release it describes, the manual's number and revision |
 | `compatibility.yml` | which firmware release works with which bootloader, gripper hardware, Python library and ROS 2 driver |
 | `hooks/` | `versions.py` writes the version facts into the pages; `firmware_pages.py` builds the reference pages; `llms.py` writes the Markdown twin of every page, `llms.txt` and `llms-full.txt` |
-| `docs/assets/models/ssg48.glb` | the turnable 3D model on the landing page, written by `tools/build_model.py` from the repository's URDF. Never edit |
+| `docs/assets/models/ssg48/` | the 3D model of the configurator on the landing page, written by `tools/build_model.py` from the repository's URDF. Never edit |
 | `tools/` | `sync_firmware.py`, `sync_bom.py`, `build_model.py`, `test_tools.py`, `root_404.html` |
 | `overrides/` | the theme changes: the older-version banner, the edit/report line, the header's repository card |
 
@@ -82,9 +82,11 @@ python tools/sync_bom.py --check    # exit 1 if the page is out of date
 
 ## The 3D model, the Markdown twins and the feedback widget
 
-`tools/build_model.py` builds `docs/assets/models/ssg48.glb` from the gripper repository's URDF (the same `--repo`
-as the BOM tool; needs `trimesh`); the landing and dimensions pages show it with Google's `<model-viewer>`,
-loaded from a CDN. Run it again when the meshes change.
+`tools/build_model.py` builds `docs/assets/models/ssg48/` from the gripper repository's URDF (the same `--repo`
+as the BOM tool; needs `trimesh`): the body, one file per finger option, and `viewer.json`. The landing and
+dimensions pages show them in the configurator `docs/javascripts/gripper-viewer.js` (three.js from a CDN, through
+the import map in `overrides/main.html`, loaded only on those pages): turn and zoom, open the jaws, choose the
+fingers and the colours. Run the tool again when the meshes change.
 
 `hooks/llms.py` writes, at every build, a Markdown twin of every page next to its HTML (`…/index.md`), `llms.txt`
 (an index of the twins by tab) and `llms-full.txt` (every page in one file), with the links absolute to the
