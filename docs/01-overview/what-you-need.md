@@ -8,7 +8,7 @@ calibrated; the gripper calibration (finding the end stops) runs after every pow
 
 **Or build it.** The SSG-48 is open source, and that is important to us: the CAD and printable files, the bill of
 materials, the assembly manual and video, the firmware and the software are all published.
-[Build your own](build-your-own.md) is the order to do it in.
+[The build guide](../build/index.md) is the order to do it in.
 
 ## What is in the box
 
@@ -55,7 +55,7 @@ with the library.
 - **PAROL6 and PAR6**: the robots' own software drives the gripper; see [On PAROL6 and PAR6](../06-operation/robots.md).
 - **For a self-built gripper**: a 3.3 V USB-to-serial adapter ([serial adapter](https://source-robotics.com/products/usb-to-serial-adapter))
   for the driver's UART port, to configure the driver with Motor GUI or a terminal; see
-  [Driver configuration](../05-setup/driver-configuration.md).
+  [Driver configuration](../build/first-run.md).
 
 ## Optional
 

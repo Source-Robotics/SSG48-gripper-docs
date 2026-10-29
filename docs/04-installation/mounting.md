@@ -12,7 +12,7 @@ template lets you make a fifth.
 
 <figure markdown="span">
   ![The generic coupler connector](../assets/Capture.PNG){ width="520" }
-  <figcaption>Figure 11: The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle.</figcaption>
+  <figcaption>Figure 10: The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle.</figcaption>
 </figure>
 
 ## PAROL6

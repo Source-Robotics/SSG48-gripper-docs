@@ -13,4 +13,3 @@ gripping.
 - [The gripper at a glance](gripper-at-a-glance.md)
 - [Hardware versions](hardware-versions.md)
 - [What you need](what-you-need.md)
-- [Build your own](build-your-own.md)

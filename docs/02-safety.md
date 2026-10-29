@@ -41,7 +41,7 @@ idle; it clears when the motor has cooled and the error is cleared. A gripper ho
 for long heats up: a hold at 300 mA runs for days, a hold at 1600 mA trips the limit in four minutes
 ([Performance tests](appendix/performance.md)). For a long hold, use the lowest current that holds the object. A
 self-built gripper without a thermistor in the windings has no protection and can burn out its motor; see
-[Driver configuration](05-setup/driver-configuration.md).
+[Driver configuration](build/first-run.md).
 
 ## Stopping the gripper
 

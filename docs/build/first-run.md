@@ -1,4 +1,4 @@
-# Driver configuration for a self-built gripper
+# Driver setup and first run
 
 A gripper from the shop arrives with its driver configured: the motor calibrated, gripper mode on, the
 thermistor on, everything saved. A gripper you build has a bare Spectral Micro driver that is brought to the same
@@ -15,7 +15,7 @@ This page is that procedure; the commands are the driver's, and the
 - A 3.3 V [USB-to-serial adapter](https://source-robotics.com/products/usb-to-serial-adapter) on the driver's
   UART connector, a terminal at 256000 baud with CR+LF line endings, and 24 V on the driver's power connector.
   [The serial terminal](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/terminal/) on the
-  Spectral Micro site shows the terminal setup; [Motor GUI](motor-gui.md) over UART does the same job in the
+  Spectral Micro site shows the terminal setup; [Motor GUI](../05-setup/motor-gui.md) over UART does the same job in the
   browser.
 
 ## 1. The motor calibration
@@ -60,7 +60,7 @@ before applying for another robot), then saves.
 
 Fit the linear guide with the jaws, the lid and the coupler connector, power the gripper up through its cable,
 and run the gripper calibration (`#Gripcal`, or Motor GUI's **Calibrate**): the jaws open fully and close fully.
-Then a first move at a low current, as in [Calibrate, activate, move](first-moves.md). `#Gripinfo` prints the
+Then a first move at a low current, as in [Calibrate, activate, move](../05-setup/first-moves.md). `#Gripinfo` prints the
 gripper's state, including the end stops the calibration found.
 
 ## Current limit

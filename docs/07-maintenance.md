@@ -32,6 +32,6 @@ finger is the same part as a new one, and the gripper calibration at the next po
 stops.
 
 A motor or a driver is not serviced but replaced: the motor by the GBM5208-75 of the BOM, after which the motor
-calibration of [Driver configuration](05-setup/driver-configuration.md) is run again (the body has to be opened
+calibration of [Driver configuration](build/first-run.md) is run again (the body has to be opened
 as in the assembly manual); the driver by a new
 [Spectral Micro](https://source-robotics.com/products/spectral-micro-bldc-controller), configured the same way.

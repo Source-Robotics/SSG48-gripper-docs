@@ -43,4 +43,4 @@ manuals:
     published: null
     firmware: true
     applies_to: with the Spectral Micro driver PCB v2.0
-    covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware; the gripper's API reference; guides"
+    covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides"

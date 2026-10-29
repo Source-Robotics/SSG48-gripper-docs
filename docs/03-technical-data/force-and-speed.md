@@ -19,7 +19,7 @@ about 54 N per ampere, from about 8 N at 150 mA to 80 N at 1.5 A.
 <figure markdown="span">
   ![Grip force against the current limit](../assets/grip_force_light.png#only-light){ width="820" }
   ![Grip force against the current limit](../assets/grip_force_dark.png#only-dark){ width="820" }
-  <figcaption>Figure 3: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
+  <figcaption>Figure 2: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
 </figure>
 
 The curve is computed from the torque constant. A force gauge on a shipped gripper reads a little under it, about
