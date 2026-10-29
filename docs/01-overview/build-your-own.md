@@ -19,6 +19,11 @@ folder has the printable parts of both hardware versions; print the `V2` set (th
 [Hardware versions](hardware-versions.md)), the two jaws, the guide cover, and the coupler connector for your
 robot. PETG for the body; the fin-ray fingers in a flexible filament.
 
+<figure markdown="span">
+  ![The body in black and in grey](../assets/SSG48_black_and_grey.jpg){ width="600" }
+  <figcaption>Figure 2: The body printed in black and in grey, the two colours the shop sells.</figcaption>
+</figure>
+
 ## 2. Source the rest
 
 The [BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md) lists every

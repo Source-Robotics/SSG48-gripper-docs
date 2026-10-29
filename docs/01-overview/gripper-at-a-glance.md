@@ -6,6 +6,11 @@ motor's current, so a move sets not only where the jaws go and how fast, but how
 limit is the grip force, from about 5 N to 80 N. The jaws stop on an object, hold it with that force, and the
 driver reports that an object was found.
 
+<figure markdown="span">
+  ![The SSG-48 gripper](../assets/SSG48_gripper_angle.jpg){ width="600" }
+  <figcaption>Figure 1: The SSG-48 gripper with pinch fingers.</figcaption>
+</figure>
+
 ## The parts
 
 | Part | What it does |

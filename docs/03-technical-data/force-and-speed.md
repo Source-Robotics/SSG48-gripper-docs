@@ -19,7 +19,7 @@ about 54 N per ampere, from about 8 N at 150 mA to 80 N at 1.5 A.
 <figure markdown="span">
   ![Grip force against the current limit](../assets/grip_force_light.png#only-light){ width="820" }
   ![Grip force against the current limit](../assets/grip_force_dark.png#only-dark){ width="820" }
-  <figcaption>Figure 1: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
+  <figcaption>Figure 3: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
 </figure>
 
 The curve is computed from the torque constant. A force gauge on a shipped gripper reads a little under it, about
@@ -33,6 +33,22 @@ soft object is squeezed until the force is reached.
     The firmware does not clamp the gripper's current. A hold at 300 mA runs for days ([Performance tests](../appendix/performance.md));
     a hold at 1600 mA trips the 75 °C thermistor limit after four minutes. Use high currents for the grip and a
     low current for the hold.
+
+## Payload
+
+The grip force is not the weight the gripper can lift. An object held by friction between the two jaws is held
+by $2\,\mu F$, with $\mu$ the friction coefficient between the fingers and the object, and a safety factor $S$
+covers what the robot adds:
+
+$$
+W = \frac{2\,\mu\,F}{S}
+$$
+
+With a conservative $\mu$ = 0.3 (a hard printed finger on steel or smooth plastic; a flexible fin-ray finger on a
+dry object gives more) and $S$ = 2, the gripper at 80 N holds about 24 N, 2.4 kg. That is the weight held at
+rest: a robot accelerating at 1 g doubles the load, and an emergency stop decelerates harder than any programmed
+move. The friction coefficient is the big unknown; measure it with your fingers on your object, or close on the
+object's shape (a form-fit grip) and let friction be the reserve.
 
 ## Speed
 

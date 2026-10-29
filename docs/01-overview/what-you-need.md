@@ -10,6 +10,12 @@ calibrated; the gripper calibration (finding the end stops) runs after every pow
 materials, the assembly manual and video, the firmware and the software are all published.
 [Build your own](build-your-own.md) is the order to do it in.
 
+## What is in the box
+
+The gripper, assembled, calibrated and configured, in black or grey. **Not in the box:** the fingers, which you
+print from the repository; the cable, sold separately; the 8 mm shaft coupler for a PAROL6, which you ask for
+when ordering; a CAN adapter for a PC.
+
 ## A cable and a 24 V supply
 
 The gripper is powered and controlled through one M8 4-pin cable: 24 V, GND, CANH, CANL.
