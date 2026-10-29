@@ -1,0 +1,50 @@
+{#-
+  The "Was this page helpful?" widget (extra.analytics.feedback in mkdocs.yml) and the page analytics.
+
+  Material renders the widget and leaves the submit to this script. A vote is remembered in the browser so that a
+  page is voted once, and is sent to extra.feedback_endpoint as a small JSON beacon when one is configured (any
+  endpoint that accepts a POST: a Plausible event, a Google Form, a serverless function). Without an endpoint the
+  widget still works: it thanks the reader, and a thumbs-down shows the link to open an issue.
+
+  Page views: set extra.analytics.property to the site's domain to load Plausible (privacy-friendly, no cookies,
+  no banner); leave it empty for no analytics at all.
+-#}
+{% if config.extra.analytics.property %}
+<script defer data-domain="{{ config.extra.analytics.property }}" src="https://plausible.io/js/script.outbound-links.js"></script>
+{% endif %}
+<script>
+(function () {
+  var endpoint = {{ (config.extra.feedback_endpoint or "") | tojson }};
+  var site = {{ config.site_name | tojson }};
+  function setup() {
+    var feedback = document.forms.feedback;
+    if (!feedback) return;
+    feedback.hidden = false;           /* Material renders the form hidden and leaves showing it to the integration */
+    var key = "feedback:" + window.location.pathname;
+    var voted = null;
+    try { voted = window.localStorage.getItem(key); } catch (e) {}
+    function done(value) {
+      feedback.firstElementChild.disabled = true;
+      var note = feedback.querySelector(".md-feedback__note [data-md-value='" + value + "']");
+      if (note) note.hidden = false;
+    }
+    if (voted !== null) { done(voted); return; }
+    feedback.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var value = ev.submitter.getAttribute("data-md-value");
+      try { window.localStorage.setItem(key, value); } catch (e) {}
+      if (endpoint) {
+        var body = JSON.stringify({ site: site, page: window.location.pathname, title: document.title, rating: Number(value) });
+        if (!(navigator.sendBeacon && navigator.sendBeacon(endpoint, body))) {
+          fetch(endpoint, { method: "POST", body: body, keepalive: true, headers: { "Content-Type": "application/json" } }).catch(function () {});
+        }
+      }
+      if (window.plausible) window.plausible("Feedback", { props: { page: window.location.pathname, rating: value } });
+      done(value);
+    });
+  }
+  if (window.document$ && window.document$.subscribe) { window.document$.subscribe(setup); }
+  else if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", setup); }
+  else { setup(); }
+})();
+</script>

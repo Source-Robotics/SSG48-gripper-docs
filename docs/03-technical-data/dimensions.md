@@ -1,5 +1,9 @@
 # Dimensions and CAD
 
+<model-viewer class="hero-model" src="../../assets/models/ssg48.glb" alt="The SSG-48 gripper, turnable in 3D" camera-controls auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1.1" camera-orbit="-35deg 72deg auto" interaction-prompt="auto" loading="lazy"></model-viewer>
+<p class="hero-model-caption">Drag to turn the gripper, scroll to zoom. The model is the repository's URDF with the fin-ray fingers half open; the
+<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF and MJCF files</a> drive it in ROS 2, Gazebo and MuJoCo.</p>
+
 <figure markdown="span">
   ![Front view](../assets/DIM2.PNG){ width="700" }
   <figcaption>Figure 4: Front view, in millimetres: 104 mm over the jaw plates, 60.7 mm from the coupler face to the top of the jaw plates, 26 mm jaw plates.</figcaption>

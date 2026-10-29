@@ -23,6 +23,10 @@ CAD and print files, the bill of materials, the assembly instructions, the drive
 drives it. Buy the gripper assembled, or build one yourself; change the jaws or the body for your application and
 fit it to any robot. The [build guide](build/index.md) is the order to do it in.
 
+<model-viewer class="hero-model" src="assets/models/ssg48.glb" alt="The SSG-48 gripper, turnable in 3D" camera-controls auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1.1" camera-orbit="-35deg 72deg auto" interaction-prompt="auto" loading="lazy"></model-viewer>
+<p class="hero-model-caption">Drag to turn the gripper, scroll to zoom. The model is the repository's URDF with the fin-ray fingers half open; the
+<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF and MJCF files</a> drive it in ROS 2, Gazebo and MuJoCo.</p>
+
 <div class="grid cards" markdown>
 
 -   :material-play-circle:{ .lg .middle } **First setup**

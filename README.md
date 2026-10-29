@@ -22,8 +22,9 @@ the gripper runs the firmware of the Spectral Micro driver,
 | `docs/includes/generated/` | written by `tools/sync_firmware.py` from the firmware's release tag: `firmware_facts.json`, `firmware_release_notes.md`. Never edit |
 | `versions.yml` | every version fact: the gripper release the site is versioned by, the firmware release it describes, the manual's number and revision |
 | `compatibility.yml` | which firmware release works with which bootloader, gripper hardware, Python library and ROS 2 driver |
-| `hooks/` | `versions.py` writes the version facts into the pages; `firmware_pages.py` builds the reference pages |
-| `tools/` | `sync_firmware.py`, `sync_bom.py`, `test_tools.py`, `root_404.html` |
+| `hooks/` | `versions.py` writes the version facts into the pages; `firmware_pages.py` builds the reference pages; `llms.py` writes the Markdown twin of every page, `llms.txt` and `llms-full.txt` |
+| `docs/assets/models/ssg48.glb` | the turnable 3D model on the landing page, written by `tools/build_model.py` from the repository's URDF. Never edit |
+| `tools/` | `sync_firmware.py`, `sync_bom.py`, `build_model.py`, `test_tools.py`, `root_404.html` |
 | `overrides/` | the theme changes: the older-version banner, the edit/report line, the header's repository card |
 
 The site is built with [MkDocs](https://www.mkdocs.org/) and the
@@ -78,6 +79,21 @@ fixed in the repository's file, then:
 python tools/sync_bom.py            # rewrite the page and the images from the clone
 python tools/sync_bom.py --check    # exit 1 if the page is out of date
 ```
+
+## The 3D model, the Markdown twins and the feedback widget
+
+`tools/build_model.py` builds `docs/assets/models/ssg48.glb` from the gripper repository's URDF (the same `--repo`
+as the BOM tool; needs `trimesh`); the landing and dimensions pages show it with Google's `<model-viewer>`,
+loaded from a CDN. Run it again when the meshes change.
+
+`hooks/llms.py` writes, at every build, a Markdown twin of every page next to its HTML (`…/index.md`), `llms.txt`
+(an index of the twins by tab) and `llms-full.txt` (every page in one file), with the links absolute to the
+published version (`extra.llms_base`). The "Copy this page as Markdown" button in the page header reads the twin.
+
+The "Was this page helpful?" widget at the end of every page is configured under `extra.analytics.feedback`;
+`overrides/partials/integrations/analytics/custom.html` handles the vote (remembered in the browser, sent to
+`extra.feedback_endpoint` when one is set) and loads Plausible page analytics when `extra.analytics.property` is
+the site's domain.
 
 ## Versions and releases
 

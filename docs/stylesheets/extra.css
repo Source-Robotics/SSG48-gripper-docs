@@ -247,3 +247,20 @@
   color: var(--md-default-fg-color--light);
   margin-top: -0.6rem;
 }
+
+/* The turnable 3D model (model-viewer) on the landing and dimensions pages */
+model-viewer.hero-model {
+  display: block;
+  width: 100%;
+  height: 26rem;
+  margin: 0.5rem 0 0 0;
+  background: transparent;
+  --poster-color: transparent;
+}
+.hero-model-caption {
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.4rem;
+}
+/* The "Copy this page as Markdown" button sits with the edit and view buttons */
+.md-copy-md svg { fill: currentcolor; }
