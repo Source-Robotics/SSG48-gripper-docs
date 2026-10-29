@@ -5,7 +5,7 @@ hide:
 
 # SSG-48 Gripper Manual
 
-![SSG-48 gripper](assets/hero.png){ .hero }
+![SSG-48 gripper](assets/hero.webp){ .hero }
 
 <!-- doc-meta: ssg48 -->
 
