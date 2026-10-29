@@ -106,7 +106,7 @@ sequenceDiagram
         G-->>H: answer: position, current, state
     end
     G-->>H: answer: object found while closing (1), or at the position (3)
-    Note over H: the grip is in; the next move waits for the program
+    Note over H: the grip is in, the next move waits for the program
 ```
 
 ## Object detection, exactly
