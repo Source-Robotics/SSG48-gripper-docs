@@ -34,11 +34,12 @@ pages = load_module("firmware_pages", ROOT / "hooks" / "firmware_pages.py")
 from mkdocs.exceptions import PluginError  # noqa: E402
 
 # ---------------------------------------------------------------- the version hook
-GOOD = """docs_version: "108"
-firmware: {repository: x, tag: V108}
+GOOD = """docs_version: "1.1"
+product: {name: SSG-48 gripper, repository: x, tag: V1.1}
+firmware: {name: Spectral, version: "107", repository: x, tag: V107}
 manuals:
   ssg48: {number: SR-5004, title: SSG-48 Gripper Manual, revision: 2026.A, status: draft, published: null, firmware: true,
-            applies_to: "SSG-48 gripper V1.1", covers: the driver}
+            applies_to: "with the Spectral Micro driver PCB v2.0", covers: the driver}
   guide: {number: SR-5101, title: Some Guide, revision: 2026.B, status: published, published: 2026-11-02,
           applies_to: "", covers: a guide}
 """
@@ -57,12 +58,14 @@ def load_text(text):
 
 data, err = load_text(GOOD)
 check("A1 a valid versions.yml loads", data is not None, err)
-d, e = load_text(GOOD.replace("tag: V108", "tag: v108"))
+d, e = load_text(GOOD.replace("tag: V107", "tag: v107"))
 check("A1b a lowercase tag loads (the v101 tag of the Spectral firmware)", d is not None, e)
 for label, bad, word in (
-        ("docs_version not a release number", GOOD.replace('"108"', '"1.08"'), "docs_version"),
-        ("a tag of another release", GOOD.replace("tag: V108", "tag: V107"), "does not belong"),
-        ("a malformed tag", GOOD.replace("tag: V108", "tag: 108"), "firmware.tag"),
+        ("docs_version not a release", GOOD.replace('"1.1"', '"x"'), "docs_version"),
+        ("a product tag of another release", GOOD.replace("tag: V1.1", "tag: V1.0"), "does not belong"),
+        ("a firmware tag of another release", GOOD.replace("tag: V107", "tag: V106"), "does not belong"),
+        ("a malformed firmware tag", GOOD.replace("tag: V107", "tag: 107"), "firmware.tag"),
+        ("a product without a tag", GOOD.replace("tag: V1.1", "tag: ''"), "product needs"),
         ("a revision not YEAR.LETTER", GOOD.replace("2026.A", "A"), "YEAR.LETTER"),
         ("an unknown status", GOOD.replace("status: draft", "status: final"), "status"),
         ("published without a date", GOOD.replace("published: 2026-11-02", "published: null"), "publication date"),
@@ -70,12 +73,13 @@ for label, bad, word in (
     d, e = load_text(bad)
     check(f"A2 refused: {label}", d is None and word in (e or ""), e)
 meta = hook.meta_block("ssg48", data)
-check("A3 a firmware document's box: number, firmware version, revision (draft), applies to the firmware",
-      "SR-5004" in meta and "**Firmware version:** 108" in meta and "2026.A (draft)" in meta
-      and "**Applies to:** SSG-48 gripper V1.1, firmware 108" in meta, meta)
+check("A3 a firmware document's box: number, gripper release, firmware, revision (draft), applies to both",
+      "SR-5004" in meta and "**SSG-48 gripper release:** 1.1" in meta and "**Firmware:** Spectral 107" in meta
+      and "2026.A (draft)" in meta
+      and "**Applies to:** SSG-48 gripper release 1.1 with the Spectral Micro driver PCB v2.0, Spectral firmware 107" in meta, meta)
 meta = hook.meta_block("guide", data)
-check("A4 a published document's box: no firmware line, the date, no (draft)",
-      "Firmware version" not in meta and "2026-11-02" in meta and "(draft)" not in meta, meta)
+check("A4 a published document's box: no firmware line, the gripper release, the date, no (draft)",
+      "**Firmware:**" not in meta and "release:** 1.1" in meta and "2026-11-02" in meta and "(draft)" not in meta, meta)
 try:
     hook.meta_block("nope", data)
     raised = False
@@ -83,7 +87,8 @@ except PluginError:
     raised = True
 check("A5 an unknown manual stops the build", raised)
 table = hook.documents_table(data)
-check("A6 the documents table: one row per manual", table.count("| SR-") == 2 and "108" in table, table)
+check("A6 the documents table: one row per manual, the gripper release and the firmware named",
+      table.count("| SR-") == 2 and "release 1.1" in table and "107" in table, table)
 hook._facts = data
 page = hook.on_page_markdown("x\n<!-- doc-meta: ssg48 -->\ny\n<!-- documents-table -->\n", None, None, None)
 check("A7 both placeholders are replaced", "doc-meta:" not in page and "documents-table" not in page and "SR-5101" in page)
@@ -102,14 +107,15 @@ except PluginError as exc:
 check("B1 the shipped facts and descriptions load and agree (every command described, layouts fit the frames)", loaded, load_err)
 if loaded:
     facts = d["facts"]
-    check("B2 the generated facts are from the release versions.yml names", facts["tag"] == shipped["firmware"]["tag"]
-          and facts["version"] == shipped["docs_version"], f"{facts['tag']} vs {shipped['firmware']['tag']}")
+    check("B2 the generated facts are from the firmware release versions.yml names", facts["tag"] == shipped["firmware"]["tag"]
+          and facts["version"] == str(shipped["firmware"]["version"]), f"{facts['tag']} vs {shipped['firmware']['tag']}")
     missing = [g["page"] for src in (d["can"], d["uart"]) for g in src["groups"].values()]
     missing = [p for p, base in zip(missing, ["can"] * len(d["can"]["groups"]) + ["uart"] * len(d["uart"]["groups"]))
                if not (ROOT / "docs" / "reference" / base / p).exists()]
     check("B3 every command group has its reference page", not missing, str(missing))
-    check("B4 the compatibility table has a row for this docs version",
-          any(str(r.get("firmware")) == shipped["docs_version"] for r in d["compat"]["rows"]))
+    check("B4 the compatibility table has a row for this firmware release, and names this docs version",
+          any(str(r.get("firmware")) == str(shipped["firmware"]["version"]) for r in d["compat"]["rows"])
+          and any(str(r.get("docs")) == shipped["docs_version"] for r in d["compat"]["rows"]))
     check("B5 every column of the compatibility table has a key and a title",
           all("key" in c and "title" in c for c in d["compat"]["columns"]))
     gen = ROOT / "docs" / "includes" / "generated" / "firmware_release_notes.md"

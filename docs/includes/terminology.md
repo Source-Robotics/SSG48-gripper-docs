@@ -12,8 +12,8 @@
     11-bit CAN frame identifier; the command ID occupies bits 6 to 1 and the error bit is bit 0.
 
 **CANvas**
-:   Source Robotics' USB-to-CAN adapter. It appears as a serial port and speaks slcan, which `python-can`, the
-    gripper GUI and the ROS 2 drivers use.
+:   Source Robotics' USB-to-CAN adapter. It appears as a serial port and speaks slcan, which `python-can`, Motor
+    GUI and the ROS 2 drivers use.
 
 **Coupler connector**
 :   The round part on the back of the body that mounts the gripper: one for PAROL6, one for PAR6, a UR5 adapter

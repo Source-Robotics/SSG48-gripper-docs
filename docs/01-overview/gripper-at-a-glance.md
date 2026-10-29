@@ -48,7 +48,7 @@ CAN watchdog that runs out, and on every fault the driver itself detects (supply
   state. From a PC with the CANvas adapter, from a ROS 2 node, from PAROL6 or PAR6, or from your own controller.
   See [Over CAN](../06-operation/can.md).
 - **Python**, the `Spectral-BLDC` library on top of CAN. See [With Python](../06-operation/python.md).
-- **The gripper GUI** on a PC: connect, calibrate, move with sliders, watch the plots. See [The gripper GUI](../05-setup/gripper-gui.md).
+- **Motor GUI** in the browser: connect, calibrate, open and close, watch the plots. See [Motor GUI](../05-setup/motor-gui.md).
 - **UART**, the driver's serial port inside the body: for configuration, and for a self-built gripper. See
   [Over UART](../06-operation/uart.md).
 

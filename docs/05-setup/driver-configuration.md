@@ -17,6 +17,14 @@ same state once, over its UART port. This page is that procedure; the commands a
 - The thermistor, soldered to the driver's thermistor pads and placed in the motor's windings with thermal
   cement.
 
+## With Motor GUI
+
+[Motor GUI](motor-gui.md), connected over **UART** through the serial adapter, has an *SSG-48* preset on its
+setup page. It writes the motor's 11 pole pairs, the current limit, the loop gains of a calibrated shop gripper
+(`#Kpiq 7.0381`, `#Kiiq 4.2557`), gripper mode, the thermistor and the CAN ID, then saves; its CAN ID is 6, the
+PAR6 gripper's, so change it before applying for another robot. Apply it after the motor calibration of
+step 1: it does step 2 for you.
+
 ## 1. The motor calibration
 
 Restore the defaults first, so that nothing from another motor or junk in the EEPROM goes into the calibration,
@@ -54,7 +62,7 @@ The current loop gains the calibration computes for the motor are what the shipp
 
 ## 3. Assemble and calibrate the gripper
 
-Fit the pinion and assemble the gripper, power it up, and run the gripper calibration (`#Gripcal`, or the GUI's
+Fit the pinion and assemble the gripper, power it up, and run the gripper calibration (`#Gripcal`, or Motor GUI's
 **Calibrate**): the jaws open fully and close fully. Then a first move at a low current, as in
 [Calibrate, activate, move](first-moves.md). `#Gripinfo` prints the gripper's state, including the end stops the
 calibration found.

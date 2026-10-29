@@ -5,7 +5,7 @@ and a template for your own.
 
 <figure markdown="span">
   ![The jaw plate template](../assets/jaw_plate.PNG){ width="520" }
-  <figcaption>Figure 11: The jaw plate template, with the four mounting holes.</figcaption>
+  <figcaption>Figure 13: The jaw plate template, with the four mounting holes.</figcaption>
 </figure>
 
 | Fingers | Files | Use |
