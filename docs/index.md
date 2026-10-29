@@ -1,6 +1,7 @@
 ---
 hide:
   - toc
+comments: false
 ---
 
 # SSG-48 Gripper Manual

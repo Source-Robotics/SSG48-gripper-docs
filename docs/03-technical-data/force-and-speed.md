@@ -34,6 +34,30 @@ soft object is squeezed until the force is reached.
     a hold at 1600 mA trips the 75 °C thermistor limit after four minutes. Use high currents for the grip and a
     low current for the hold.
 
+## Try it
+
+<div class="gripper-calc" data-newtons-per-amp="54.2" data-radius-mm="6" data-ticks-min="40" data-ticks-max="80000" data-ticks-per-rev="16384" data-stroke-mm="48" markdown="0">
+  <div class="gripper-calc__row">
+    <label for="gc-current">Current limit of the move: <output data-out="current">300 mA</output></label>
+    <input id="gc-current" type="range" name="current" min="100" max="1500" step="10" value="300">
+  </div>
+  <div class="gripper-calc__row gripper-calc__row--inline">
+    <label for="gc-mu">Friction coefficient µ</label>
+    <input id="gc-mu" type="number" name="mu" min="0.1" max="1.5" step="0.05" value="0.3">
+    <label for="gc-safety">Safety factor</label>
+    <input id="gc-safety" type="number" name="safety" min="1" max="5" step="0.5" value="2">
+  </div>
+  <p class="gripper-calc__result">Grip force <strong data-out="force">16 N</strong> · holds <strong data-out="payload">0.5 kg</strong> at rest by friction</p>
+  <div class="gripper-calc__row">
+    <label for="gc-speed">Speed byte: <output data-out="speedbyte">30</output></label>
+    <input id="gc-speed" type="range" name="speed" min="0" max="255" step="1" value="30">
+  </div>
+  <p class="gripper-calc__result">Each jaw <strong data-out="jaw">22 mm/s</strong> · the jaws close at <strong data-out="closing">43 mm/s</strong> · the full stroke takes <strong data-out="stroke">1.1 s</strong></p>
+</div>
+
+The formulas of this page, with your numbers: the force from the current, the weight held by friction with the
+safety factor of the next section, and the speed from the speed byte.
+
 ## Payload
 
 The grip force is not the weight the gripper can lift. An object held by friction between the two jaws is held

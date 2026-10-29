@@ -95,6 +95,12 @@ The "Was this page helpful?" widget at the end of every page is configured under
 `extra.feedback_endpoint` when one is set) and loads Plausible page analytics when `extra.analytics.property` is
 the site's domain.
 
+Two more site features live here as a pilot: the "Last update" date under every page comes from the
+`git-revision-date-localized` plugin (the page's last commit; the CI checks out the whole history for it), and
+comments through Giscus are wired in `overrides/partials/comments.html` and configured under `extra.comments`
+in `mkdocs.yml`, which also says how to obtain the IDs that turn them on. The calculator on the Force and speed
+page is `docs/javascripts/gripper-calculator.js`, driven by the data attributes of its block.
+
 ## Versions and releases
 
 The site is versioned by **gripper release**: the version the product repository tags (`V1.1`, ...), published
