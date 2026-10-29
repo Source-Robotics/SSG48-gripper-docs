@@ -1,0 +1,48 @@
+# Which firmware release works with what. One row per Spectral firmware release the gripper can run, newest first.
+# hooks/firmware_pages.py writes it into the "Versions and compatibility" page (<!-- compatibility-table -->);
+# tools/test_tools.py checks that docs_version has a row.
+columns:
+  - {key: firmware, title: Firmware (Spectral)}
+  - {key: date, title: Released}
+  - {key: bootloader, title: Bootloader}
+  - {key: gripper, title: SSG-48 gripper}
+  - {key: python, title: Python library (Spectral-BLDC)}
+  - {key: ros2, title: ROS 2 driver}
+  - {key: docs, title: Docs}
+
+rows:
+  - firmware: "107"
+    date: 2026-08-26
+    bootloader: required (installed on grippers shipped with 105 or newer)
+    gripper: V1.1
+    python: 1.20 or newer
+    ros2: ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2
+    docs: "107"
+  - firmware: "106"
+    date: 2026-07-06
+    bootloader: required
+    gripper: V1.1
+    python: 1.19 or newer
+    ros2: ssg48_adaptive_electric_gripper_ros2
+    docs: not published
+  - firmware: "105"
+    date: 2026-07-05
+    bootloader: required (the first release that needs it)
+    gripper: V1.1
+    python: 1.19 or newer
+    ros2: ssg48_adaptive_electric_gripper_ros2
+    docs: not published
+  - firmware: "104"
+    date: 2026-06-19
+    bootloader: none (flashed with a programming adapter); the last release of the main branch
+    gripper: V1.1
+    python: 1.19 or newer
+    ros2: ssg48_adaptive_electric_gripper_ros2
+    docs: the Spectral Micro site, version 101
+  - firmware: "101"
+    date: 2025-09-29
+    bootloader: none (flashed with a programming adapter)
+    gripper: V1.1
+    python: 1.17 or newer
+    ros2: ssg48_adaptive_electric_gripper_ros2
+    docs: the Spectral Micro site, version 101
