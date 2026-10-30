@@ -1,6 +1,8 @@
 {#-
   Comments under the page through Giscus, when extra.comments has the IDs (mkdocs.yml says how to get them) and
-  the page does not say `comments: false`. The widget follows the site's light or dark scheme.
+  the page does not say `comments: false`. All the docs sites share one Discussions home, the hub repository; a
+  thread is named after the site and the page, so the same page name on two sites gets two threads. The widget
+  follows the site's light or dark scheme.
 -#}
 {% set c = config.extra.comments %}
 {% if c and c.repo_id and c.category_id and page.meta.comments is not sameas false %}
@@ -10,7 +12,8 @@
           data-repo-id="{{ c.repo_id }}"
           data-category="{{ c.category }}"
           data-category-id="{{ c.category_id }}"
-          data-mapping="pathname"
+          data-mapping="specific"
+          data-term="{{ config.site_name }} · {{ page.url or 'home' }}"
           data-strict="0"
           data-reactions-enabled="1"
           data-emit-metadata="0"

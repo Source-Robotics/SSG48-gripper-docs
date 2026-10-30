@@ -149,13 +149,14 @@ extra:
             <a href="https://github.com/Source-Robotics/SSG48-gripper-docs/issues/new" target="_blank" rel="noopener">an issue</a>,
             or on Discord.
   feedback_endpoint: ""
-  # Comments under every page, through Giscus (GitHub Discussions of the docs repository). To turn them on:
-  # enable Discussions on the repository (Settings > Features), install the giscus app on it
-  # (github.com/apps/giscus), open giscus.app, choose the repository and the category "Documentation", and
-  # copy the repo_id and category_id it shows here. Empty IDs: no comments are rendered. A page opts out with
-  # `comments: false` in its front matter.
+  # Comments under every page, through Giscus. All the docs sites share one Discussions home, the hub repository
+  # Source-Robotics/source-robotics.github.io (the docs domain): one thread per site and page. To turn them on,
+  # once for all sites: enable Discussions on that repository (Settings > Features), create a category
+  # "Documentation" (format Announcement), install the giscus app on it (github.com/apps/giscus), open giscus.app,
+  # choose the repository and the category, and copy the repo_id and category_id it shows here. Empty IDs: no
+  # comments are rendered. A page opts out with `comments: false` in its front matter.
   comments:
-    repo: Source-Robotics/SSG48-gripper-docs
+    repo: Source-Robotics/source-robotics.github.io
     repo_id: ""
     category: Documentation
     category_id: ""
