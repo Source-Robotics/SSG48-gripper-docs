@@ -92,10 +92,11 @@ fingers and the colours. Run the tool again when the meshes change.
 (an index of the twins by tab) and `llms-full.txt` (every page in one file), with the links absolute to the
 published version (`extra.llms_base`). The "Copy this page as Markdown" button in the page header reads the twin.
 
-The "Was this page helpful?" widget at the end of every page is configured under `extra.analytics.feedback`;
-`overrides/partials/integrations/analytics/custom.html` handles the vote (remembered in the browser, sent to
-`extra.feedback_endpoint` when one is set) and loads Plausible page analytics when `extra.analytics.property` is
-the site's domain.
+The "Was this page helpful?" widget at the end of every page is configured under `extra.analytics.feedback`.
+With `provider: google` (the shared Google Analytics property, loaded after the reader accepts the cookie
+banner of `extra.consent`), Material's own integration records the page views and sends each vote as an
+event named `feedback`. `overrides/partials/integrations/analytics/custom.html` is the alternative for a
+provider without cookies (Plausible, or a POST to `extra.feedback_endpoint`): set `provider: custom` to use it.
 
 Two more site features live here as a pilot: the "Last update" date under every page comes from the
 `git-revision-date-localized` plugin (the page's last commit; the CI checks out the whole history for it), and
