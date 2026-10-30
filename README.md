@@ -105,6 +105,13 @@ in `mkdocs.yml` (all the docs sites share one Discussions home, the hub reposito
 with `comments: false`). The calculator on the Force and speed
 page is `docs/javascripts/gripper-calculator.js`, driven by the data attributes of its block.
 
+## The PDF of the manual
+
+The `print-site` plugin (the last plugin in `mkdocs.yml`) builds one page with every chapter in order, a cover and
+a table of contents, at `print_page/`. `hooks/pdf.py` prints that page to `site/assets/SSG-48-gripper-manual.pdf` with headless
+Chrome when the environment variable `DOCS_PDF` is set, which the publish workflow does; a local build sets it on
+demand (`DOCS_PDF=1 mkdocs build`). While the hook is on, the page-help line of every page links the PDF.
+
 ## Versions and releases
 
 The site is versioned by **gripper release**: the version the product repository tags (`V1.1`, ...), published

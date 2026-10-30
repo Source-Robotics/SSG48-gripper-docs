@@ -286,3 +286,11 @@
 }
 .gripper-calc__result { font-size: 0.8rem; margin: 0.2rem 0 0.9rem 0; }
 .gripper-calc__result strong { color: var(--md-accent-fg-color); }
+
+/* The print page (print-site plugin) and the PDF printed from it: no interactive blocks, no page chrome */
+#print-site-page .gripper-viewer, #print-site-page .arm-viewer, #print-site-page .calc, #print-site-page .gripper-calc,
+#print-site-page .md-feedback, #print-site-page .page-help, #print-site-page .md-source-file, #print-site-page .md-copy-md { display: none !important; }
+@media print {
+  .md-consent, .md-banner, .md-top, .md-copy-md, .page-help, .md-feedback { display: none !important; }
+  .md-typeset img { max-height: 24cm; }
+}

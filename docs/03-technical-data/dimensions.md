@@ -14,27 +14,27 @@ repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electri
 </div>
 
 <figure markdown="span">
-  ![Front view](../assets/DIM2.PNG){ width="700" }
+  ![Front view](../assets/DIM2.webp){ width="700" }
   <figcaption>Figure 4: Front view, in millimetres: 104 mm over the jaw plates, 60.7 mm from the coupler face to the top of the jaw plates, 26 mm jaw plates.</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Side view](../assets/DIM3.PNG){ width="700" }
+  ![Side view](../assets/DIM3.webp){ width="700" }
   <figcaption>Figure 5: Side view.</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Top view](../assets/DIM4.PNG){ width="600" }
+  ![Top view](../assets/DIM4.webp){ width="600" }
   <figcaption>Figure 6: Top view, with the jaw plates and their hole pattern.</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![With the PAROL6 coupler](../assets/DIM1.PNG){ width="700" }
+  ![With the PAROL6 coupler](../assets/DIM1.webp){ width="700" }
   <figcaption>Figure 7: The gripper with the PAROL6 coupler connector.</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![The stroke](../assets/gripper_stroke.png){ width="520" }
+  ![The stroke](../assets/gripper_stroke.webp){ width="520" }
   <figcaption>Figure 8: 48 mm of stroke between the jaw plates, 104 mm overall.</figcaption>
 </figure>
 

@@ -28,7 +28,7 @@ last joint.
 
 <div class="grid" markdown>
 ![The gripper on the J6 shaft](../assets/gripper_parol1.webp){ width="400" }
-![The coupler screws](../assets/gripper_parol4.png){ width="400" }
+![The coupler screws](../assets/gripper_parol4.webp){ width="400" }
 </div>
 
 The PAROL6 software needs to know the gripper is there: [On PAROL6 and PAR6](../06-operation/robots.md).
