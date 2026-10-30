@@ -98,7 +98,7 @@ banner of `extra.consent`), Material's own integration records the page views an
 event named `feedback`. `overrides/partials/integrations/analytics/custom.html` is the alternative for a
 provider without cookies (Plausible, or a POST to an `extra.feedback_endpoint`): set `provider: custom` to use it.
 
-Two more site features live here as a pilot: the "Last update" date under every page comes from the
+Two more site features: the "Last update" date under every page comes from the
 `git-revision-date-localized` plugin (the page's last commit; the CI checks out the whole history for it), and
 comments through Giscus are wired in `overrides/partials/comments.html` and configured under `extra.comments`
 in `mkdocs.yml` (all the docs sites share one Discussions home, the hub repository; the landing page opts out

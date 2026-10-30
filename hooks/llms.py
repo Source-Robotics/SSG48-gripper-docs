@@ -108,7 +108,7 @@ def on_post_build(config):
     intro = (f"# {config.site_name}\n\n> {config.site_description}\n\n"
              "Every page of this site is also available as Markdown at its address followed by `index.md`, with its "
              "links absolute; `llms-full.txt` holds every page in one file. The version box on the landing page names "
-             "the gripper release and the driver firmware release the pages describe.\n")
+             "the release the pages describe.\n")
     index = [intro]
     full = [intro, f"Full text of every page, in the order of the site's navigation. Source: {base}\n"]
     for tab, srcs in nav_sections(config):
