@@ -96,12 +96,13 @@ The "Was this page helpful?" widget at the end of every page is configured under
 With `provider: google` (the shared Google Analytics property, loaded after the reader accepts the cookie
 banner of `extra.consent`), Material's own integration records the page views and sends each vote as an
 event named `feedback`. `overrides/partials/integrations/analytics/custom.html` is the alternative for a
-provider without cookies (Plausible, or a POST to `extra.feedback_endpoint`): set `provider: custom` to use it.
+provider without cookies (Plausible, or a POST to an `extra.feedback_endpoint`): set `provider: custom` to use it.
 
 Two more site features live here as a pilot: the "Last update" date under every page comes from the
 `git-revision-date-localized` plugin (the page's last commit; the CI checks out the whole history for it), and
 comments through Giscus are wired in `overrides/partials/comments.html` and configured under `extra.comments`
-in `mkdocs.yml`, which also says how to obtain the IDs that turn them on. The calculator on the Force and speed
+in `mkdocs.yml` (all the docs sites share one Discussions home, the hub repository; the landing page opts out
+with `comments: false`). The calculator on the Force and speed
 page is `docs/javascripts/gripper-calculator.js`, driven by the data attributes of its block.
 
 ## Versions and releases

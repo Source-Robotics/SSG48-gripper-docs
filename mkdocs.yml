@@ -158,18 +158,16 @@ extra:
       - accept
       - reject
       - manage
-  feedback_endpoint: ""
   # Comments under every page, through Giscus. All the docs sites share one Discussions home, the hub repository
-  # Source-Robotics/source-robotics.github.io (the docs domain): one thread per site and page. To turn them on,
-  # once for all sites: enable Discussions on that repository (Settings > Features), create a category
-  # "Documentation" (format Announcement), install the giscus app on it (github.com/apps/giscus), open giscus.app,
-  # choose the repository and the category, and copy the repo_id and category_id it shows here. Empty IDs: no
-  # comments are rendered. A page opts out with `comments: false` in its front matter.
+  # Source-Robotics/source-robotics.github.io (the docs domain), category "Documentation": one thread per site and
+  # page, created when the first reader comments. The IDs are the hub repository's and the category's; giscus.app
+  # shows them for the repository and the category. Empty IDs: no comments are rendered. A page opts out with
+  # `comments: false` in its front matter.
   comments:
     repo: Source-Robotics/source-robotics.github.io
-    repo_id: ""
+    repo_id: "R_kgDOVTvtKQ"
     category: Documentation
-    category_id: ""
+    category_id: "DIC_kwDOVTvtKc4DKAXd"
   # The published version the Markdown twins and llms.txt link to (mike publishes each build under its version).
   llms_base: latest/
   # The version selector in the header (built by mike: one entry per published gripper release + "latest").
