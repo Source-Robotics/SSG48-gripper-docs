@@ -4,8 +4,8 @@
     python tools/build_model.py [--repo PATH]
 
 Writes docs/assets/models/ssg48/: body.glb (the gripper body), one jaws_<option>.glb per finger option of the
-repository (ssg48_JAW_OPTIONS: fin-ray, solid, pinch, jaw plates only), both jaws at the closed position with
-their joint transforms baked in, and viewer.json: the finger options, the direction and travel of each jaw's
+repository (ssg48_JAW_OPTIONS: fin-ray, solid, pinch, jaw plates only), both jaws at the closed position (the
+end of the joint's travel where the jaws meet) with their joint transforms baked in, and viewer.json: the finger options, the direction and travel of each jaw's
 opening, the colour swatches and the default opening. docs/javascripts/gripper-viewer.js reads them. The scene
 is turned so the jaws point up (glTF is Y-up) and centred on the body with the fin-ray fingers. Needs trimesh,
 numpy and pyyaml.
@@ -83,30 +83,45 @@ def main(argv=None) -> int:
     joints = {j.find("child").get("link"): j for j in robot.findall("joint")}
     links = {l.get("name"): l for l in robot.findall("link")}
 
-    # the world transform of each jaw at the closed position (q = 0), and its opening direction and travel
-    jaw_world, jaw_dir, travel = {}, {}, 0.0
-    for jaw in ("jaw1", "jaw2"):
+    # each jaw's pose at a joint value q (prismatic: the joint origin, then the slide along the axis), the two ends
+    # of its travel, and which end is closed: the one where the two default jaw meshes are nearest each other
+    def pose(jaw, q):
         j = joints[jaw]
-        m = origin_matrix(j.find("origin"))
         axis = np.array([float(v) for v in j.find("axis").get("xyz").split()])
+        slide = np.eye(4)
+        slide[:3, 3] = axis * q
+        return Y_UP @ origin_matrix(j.find("origin")) @ slide @ origin_matrix(links[jaw].find("visual/origin"))
+
+    def far_end(jaw):                                # the limit away from 0; a mimic joint follows its source
+        j = joints[jaw]
+        mimic = j.find("mimic")
+        if mimic is not None:
+            src = [c for c, jj in joints.items() if jj.get("name") == mimic.get("joint")][0]
+            return far_end(src) * float(mimic.get("multiplier", 1)) + float(mimic.get("offset", 0))
         lim = j.find("limit")
         lo, hi = float(lim.get("lower", 0)), float(lim.get("upper", 0))
-        mimic = j.find("mimic")
-        if mimic is not None:                      # the second jaw mirrors the first: open = -(first's open)
-            src = joints[[c for c, jj in joints.items() if jj.get("name") == mimic.get("joint")][0]]
-            slo, shi = float(src.find("limit").get("lower", 0)), float(src.find("limit").get("upper", 0))
-            q_open = -(slo if abs(slo) > abs(shi) else shi) * float(mimic.get("multiplier", 1))
-        else:
-            q_open = lo if abs(lo) > abs(hi) else hi   # the limit away from 0 is the open end
-        d = (Y_UP[:3, :3] @ m[:3, :3] @ axis) * q_open
+        return lo if abs(lo) > abs(hi) else hi
+
+    default = {jaw: trimesh.load(repo / DESC / "ssg48_JAW_OPTIONS" / "FIN_ray_jaws" / f"{jaw}.STL", force="mesh")
+               for jaw in ("jaw1", "jaw2")}
+    ends = {jaw: (0.0, far_end(jaw)) for jaw in default}
+
+    def gap(i):                                      # distance between the jaw meshes with both at end i
+        c = [pose(jaw, ends[jaw][i]) @ np.append(default[jaw].centroid, 1) for jaw in default]
+        return float(np.linalg.norm(c[0][:3] - c[1][:3]))
+
+    closed = 0 if gap(0) <= gap(1) else 1
+    jaw_world, jaw_dir, travel = {}, {}, 0.0
+    for jaw in default:
+        q_closed, q_open = ends[jaw][closed], ends[jaw][1 - closed]
+        jaw_world[jaw] = pose(jaw, q_closed)
+        d = pose(jaw, q_open)[:3, 3] - jaw_world[jaw][:3, 3]
         travel = float(np.linalg.norm(d))
         jaw_dir[jaw] = (d / travel).round(6).tolist()
-        jaw_world[jaw] = Y_UP @ m @ origin_matrix(links[jaw].find("visual/origin"))
     body_m = Y_UP @ origin_matrix(links["gripper"].find("visual/origin"))
 
     body = trimesh.load(repo / DESC / "meshes" / "gripper.STL", force="mesh")
     body.apply_transform(body_m)
-    default = {jaw: trimesh.load(repo / DESC / "ssg48_JAW_OPTIONS" / "FIN_ray_jaws" / f"{jaw}.STL", force="mesh") for jaw in jaw_world}
     for jaw, mesh in default.items():
         mesh.apply_transform(jaw_world[jaw])
     centre = np.vstack([body.bounds] + [m.bounds for m in default.values()])
