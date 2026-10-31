@@ -2,7 +2,7 @@
 
 !!! note "This is a copy"
     The original is [BOM/BOM.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md) in the gripper's repository; this page is that file as of
-    2026-10-31 (commit `47379c6`), with the reference images shown inline. If a link is broken or a part is wrong,
+    2026-10-31 (commit `b244845`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -51,9 +51,9 @@ This BOM lists all components required to build the SSG48 gripper. Quantities ar
 | Type | Quantity | Description | Link |
 |------|----------|-------------|------|
 | Shaft coupler | 1 | 8 mm hole shaft, M4 screw holes<br>![shaft_coupler](../assets/bom/shaft_coupler.webp){ width="120" } | [Link](https://www.aliexpress.com/item/4000208248034.html?spm=a2g0o.order_list.order_list_main.521.6af018026rwEsK) |
-| MGN7C slider | 2 |  | [Link](https://s.click.aliexpress.com/e/_oEZfs3x) |
-| Linear guide | 1 | 100 mm | [Link](https://s.click.aliexpress.com/e/_oBSDfjN) |
-| Magnet | 1 | 6 mm diameter, 2.5 mm thickness, diametrically magnetised<br>![Magnet](../assets/bom/Magnet.webp){ width="120" } | [Link](https://source-robotics.com/products/6x2-5mm-diametrical-neodymium-magnet) |
+| MGN7C slider | 2 | ![MGN7C_slider](../assets/bom/MGN7C_slider.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_oEZfs3x) |
+| Linear guide | 1 | 100 mm<br>![MGN7C_slider](../assets/bom/MGN7C_slider.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_oBSDfjN) |
+| Magnet | 1 | 6 mm diameter, 2.5 mm thickness, diametrically magnetised<br>![magnet_diametrically](../assets/bom/magnet_diametrically.webp){ width="120" } | [Link](https://source-robotics.com/products/6x2-5mm-diametrical-neodymium-magnet) |
 
 
 ## Electronics

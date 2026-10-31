@@ -20,6 +20,11 @@ and a template for your own.
   and the rail, and foul the body at full opening.
 - The grip force is set at the finger faces. A finger that bends takes some of it.
 
+!!! warning "Custom fingers on a PAR6"
+    On a PAR6, custom fingers must keep the size of the original fingers: no longer, no wider and no thicker.
+    The PAR6 software works with the gripper's original dimensions (its collision model of the tool and the
+    tool centre point), so a larger finger reaches where the robot does not expect it.
+
 ## Calibrate after changing the fingers
 
 The gripper calibration finds the end stops with the fingers fitted; fingers that meet earlier or later than the
