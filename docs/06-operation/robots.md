@@ -9,7 +9,7 @@ it, moves it and reads its state, so a program for the robot does not talk CAN i
 2. Connect it with the [PAROL6 gripper cable](https://source-robotics.com/products/gripper-cable) to the
    robot's gripper port. Only this cable: the PAR6 cable is wired differently and destroys the gripper
    ([The cable](../04-installation/cable.md)).
-3. Leave the gripper's node ID at 0 and its termination on; it is the last node on the robot's bus.
+3. Keep the gripper's node ID at 0 and switch its termination on; it is the last node on the robot's bus.
 4. In the PAROL6 firmware, set `j5_homing_offset` to `8035` in `main.cpp`, as the
    [PAROL6 documentation](https://docs.source-robotics.com/PAROL-docs/) describes for the SSG-48: the gripper
    changes where joint 5's homing switch triggers.

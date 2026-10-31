@@ -1,12 +1,12 @@
 # CAN termination
 
-A CAN bus needs a 120 Ω resistor at each of its two ends. The gripper's driver has one, on a switch, and a gripper
-from the shop has it **on**: the gripper is normally the last node on a robot's bus.
+A CAN bus needs a 120 Ω resistor at each of its two ends. The gripper's driver has one, on a switch. The gripper
+is normally the last node on a robot's bus, where the switch must be **ON**.
 
 | The gripper is | Switch |
 |---|---|
-| the last node on a robot's bus, at the end of the arm | ON (as shipped) |
-| alone on a bench bus with the CANvas adapter (which has its own termination) | ON (as shipped) |
+| the last node on a robot's bus, at the end of the arm | ON |
+| alone on a bench bus with the CANvas adapter (which has its own termination) | ON |
 | in the middle of a bus, with other nodes after it | off |
 
 To change it, unscrew the coupler connector: the switch is on the Spectral Micro driver inside the body, next to

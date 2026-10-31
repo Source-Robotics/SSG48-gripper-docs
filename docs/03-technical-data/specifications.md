@@ -9,7 +9,7 @@
 | Motor current | set per move as the grip force: up to 1500 mA for a grip (about 72 N), 300 mA for a long hold; see [Force and speed](force-and-speed.md) |
 | Interface | CAN 2.0, 1 Mbit/s, 11-bit identifiers; node ID 0 as shipped |
 | Connector | M8, 4 pins: 24 V, GND, CANH, CANL |
-| CAN termination | 120 Ω, on as shipped; the switch is on the driver inside the body |
+| CAN termination | 120 Ω, switchable; the switch is on the driver inside the body |
 | Service port | the driver's UART, 3.3 V, 256000 baud, inside the body |
 | Driver | Spectral Micro BLDC controller, field-oriented control, 14-bit encoder on the motor |
 | Temperature protection | thermistor in the motor windings, 75 °C limit (changeable with `#Tlim`) |
