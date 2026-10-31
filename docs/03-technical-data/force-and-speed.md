@@ -1,20 +1,22 @@
 # Force and speed
 
-A move command carries a current limit in mA and a speed from 0 to 255. This page says what they mean in
-newtons and millimetres per second.
+A move command carries a current limit in mA and a speed from 0 to 255. This page estimates the resulting
+force and speed. Force and payload values are ideal model estimates, not measured ratings.
 
 ## Grip force
 
 The driver limits the motor's current to the value you command, so the torque the motor produces is limited to
 $T = K_t \, I_q$, with $K_t$ the motor's torque constant in Nm/A and $I_q$ the current limit in amperes (the
-command is in mA). The pinion turns the torque into the force the jaws press with:
+command is in mA). The pinion shares that torque between two racks.
+Here $F$ is the **combined normal force of both jaws**,
+not the force at one jaw:
 
 $$
 F = \frac{K_t \, I_q}{r}, \qquad K_t = 0.325\ \text{Nm/A}, \quad r = 6\ \text{mm}
 $$
 
-$K_t$ is the effective torque constant of the shipped grippers' motors and $r$ the pitch radius of the pinion:
-about 54 N per ampere, from about 8 N at 150 mA to 80 N at 1.5 A.
+$K_t$ = 0.325 Nm/A is the assumed torque constant used by this model and $r$ the pitch radius of the pinion.
+They give an ideal combined force of about 54 N per ampere: about 8 N at 150 mA and 80 N at 1.5 A.
 
 <figure markdown="span">
   ![Grip force against the current limit](../assets/grip_force_light.webp#only-light){ width="820" }
@@ -22,17 +24,27 @@ about 54 N per ampere, from about 8 N at 150 mA to 80 N at 1.5 A.
   <figcaption>Figure 2: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
 </figure>
 
-The curve is computed from the torque constant. A force gauge on a shipped gripper reads a little under it, about
-48 N per ampere; a self-built gripper with another motor has another $K_t$, which `#Kt` over UART prints, and a
-measurement is the only exact calibration. Below about 150 mA the motor does not move reliably.
+The curve is computed from the assumed torque constant, rather than a measured force calibration. `#Kt`
+over UART prints the driver's torque constant; that value must match its $q$-axis current convention. A
+datasheet current rating or supply current cannot be substituted directly. Measure your gripper with the
+fingers and contact position you will use; below about 150 mA the motor does not move reliably.
 
-The force is a limit, not a controlled value: a hard object takes the full force the moment the jaws touch it; a
-soft object is squeezed until the force is reached.
+The reported force-gauge result is about 48 N/A, but its per-jaw versus combined-force convention is not
+specified. Keep it separate from the theoretical combined-force curve until the measurement setup is known.
+
+The current limit caps motor torque; it does not guarantee that the commanded current or the estimated
+contact force is reached. Mechanism friction, finger flex and the contact position affect the actual force.
 
 !!! danger "Heat"
     The firmware does not clamp the gripper's current. A hold at 300 mA runs for days ([Performance tests](../appendix/performance.md));
     a hold at 1600 mA trips the 75 °C thermistor limit after four minutes. Use high currents for the grip and a
     low current for the hold.
+
+For a symmetric grip, each jaw applies $F/2$. The torque balance is
+$T = F_\mathrm{left} r + F_\mathrm{right} r = F r$; counting $F$ once for each jaw would count the motor's torque twice.
+These are theoretical forces before losses in the mechanism. A compression gauge between the jaws reads the
+force at **one contact**; double that reading before comparing it with the combined force here. Record the
+current, fingers and contact position when measuring; the same setup is needed for a useful comparison.
 
 ## Try it
 
@@ -47,7 +59,7 @@ soft object is squeezed until the force is reached.
     <label for="gc-safety">Safety factor</label>
     <input id="gc-safety" type="number" name="safety" min="1" max="5" step="0.5" value="2">
   </div>
-  <p class="gripper-calc__result">Grip force <strong data-out="force">16 N</strong> · holds <strong data-out="payload">0.5 kg</strong> at rest by friction</p>
+  <p class="gripper-calc__result">Ideal combined grip force <strong data-out="force">16 N</strong> · estimated static payload <strong data-out="payload">0.25 kg</strong> with the chosen friction and safety factor</p>
   <div class="gripper-calc__row">
     <label for="gc-speed">Speed byte: <output data-out="speedbyte">30</output></label>
     <input id="gc-speed" type="range" name="speed" min="0" max="255" step="1" value="30">
@@ -61,18 +73,17 @@ safety factor of the next section, and the speed from the speed byte.
 ## Payload
 
 The grip force is not the weight the gripper can lift. An object held by friction between the two jaws is held
-by $2\,\mu F$, with $\mu$ the friction coefficient between the fingers and the object, and a safety factor $S$
-covers what the robot adds:
+by $\mu(F_\mathrm{left} + F_\mathrm{right}) = \mu F$, with $\mu$ the friction coefficient between the fingers
+and the object. Dividing the available friction force by a chosen safety factor $S$ gives the static estimate:
 
 $$
-W = \frac{2\,\mu\,F}{S}
+W = \frac{\mu\,F}{S}, \qquad m = \frac{W}{g}
 $$
 
-With a conservative $\mu$ = 0.3 (a hard printed finger on steel or smooth plastic; a flexible fin-ray finger on a
-dry object gives more) and $S$ = 2, the gripper at 80 N holds about 24 N, 2.4 kg. That is the weight held at
-rest: a robot accelerating at 1 g doubles the load, and an emergency stop decelerates harder than any programmed
-move. The friction coefficient is the big unknown; measure it with your fingers on your object, or close on the
-object's shape (a form-fit grip) and let friction be the reserve.
+Using an assumed $\mu$ = 0.3 and $S$ = 2, the model gives about 12 N of supported weight (1.2 kg) at 80 N
+of combined grip force. This is a static estimate. Upward acceleration of 1 g doubles the load; acceleration
+and emergency-stop loads need a separate check. Friction can be lower than 0.3, so measure it with your
+fingers on your object. A form-fit grip needs its own load assessment.
 
 ## Speed
 

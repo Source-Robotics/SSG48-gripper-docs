@@ -32,3 +32,7 @@ not listed here; they are in the [Spectral CAN reference](https://docs.source-ro
 
 Every message the host can send has a method of the same name in `Spectral_BLDC.SpectralCAN`, listed in
 [Python library](../python.md).
+
+## Tools and downloads
+
+[Build or decode a CAN frame, and download this firmware's JSON and DBC definitions](../can-tools.md).

@@ -21,8 +21,8 @@
 
 **Current limit** (grip force)
 :   The current, in mA, the driver may put into the motor during a move. Torque is current times the motor's
-    torque constant, so the current limit sets the force with which the jaws press on an object: about 48 N per
-    ampere on a shipped gripper.
+    torque constant. It limits grip force; the conversion to newtons depends on the motor and mechanism. See
+    [Force and speed](03-technical-data/force-and-speed.md) for the ideal model and measurement limits.
 
 **Driver**
 :   The Spectral Micro board inside the body: field-oriented control of the motor, the gripper state machine and

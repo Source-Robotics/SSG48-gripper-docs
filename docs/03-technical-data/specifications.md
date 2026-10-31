@@ -6,7 +6,7 @@
 |---|---|
 | Supply voltage | 24 V DC; the driver tolerates 12 to 29 V, the force and speed figures assume 24 V |
 | Idle power | 0.5 W |
-| Motor current | set per move as the grip force: up to 1500 mA for a grip (about 72 N), 300 mA for a long hold; see [Force and speed](force-and-speed.md) |
+| Motor current | set per move: up to 1500 mA for a grip, 300 mA for a long hold; see [Force and speed](force-and-speed.md) |
 | Interface | CAN 2.0, 1 Mbit/s, 11-bit identifiers; node ID 0 as shipped |
 | Connector | M8, 4 pins: 24 V, GND, CANH, CANL |
 | CAN termination | 120 Ω, switchable; the switch is on the driver inside the body |
@@ -19,7 +19,7 @@
 | | Value |
 |---|---|
 | Stroke | 48 mm |
-| Grip force | 5 to 80 N, set by the current limit of each move |
+| Grip force | ideal combined force up to about 80 N at 1500 mA; see the model assumptions in [Force and speed](force-and-speed.md) |
 | Jaw speed | up to about 180 mm/s per jaw at speed 255; see [Force and speed](force-and-speed.md) |
 | Position resolution | 1/255 of the stroke: 0.19 mm per step of the position byte |
 | Mass | 400 g |
