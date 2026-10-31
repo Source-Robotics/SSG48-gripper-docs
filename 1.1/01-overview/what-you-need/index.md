@@ -1,0 +1,65 @@
+# What you need
+
+## The gripper
+
+The SSG-48 is sold assembled, calibrated and configured in the [Source Robotics shop](https://source-robotics.com/products/compliant-gripper).
+It ships with the current Spectral firmware and the bootloader installed, its driver in gripper mode and its motor
+calibrated; the gripper calibration (finding the end stops) runs after every power-up and is part of normal use.
+
+**Or build it.** The SSG-48 is open source, and that is important to us: the CAD and printable files, the bill of
+materials, the assembly manual and video, the firmware and the software are all published.
+[The build guide](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/build/) is the order to do it in.
+
+## What is in the box
+
+The gripper, assembled, calibrated and configured, in black or grey. **Not in the box:** the fingers, which you
+print from the repository; the cable, sold separately; the 8 mm shaft coupler for a PAROL6, which you ask for
+when ordering; a CAN adapter for a PC.
+
+## A cable and a 24 V supply
+
+The gripper is powered and controlled through one M8 4-pin cable: 24 V, GND, CANH, CANL.
+
+| Where the gripper goes | Cable |
+|---|---|
+| PAROL6 | the [PAROL6 gripper cable](https://source-robotics.com/products/gripper-cable) from the shop |
+| PAR6 | the PAR6 gripper cable (the shop; coming soon), wired differently from the PAROL6 one |
+| a bench, or your own robot | a cable you make from an M8 4-pin connector and four wires, see [The cable](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/04-installation/cable/) |
+
+![PAROL6 and PAR6 gripper cables are not interchangeable](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/assets/cable_warning.svg){ width="1000" }
+
+!!! danger "The two robot cables differ"
+    PAROL6 and PAR6 put the four signals on different pins. A cable for the wrong robot, or a self-made cable with
+    a wrong pin, puts 24 V where the CAN bus belongs and destroys the gripper's driver. Check the pinout before
+    you plug in a cable for the first time.
+
+On the bench, a 24 V supply with a current limit (2 A is plenty for one gripper) is the safest source.
+
+## A CAN interface
+
+The gripper talks CAN. On a robot, the robot's control board provides the bus. On a PC, the
+[CANvas USB-to-CAN adapter](https://source-robotics.com/products/canvas-usb-to-can-adapter) does; it shows up as a
+serial port and works with Motor GUI, the Python library and the ROS 2 drivers. Any adapter that `python-can` supports works
+with the library.
+
+## Software
+
+- **Motor GUI**, [motorgui.com](https://motorgui.com/), in the browser over the CANvas adapter: the recommended
+  tool to test and set up a gripper, with a gripper panel for the SSG-48 and the MSG; see
+  [Motor GUI](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/05-setup/motor-gui/). The earlier [SSG-gripper-GUI](https://github.com/Source-Robotics/SSG-gripper-GUI),
+  a Python program, is legacy.
+- **Python**: `pip install Spectral-BLDC`, the library the ROS 2 drivers are built on; see
+  [With Python](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/python/).
+- **ROS 2**: the [ssg48_adaptive_electric_gripper_ros2](https://github.com/Lass6230/ssg48_adaptive_electric_gripper_ros2)
+  package, or the MSG gripper's driver, which speaks the same protocol; see [With ROS 2](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/ros2/).
+- **PAROL6 and PAR6**: the robots' own software drives the gripper; see [On PAROL6 and PAR6](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/robots/).
+- **For a self-built gripper**: a 3.3 V USB-to-serial adapter ([serial adapter](https://source-robotics.com/products/usb-to-serial-adapter))
+  for the driver's UART port, to configure the driver with Motor GUI or a terminal; see
+  [Driver configuration](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/build/first-run/). For a self-build we recommend the
+  [Spectral Micro BLDC starter kit](https://source-robotics.com/products/spectral-micro-bldc-starter-kit): it has this adapter and the rest of what the driver's setup needs
+  ([Kits and the shop](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/build/#kits-and-the-shop)).
+
+## Optional
+
+- **Fingers** for your objects: the fin-ray and pinch fingers in the repository, or your own on the jaw plate
+  template; see [Jaws](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/04-installation/jaws/).
