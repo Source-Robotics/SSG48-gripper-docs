@@ -3,7 +3,7 @@
 The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control. The
 [Spectral Micro driver](https://docs.source-robotics.com/Spectral-BLDC-docs/) inside the body regulates the
 motor's current, so a move sets not only where the jaws go and how fast, but how hard they press: the current
-limit is the grip force, from about 5 N to 80 N. The jaws stop on an object, hold it with that force, and the
+limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA. The jaws stop on an object, hold it with that force, and the
 driver reports that an object was found.
 
 <figure markdown="span">

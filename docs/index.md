@@ -34,7 +34,7 @@ fit it to any robot. The [build guide](build/index.md) is the order to do it in.
     <button type="button" name="reset" class="md-button">Reset view</button>
   </div>
   <p class="gripper-viewer__hint">Drag to turn the gripper, scroll to zoom, open and close the jaws, try the fingers and the colours. The model is the
-repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF</a>, the fingers its printed options; the shop sells the body in black and grey.</p>
+gripper's URDF, the fingers its printed options; the current URDF and MuJoCo models are linked from the repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description">ssg48_description</a> guide. The shop sells the body in black and grey.</p>
 </div>
 
 <div class="grid cards" markdown>

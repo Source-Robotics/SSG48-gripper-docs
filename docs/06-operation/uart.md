@@ -6,8 +6,8 @@ reports when something is wrong.
 
 ## Reaching the port
 
-The UART connector of the driver (JST SH, 4 pins, 3.3 V) is inside the housing, under the coupler plate. Unscrew
-the plate, plug in the [USB-to-serial adapter](https://source-robotics.com/products/usb-to-serial-adapter) with
+The UART connector of the driver (JST SH, 4 pins, 3.3 V) is inside the body, under the coupler connector.
+Unscrew the coupler connector, plug in the [USB-to-serial adapter](https://source-robotics.com/products/usb-to-serial-adapter) with
 the UART cable, and open a terminal at 256000 baud with CR+LF line endings; the gripper's 24 V must be on for
 anything but reading settings. [The serial terminal](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/terminal/)
 on the Spectral Micro site walks through the terminal setup.
@@ -39,6 +39,10 @@ Only `#Grippos` starts a move. A session:
 #Grippos 200
 #Grippos 20
 ```
+
+Wait until `#Gripinfo` reports the gripper calibrated before the first `#Grippos`: a `#Grippos` or a `#Clear`
+during the calibration ends it. After `#Gripstop 1`, send `#Gripstop 0` before `#Clear`, or the E-stop error
+comes straight back.
 
 The [UART reference](../reference/uart/index.md) has these and the driver commands a gripper needs; the driver's
 whole command set is on the [Spectral Micro site](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/reference/uart/).

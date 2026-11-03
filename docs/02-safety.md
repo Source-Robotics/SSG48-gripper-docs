@@ -38,7 +38,7 @@ hand or destroy the gripper when they are ignored.
 
 The motor has a thermistor in its windings. At 75 °C the driver raises a temperature error and the gripper goes
 idle; it clears when the motor has cooled and the error is cleared. A gripper holding an object at a high current
-for long heats up: a hold at 300 mA runs for days, a hold at 1600 mA trips the limit in four minutes
+for long heats up: a hold at 300 mA ran for 24 hours at 62 °C, a hold at 1600 mA tripped the limit in four minutes
 ([Performance tests](appendix/performance.md)). For a long hold, use the lowest current that holds the object. A
 self-built gripper without a thermistor in the windings has no protection and can burn out its motor; see
 [Driver configuration](build/first-run.md).
@@ -46,7 +46,8 @@ self-built gripper without a thermistor in the windings has no protection and ca
 ## Stopping the gripper
 
 - The E-stop bit of the move command (`Send_gripper_data_pack`) stops the gripper and raises the gripper E-stop
-  error, which stays until it is cleared.
+  error. The error stays as long as the last command carries the bit: send a command with the bit at 0, then
+  clear it ([Errors and recovery](06-operation/errors.md)).
 - `Send_ESTOP` to the driver, or `#Idle` over UART, stops it as well.
 - The CAN watchdog ([Send_Watchdog](reference/can/system.md)) stops the gripper by itself when the host stops
   talking, which is the right protection for a program that may crash mid-grip.

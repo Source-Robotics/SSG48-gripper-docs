@@ -9,7 +9,7 @@
 | Assembly manual (PDF) and the motor's datasheet | [Assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Assembly%20manual) |
 | Assembly video | [YouTube](https://www.youtube.com/watch?v=127zXHKuqIg) |
 | Cable wiring diagrams | [Building_cables.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Building_cables.md) |
-| URDF and MJCF description for ROS 2, Gazebo and MuJoCo | [SSG48_gripper_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description) |
+| URDF and MJCF (MuJoCo) models, standalone and on PAROL6 and PAR6 | the [ssg48_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description) guide; the files are in [robot_descriptions](https://github.com/Source-Robotics/robot_descriptions) |
 | The driver's firmware (the gripper's firmware) and its releases | [Spectral-Micro-BLDC-controller](https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller), [Releases](https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller/releases) |
 | The driver's documentation | [docs.source-robotics.com/Spectral-BLDC-docs](https://docs.source-robotics.com/Spectral-BLDC-docs/) |
 | Python library | [Spectral-BLDC-Python](https://github.com/Source-Robotics/Spectral-BLDC-Python), `pip install Spectral-BLDC` |

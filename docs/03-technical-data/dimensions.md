@@ -10,12 +10,12 @@
     <button type="button" name="reset" class="md-button">Reset view</button>
   </div>
   <p class="gripper-viewer__hint">Drag to turn the gripper, scroll to zoom, open and close the jaws, try the fingers and the colours. The model is the
-repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description">URDF</a>, the fingers its printed options; the shop sells the body in black and grey.</p>
+gripper's URDF, the fingers its printed options; the current URDF and MuJoCo models are linked from the repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description">ssg48_description</a> guide. The shop sells the body in black and grey.</p>
 </div>
 
 <figure markdown="span">
   ![Front view](../assets/DIM2.webp){ width="700" }
-  <figcaption>Figure 4: Front view, in millimetres: 104 mm over the jaw plates, 60.7 mm from the coupler face to the top of the jaw plates, 26 mm jaw plates.</figcaption>
+  <figcaption>Figure 4: Front view, in millimetres, without a coupler connector: 104 mm over the jaw plates, 75 mm across the body, 26 mm jaw plates, 60.7 mm from the top of the jaw plates to the bottom of the driver board.</figcaption>
 </figure>
 
 <figure markdown="span">
@@ -57,7 +57,9 @@ The STEP files of every part are in the product repository, the reference for an
 
 ## For simulation
 
-The [SSG48_gripper_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description)
-folder has a URDF of the gripper and an MJCF for MuJoCo 3.1.3 and newer, with a scene file.
+The product repository's [ssg48_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description)
+guide links the gripper's models, which are kept in [robot_descriptions](https://github.com/Source-Robotics/robot_descriptions):
+standalone URDF and MJCF (MuJoCo) packages of the gripper with solid or fin-ray jaws, with their meshes, collision
+shapes and mass properties, and the PAROL6 and PAR6 models with the gripper mounted.
 
 [CAD and downloads](../cad-files.md) lists everything that can be downloaded.
