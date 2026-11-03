@@ -22,7 +22,7 @@
 | Grip force | ideal combined force up to about 80 N at 1500 mA; see the model assumptions in [Force and speed](force-and-speed.md) |
 | Jaw speed | up to about 180 mm/s per jaw at speed 255; see [Force and speed](force-and-speed.md) |
 | Position resolution | 1/255 of the stroke: 0.19 mm per step of the position byte |
-| Mass | 400 g |
+| Mass | 440 g |
 | Width | 104 mm over the jaw plates; 60.7 mm from the top of the jaw plates to the driver board, without a coupler connector |
 | Drive | GBM5208-75 gimbal motor, pinion (6 mm pitch radius) on two racks, MGN7 linear rail |
 | Grasps | external (closing on the object) and internal (opening inside a hollow object) |
