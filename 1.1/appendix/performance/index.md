@@ -26,5 +26,5 @@ the motor windings.
 - The temperature error trips after 4 minutes
 - Ambient temperature: 33 °C
 
-What this means for use: a hold at 300 mA (about 15 N) runs indefinitely; a grip at 1500 mA (about 72 N) is for
-seconds, not minutes. Between the two, the motor heats in proportion to the square of the current.
+What this means for use: a hold at 300 mA (about 16 N) ran 24 hours without reaching the limit; a grip at 1500 mA
+(about 80 N, ideal) is for seconds, not minutes. Between the two, the motor heats in proportion to the square of the current.

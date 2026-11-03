@@ -41,6 +41,7 @@ while True:
    time.sleep(3)
 ```
 
+Each answer printed is the one to the command just sent, so it still shows the state from before that move.
 The arguments of `Send_gripper_data_pack`, in order: the position (0 open, 255 closed), the speed (0 to 255), the
 current limit in mA (the force), then the activate bit, the action bit, the E-stop bit and the release direction.
 [With Python](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/python/) explains the library's calls, [How the gripper works](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/how-it-works/)

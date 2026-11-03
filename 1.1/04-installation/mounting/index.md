@@ -1,7 +1,7 @@
 # Mounting on a robot
 
-The gripper mounts by its coupler connector, the round part on the back of the body. Four exist, and the STEP
-template lets you make a fifth.
+The gripper mounts by its coupler connector, the round part on the back of the body. The repository has three,
+for PAROL6, PAR6 and the UR5 flange, and a STEP template for your own.
 
 | Robot | Part | Where |
 |---|---|---|
@@ -18,11 +18,14 @@ template lets you make a fifth.
 ## PAROL6
 
 The PAROL6 coupler connector carries a shaft coupler with an 8 mm bore and two M4 clamp screws for the robot's
-last joint.
+last joint, and the homing tab that joint 5 homes against.
 
-1. Fit `coupler_connector_PAROL6` to the gripper.
+1. Fit `coupler_connector_PAROL6` to the gripper, with the homing tab on the same side as the gripper's cable
+   connector and an M3 × 12 screw in the marked hole, as the last pages of the
+   [assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf)
+   show.
 2. Slide the gripper onto the J6 motor shaft.
-3. Tighten the two screws of the shaft coupler, one on each side.
+3. Tighten the two screws of the shaft coupler, one on each side, with blue threadlocker.
 4. Connect the [PAROL6 gripper cable](https://source-robotics.com/products/gripper-cable) to the gripper and to
    the robot's gripper port ([The cable](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/04-installation/cable/)).
 
@@ -31,7 +34,8 @@ last joint.
 ![The coupler screws](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/assets/gripper_parol4.webp){ width="400" }
 </div>
 
-The PAROL6 software needs to know the gripper is there: [On PAROL6 and PAR6](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/robots/).
+The PAROL6 software needs to know the gripper is there, and the control board firmware needs the joint 5
+homing offset for it: [On PAROL6 and PAR6](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/robots/).
 
 ## PAR6
 

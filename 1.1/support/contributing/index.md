@@ -14,7 +14,8 @@ source, and GitHub turns your change into a pull request. For anything larger, o
   commands are in `docs/includes/can_commands.yml` and `uart_commands.yml`, which list only the commands a
   gripper needs.
 - Every push runs a strict build (a broken link fails it) and the tool tests. A push to `main` publishes the
-  site under its firmware version with [mike](https://github.com/jimporter/mike).
+  site with [mike](https://github.com/jimporter/mike), under the gripper release named by `docs_version` in
+  `versions.yml`.
 
 ## House rules
 
@@ -28,4 +29,4 @@ source, and GitHub turns your change into a pull request. For anything larger, o
 
 ## Licence
 
-Text and images: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/): copy, adapt and share them, also commercially, if you credit Source Robotics and share your changes under the same licence. Code: the [MIT licence](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE), which covers the code examples in the pages and the site's own code. The gripper's hardware design is under the CERN-OHL-S v2 in the product repository. The Source Robotics name, the product names and the logos are not covered by any of these. By contributing you agree that your contribution is published under these licences.
+Text and images: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/): copy, adapt and share them, also commercially, if you credit Source Robotics and share your changes under the same licence. Code: the [MIT licence](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE), which covers the code examples in the pages and the site's own code. The gripper's hardware design is under the Apache 2.0 licence in the product repository. The Source Robotics name, the product names and the logos are not covered by any of these. By contributing you agree that your contribution is published under these licences.

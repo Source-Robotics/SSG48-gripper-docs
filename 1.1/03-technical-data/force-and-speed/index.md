@@ -36,7 +36,7 @@ The current limit caps motor torque; it does not guarantee that the commanded cu
 contact force is reached. Mechanism friction, finger flex and the contact position affect the actual force.
 
 !!! danger "Heat"
-    The firmware does not clamp the gripper's current. A hold at 300 mA runs for days ([Performance tests](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/appendix/performance/));
+    The firmware does not clamp the gripper's current. A hold at 300 mA ran for 24 hours ([Performance tests](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/appendix/performance/));
     a hold at 1600 mA trips the 75 °C thermistor limit after four minutes. Use high currents for the grip and a
     low current for the hold.
 

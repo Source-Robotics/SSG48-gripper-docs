@@ -39,5 +39,8 @@ yourself to the `dialout` group to open the port without `sudo`.
 
 ## The description files
 
-The URDF and the MJCF of the gripper for ROS 2, Gazebo and MuJoCo are in the product repository's
-[SSG48_gripper_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/SSG48_gripper_description).
+The gripper's standalone URDF and MJCF (MuJoCo) packages, with solid or fin-ray jaws, come from
+[robot_descriptions](https://github.com/Source-Robotics/robot_descriptions); the product repository's
+[ssg48_description](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description) guide links the
+downloads and says how to open them. Its display launch file is for ROS 1; in ROS 2, load the URDF with a launch
+file of your own.

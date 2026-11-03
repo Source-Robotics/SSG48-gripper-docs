@@ -27,7 +27,7 @@ Every page of this site is also available as Markdown at its address followed by
 - [CAN termination](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/04-installation/can-termination/index.md): A CAN bus needs a 120 Ω resistor at each of its two ends.
 - [First setup](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/05-setup/index.md): For the complete bench procedure, use the one-page quick start.
 - [Motor GUI](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/05-setup/motor-gui/index.md): 1. Open motorgui.com.
-- [Calibrate, activate, move](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/05-setup/first-moves/index.md): Every session with the gripper starts the same way: calibrate, activate, clear what errors there are.
+- [Calibrate, activate, move](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/05-setup/first-moves/index.md): Every session with the gripper starts the same way: clear what errors there are, calibrate, activate.
 - [Operation](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/index.md): How a working gripper is used: what happens inside when it calibrates and moves, the interfaces it is driven through, and what to do when it reports an error.
 - [How the gripper works](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/how-it-works/index.md): The gripper is a state machine in the driver's firmware, fed by one command and answering with one status.
 - [Over CAN](https://docs.source-robotics.com/SSG48-gripper-docs/1.1/06-operation/can/index.md): CAN is the gripper's interface: the one cable carries it next to the power, and a robot's control board, a PC with the CANvas adapter or any microcontroller with a CAN transceiver drives the gripper with it.

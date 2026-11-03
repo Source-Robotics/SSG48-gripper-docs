@@ -31,8 +31,8 @@ itself; nothing is entered:
 
 The motor clicks, then turns, the driver prints each step and ends with `Calibration success!`. The whole routine
 and its messages are in [Calibration](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/calibration/)
-on the Spectral Micro site. `#Default` also resets the serial number the driver reports; note what `#Info` printed
-if you need it.
+on the Spectral Micro site. `#Default` also resets the serial number the driver reports; note what `#SERNUM`
+prints before you start if you need it.
 
 ## 2. The gripper settings
 
