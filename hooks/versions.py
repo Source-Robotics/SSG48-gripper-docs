@@ -1,18 +1,27 @@
 """Write the version facts of versions.yml into the pages (the same hook as Source-Robotics/par6, for a product
 that runs another product's firmware).
 
-Two placeholders, each replaced when the site is built:
+Six placeholders, each replaced when the site is built:
 
     <!-- doc-meta: KEY -->      a manual's version box, on its landing page: document number, the gripper release,
                                 the driver firmware release (for a document that describes one), revision,
                                 publication date, what it applies to
     <!-- documents-table -->    the list of every document, on the About page
+    <!-- version: GROUP.KEY --> a component's version in running text, e.g. models.robot_descriptions: its tag
+                                without the leading v (v2.18.1 is written 2.18.1)
+    <!-- version-url: COMPONENT -->      the address of the component's files at its tag, {repository}/tree/{tag}, to
+                                build a link to a folder: COMPONENT is firmware, software.KEY or models.KEY
+    <!-- version-release: COMPONENT -->  the address of its release page, {repository}/releases/tag/{tag}
+    <!-- version-link: COMPONENT -->     a link to the files at the tag with the version as its text, and the release
+                                date when versions.yml has one
 
 The facts live in versions.yml only. docs_version is the gripper release: the product repository's tag without
 its V, and the name the site is published under. firmware.version is the driver firmware release the pages and
-the generated reference describe; a new firmware release for the same gripper updates the site in place. A
-malformed or missing fact, or an unknown manual, stops the build: a version on a page is never guessed.
-Registered in mkdocs.yml under `hooks:`.
+the generated reference describe; a new firmware release for the same gripper updates the site in place.
+software and models are the other components the pages name with a version (the Python library, the robot
+models). A malformed or missing fact, an unknown manual or an unknown component stops the build: a version on a
+page is never guessed. The version placeholders are the same as PAROL-docs'. Registered in mkdocs.yml under
+`hooks:`.
 """
 from __future__ import annotations
 
@@ -25,6 +34,8 @@ from mkdocs.exceptions import PluginError
 
 META_RE = re.compile(r"<!--\s*doc-meta:\s*([A-Za-z0-9_-]+)\s*-->")
 TABLE_RE = re.compile(r"<!--\s*documents-table\s*-->")
+VERSION_RE = re.compile(r"<!--\s*version:\s*([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)\s*-->")
+URL_RE = re.compile(r"<!--\s*version-(url|link|release):\s*([A-Za-z0-9_-]+)(?:\.([A-Za-z0-9_-]+))?\s*-->")
 REQUIRED = ("number", "title", "revision", "status", "covers")
 
 _facts: dict = {}
@@ -60,6 +71,14 @@ def load(path) -> dict:
         raise PluginError(f"versions.yml: firmware.tag {tag!r} is not a release tag like V108")
     if tag[1:] != fw_version:
         raise PluginError(f"versions.yml: firmware.tag {tag} does not belong to firmware.version {fw_version}")
+    for group in ("software", "models"):
+        comps = data.get(group) or {}
+        if not isinstance(comps, dict):
+            raise PluginError(f"versions.yml: {group} is not a mapping")
+        for key, comp in comps.items():
+            missing = [f for f in ("name", "repository", "tag") if not (comp or {}).get(f)]
+            if missing:
+                raise PluginError(f"versions.yml: {group} {key!r} lacks {', '.join(missing)}")
     manuals = data.get("manuals")
     if not isinstance(manuals, dict) or not manuals:
         raise PluginError("versions.yml: no manuals")
@@ -112,6 +131,44 @@ def documents_table(data: dict) -> str:
             "compatibility table says which firmware, Python library and hardware revisions work together.")
 
 
+def version_text(group: str, key: str, data: dict) -> str:
+    """<!-- version: group.key -->: the component's tag without a leading v. Unknown keys stop the build."""
+    comp = (data.get(group) or {}).get(key) if group in ("software", "models") else None
+    if not comp:
+        raise PluginError(f"versions.yml: no {group}.{key} for <!-- version: {group}.{key} -->")
+    tag = str(comp["tag"])
+    return tag[1:] if re.fullmatch(r"v\d.*", tag) else tag
+
+
+def component(group: str, key, data: dict) -> dict:
+    """firmware, or software.KEY / models.KEY. Unknown names stop the build."""
+    if group == "firmware" and key is None:
+        comp = data.get("firmware")
+    elif group in ("software", "models") and key:
+        comp = (data.get(group) or {}).get(key)
+    else:
+        comp = None
+    if not comp or not comp.get("repository") or not comp.get("tag"):
+        name = group + (f".{key}" if key else "")
+        raise PluginError(f"versions.yml: no {name} with a repository and a tag for <!-- version-url/link: {name} -->")
+    return comp
+
+
+def version_url(kind: str, group: str, key, data: dict) -> str:
+    """<!-- version-url: ... -->, <!-- version-release: ... --> and <!-- version-link: ... -->."""
+    comp = component(group, key, data)
+    repo, tag = str(comp["repository"]).rstrip("/"), str(comp["tag"])
+    if kind == "release":
+        return f"{repo}/releases/tag/{tag}"
+    url = f"{repo}/tree/{tag}"
+    if kind == "url":
+        return url
+    text = str(comp["version"]) if group == "firmware" else (tag[1:] if re.fullmatch(r"v\d.*", tag) else tag)
+    released = comp.get("released")
+    date = f" ({released.isoformat()})" if isinstance(released, datetime.date) else ""
+    return f"[{text}]({url}){date}"
+
+
 def on_config(config):
     global _facts
     _facts = load(Path(config.config_file_path).parent / "versions.yml")
@@ -122,4 +179,6 @@ def on_config(config):
 
 def on_page_markdown(markdown, page, config, files):
     markdown = META_RE.sub(lambda m: meta_block(m.group(1), _facts), markdown)
+    markdown = VERSION_RE.sub(lambda m: version_text(m.group(1), m.group(2), _facts), markdown)
+    markdown = URL_RE.sub(lambda m: version_url(m.group(1), m.group(2), m.group(3), _facts), markdown)
     return TABLE_RE.sub(lambda m: documents_table(_facts), markdown)

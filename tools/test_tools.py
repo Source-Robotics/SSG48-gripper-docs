@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests for hooks/versions.py, hooks/firmware_pages.py and the shipped data files. No network, no firmware
+"""Tests for hooks/versions.py, hooks/firmware_pages.py, hooks/figures.py and the shipped data files. No network, no firmware
 repository: fixtures and the files in the repository. Run: python tools/test_tools.py (the build check runs it on
 every push)."""
 from __future__ import annotations
@@ -97,6 +97,31 @@ check("A8 the shipped versions.yml loads", bool(shipped["docs_version"]))
 check("A9 every placeholder in the docs names a manual of versions.yml",
       all(k in shipped["manuals"]
           for p in (ROOT / "docs").rglob("*.md") for k in hook.META_RE.findall(p.read_text(encoding="utf-8"))))
+
+COMP = GOOD.replace("manuals:", "software:\n  python: {name: Spectral-BLDC-Python, repository: y, tag: v1.20}\n"
+                    "models:\n  robot_descriptions: {name: robot_descriptions, repository: z, tag: v2.18.1, released: 2026-11-03}\n"
+                    "manuals:").replace("tag: V107}", "tag: V107, released: 2026-08-26}")
+cdata, err = load_text(COMP)
+check("A10 software and models load", cdata is not None, err)
+if cdata:
+    page = hook.VERSION_RE.sub(
+        lambda m: hook.version_text(m.group(1), m.group(2), cdata), "<!-- version: models.robot_descriptions -->")
+    page += " " + hook.URL_RE.sub(lambda m: hook.version_url(m.group(1), m.group(2), m.group(3), cdata),
+                                  "[f](<!-- version-url: firmware -->/src) <!-- version-link: firmware --> "
+                                  "<!-- version-release: models.robot_descriptions --> <!-- version-link: software.python -->")
+    check("A11 version is the tag without its v; version-url the files at the tag; version-release its release page; "
+          "version-link the version and the release date",
+          page == "2.18.1 [f](x/tree/V107/src) [107](x/tree/V107) (2026-08-26) z/releases/tag/v2.18.1 [1.20](y/tree/v1.20)", page)
+_, err = load_text(COMP.replace("tag: v1.20}", "}"))
+check("A12 a software component without a tag stops the build", err is not None and "lacks tag" in err, err)
+try:
+    hook.version_url("url", "models", "nope", cdata or shipped)
+    check("A13 an unknown component stops the build", False, "no error")
+except PluginError:
+    check("A13 an unknown component stops the build", True)
+names = [(g, k) for p in (ROOT / "docs").rglob("*.md") for g, k in hook.VERSION_RE.findall(p.read_text(encoding="utf-8"))]
+check("A14 every version placeholder in the docs names a component of versions.yml",
+      all(k in (shipped.get(g) or {}) for g, k in names), str(names))
 
 # ---------------------------------------------------------------- the firmware pages
 try:

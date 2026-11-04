@@ -24,11 +24,27 @@ firmware:
   version: "107"
   repository: https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller
   tag: V107
+  released: 2026-08-26
   # The firmware's source folder in that repository, and its Controller_mode numbers with their names (for the
   # "enters mode" column of the UART reference). tools/sync_firmware.py reads both.
   src: Spectral BLDC Firmware/src
   modes: {0: idle, 1: position, 2: velocity, 3: current, 4: PD, 5: open loop, 6: gripper, 7: gripper calibration,
           8: voltage torque}
+
+# The other components the pages name with their version: the Python library the pages describe, and the gripper's
+# URDF and MuJoCo models (the CAD and downloads page, Data for robot integration). <!-- version: GROUP.KEY --> and the
+# version-url, version-release and version-link placeholders write them into the pages (hooks/versions.py).
+software:
+  python:
+    name: Spectral-BLDC-Python
+    repository: https://github.com/Source-Robotics/Spectral-BLDC-Python
+    tag: v1.20
+models:
+  robot_descriptions:
+    name: robot_descriptions
+    repository: https://github.com/Source-Robotics/robot_descriptions
+    tag: v2.18.1
+    released: 2026-11-03
 
 # One entry per document. revision: YEAR.LETTER, a new letter for every published revision of that document.
 # status: draft until the document is published; published: the date of the revision's publication, or null.
