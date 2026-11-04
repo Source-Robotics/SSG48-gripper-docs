@@ -31,6 +31,10 @@ testing; everything it does is one CAN message, so what you learn here carries o
    position, the current and the errors. While it says that it is waiting for feedback, check the node ID, the
    power and that the driver is in gripper mode.
 
+!!! success "Check"
+    The gripper panel shows the position and the current, and *Not calibrated* after a power-up. If it keeps
+    waiting for feedback: [The gripper does not answer](../09-troubleshooting/index.md#the-gripper-does-not-answer).
+
 The panel works with one gripper at a time; to work with another on the same bus, pick its node. The **Motor**
 side of the switch shows the same driver as a motor, which the gripper does not need.
 

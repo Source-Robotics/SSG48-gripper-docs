@@ -13,6 +13,10 @@ explains what happens inside.
 At power-up the gripper reports *Not calibrated* and does not move. Its motor must be calibrated too, which a
 bought gripper is from the factory; a self-built gripper gets that during its assembly, [Driver configuration](../build/first-run.md).
 
+!!! success "Check"
+    The gripper answers: Motor GUI's panel fills in, or a status poll returns a frame. If not:
+    [The gripper does not answer](../09-troubleshooting/index.md#the-gripper-does-not-answer).
+
 ## 2. Clear errors
 
 The driver powers up in an error state until its motor is calibrated and it has run through its checks; an
@@ -34,6 +38,9 @@ does not calibrate either: clear first.
 
 An error whose cause is still present comes straight back; after an E-stop, send a command with the E-stop bit
 at 0 before you clear. [Errors and recovery](../06-operation/errors.md) says what each needs.
+
+!!! success "Check"
+    No error is reported: Motor GUI shows none, and the temperature, timeout and E-stop bits of the answer are 0.
 
 ## 3. Calibrate
 
@@ -62,6 +69,10 @@ found: something blocks the jaws short of the end, or the mechanism is too stiff
 Until the gripper reports *Calibrated*, send nothing but status polls: a move command or a clear during the
 calibration ends it, and the gripper stays uncalibrated.
 
+!!! success "Check"
+    The jaws opened fully, then closed fully, and the gripper reports *Calibrated* (the calibrated bit is 1;
+    `#Gripinfo` prints the end stops it found). If not: [Calibration](../09-troubleshooting/index.md#calibration).
+
 ## 4. Activate
 
 A calibrated gripper carries out a move only while it is activated.
@@ -79,6 +90,9 @@ A calibrated gripper carries out a move only while it is activated.
 
 === "UART"
     `#Grippos` activates by itself; `#Gripact 1` activates without moving.
+
+!!! success "Check"
+    The gripper reports *Activated* and the jaws have not moved.
 
 ## 5. Move
 
@@ -109,6 +123,10 @@ Start with speed 30, about 22 mm/s at each jaw, and 300 mA, about 16 N.
 Put an object between the jaws and close on it: the jaws stop on it and hold it with 300 mA, and the state reads
 *object detected while closing*. Raise the current for a firmer grip, up to 1500 mA for a short grip, and the
 speed once the motion is what you want.
+
+!!! success "Check"
+    The jaws reach each position and the state reads *at the position*; on an object they stop and the state
+    reads *object detected while closing*. If not: [It does not move](../09-troubleshooting/index.md#it-does-not-move).
 
 ## What the gripper reports
 

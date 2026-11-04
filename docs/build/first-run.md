@@ -39,6 +39,10 @@ and its messages are in [Calibration](https://docs.source-robotics.com/Spectral-
 on the Spectral Micro site. `#Default` also resets the serial number the driver reports; note what `#SERNUM`
 prints before you start if you need it.
 
+!!! success "Check"
+    The driver ends with `Calibration success!`. If it stops with an error, check the motor's three wires and the
+    encoder magnet, and see [Calibration](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/calibration/).
+
 ## 2. The gripper settings
 
 ```
@@ -61,12 +65,21 @@ The current loop gains the calibration computes for the motor are what the shipp
 (`#Kpiq 7.0381`, `#Kiiq 4.2557`), gripper mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it
 before applying for another robot), then saves.
 
+!!! success "Check"
+    After a power cycle, `#Gripper` and `#Term` print 1, `#Tlim` 75 and `#CANID` the node ID; `#Temp` prints the
+    room temperature, not `Temp Off`. A temperature error at once means the thermistor is not connected
+    ([The thermistor](mechanical-assembly.md#the-thermistor)).
+
 ## 3. Finish the assembly and calibrate the gripper
 
 Fit the linear guide with the jaws, the lid and the coupler connector, power the gripper up through its cable,
 and run the gripper calibration (`#Gripcal`, or Motor GUI's **Calibrate**): the jaws open fully and close fully.
 Then a first move at a low current, as in [Calibrate, activate, move](../05-setup/first-moves.md). `#Gripinfo` prints the
 gripper's state, including the end stops the calibration found.
+
+!!! success "Check"
+    The jaws open fully and close fully, the gripper reports *Calibrated*, and the first moves reach their
+    positions. If the calibration gives up after 30 s: [Calibration](../09-troubleshooting/index.md#calibration).
 
 ## Current limit
 

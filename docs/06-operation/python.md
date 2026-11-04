@@ -5,9 +5,36 @@ and the gripper's answers unpacked into attributes. The ROS 2 driver and the leg
 
 ## Installing
 
-```
-pip install Spectral-BLDC
-```
+In a virtual environment:
+
+=== "Windows"
+    ```
+    py -m venv .venv
+    .venv\Scripts\activate
+    pip install Spectral-BLDC
+    ```
+    The CANvas adapter is `COM` and a number (Device Manager, **Ports (COM & LPT)**): `channel='COM20'`.
+
+=== "Linux"
+    ```
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install Spectral-BLDC
+    sudo usermod -aG dialout $USER     # access to the serial port; log out and in again once
+    ```
+    The CANvas adapter is `/dev/ttyACM0` (`ls /dev/ttyACM*` lists it): `channel='/dev/ttyACM0'`.
+
+=== "macOS"
+    ```
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install Spectral-BLDC
+    ```
+    The CANvas adapter is `/dev/cu.usbmodem` and a number (`ls /dev/cu.usbmodem*` lists it):
+    `channel='/dev/cu.usbmodem1101'`, with your number.
+
+!!! success "Check"
+    `python -c "import Spectral_BLDC"` returns without an error message.
 
 The source and the examples are in [Spectral-BLDC-Python](https://github.com/Source-Robotics/Spectral-BLDC-Python).
 
@@ -17,7 +44,7 @@ The source and the examples are in [Spectral-BLDC-Python](https://github.com/Sou
 import Spectral_BLDC as Spectral
 import time
 
-# the adapter: a CANvas on COM20 (Windows) or /dev/ttyACM0 (Linux), 1 Mbit/s
+# the adapter: a CANvas on COM20 (Windows), /dev/ttyACM0 (Linux) or /dev/cu.usbmodem... (macOS), 1 Mbit/s
 bus = Spectral.CanCommunication(bustype='slcan', channel='COM20', bitrate=1000000)
 gripper = Spectral.SpectralCAN(node_id=0, communication=bus)
 

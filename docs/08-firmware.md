@@ -36,6 +36,11 @@ and [The bootloader](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/
       what `#Info` prints before you start.
     - Give the gripper a node ID from 0 to 13: the bootloader cannot address 14 or 15.
 
+!!! success "Check"
+    After the update, `#Info` prints the new release as `Software version: <number>` (Send_Respond_Device_Info
+    over CAN), and the gripper calibrates. If its configuration was cleared, restore it:
+    [Driver configuration](build/first-run.md).
+
 ## Grippers shipped before 2026
 
 Grippers shipped with firmware 104 or older, which is every SSG-48 before the bootloader releases of 2026, have

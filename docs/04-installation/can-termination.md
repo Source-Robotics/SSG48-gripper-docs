@@ -16,3 +16,7 @@ where it is on the board.
 
 A bus with the right termination measures about 60 Ω between CANH and CANL with everything unpowered. A missing
 or doubled termination shows up as lost frames and a gripper that answers only sometimes.
+
+!!! success "Check"
+    About 60 Ω between CANH and CANL, unpowered. About 120 Ω: one end is not terminated; about 40 Ω: three
+    terminations are on.
