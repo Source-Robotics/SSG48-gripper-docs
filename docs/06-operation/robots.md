@@ -1,7 +1,9 @@
 # On PAROL6 and PAR6
 
 The gripper is made for the Source Robotics arms. Both drive it over their own CAN bus; their software calibrates
-it, moves it and reads its state, so a program for the robot does not talk CAN itself.
+it, moves it and reads its state, so a program for the robot does not talk CAN itself. The tool centre point, the
+mass, the centre of mass and the inertia for the robot's tool settings, on these robots or any other, are on
+[Data for robot integration](../03-technical-data/integration-data.md).
 
 ## PAROL6
 
