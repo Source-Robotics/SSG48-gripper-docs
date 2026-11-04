@@ -1,7 +1,7 @@
 # Build guide
 
 **The SSG-48 is open source, and that is important to us.** Everything the gripper is made of is published in the
-[product repository](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper) under the Apache 2.0
+[product repository](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper) under the CERN-OHL-S-2.0
 licence: the STEP files, the printable parts of both hardware versions, the bill of materials with a link for every
 item, the assembly manual and video, the fin-ray and pinch fingers, and the URDF and MJCF models. The driver's
 firmware and the software that drives the gripper are open source too. A gripper you build is the same gripper as

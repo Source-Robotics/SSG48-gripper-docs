@@ -31,7 +31,7 @@ made for: [docs.source-robotics.com/PAROL-docs](https://docs.source-robotics.com
 The manual is versioned by gripper release, the version the product repository tags (the selector in the header);
 within a release it follows the Spectral firmware the gripper runs, with a new revision letter per update. The
 text and the images are licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), the code
-examples [MIT](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE); the hardware design is published under the Apache 2.0 licence in the
+examples [MIT](https://github.com/Source-Robotics/SSG48-gripper-docs/blob/main/LICENSE-CODE); the hardware design is published under the CERN Open Hardware Licence v2, strongly reciprocal (CERN-OHL-S-2.0), in the
 [product repository](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper). The Source Robotics name, the product names and the logos are not covered
 by any of these.
 
