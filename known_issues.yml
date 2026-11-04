@@ -1,0 +1,122 @@
+# The known issues of the SSG-48's firmware (the Spectral Micro driver's, in gripper mode) and of the software that
+# drives it, in ONE place. hooks/known_issues.py writes them into the Known issues page (<!-- known-issues -->, all of
+# them) and wherever <!-- known-issues: COMPONENT --> stands (one component). tools/test_tools.py checks the file.
+# The same format as PAROL-docs' known_issues.yml.
+#
+# An issue stays here when it is fixed: set status: fixed and fixed_in to the version that fixes it, and the page
+# moves it to "Fixed". Never renumber: the id is how people refer to an issue.
+#
+#   id          KI-<number>, never reused
+#   component   a key under components:
+#   summary     what happens, in one or two sentences
+#   workaround  what to do until it is fixed
+#   page        the docs page that describes it (path under docs/, an #anchor allowed), and title, its link text
+#   status      open or fixed; fixed_in: the version that fixes it (when fixed)
+#   since       the date the issue was recorded
+
+components:
+  firmware: {name: Spectral driver firmware, version: "107"}
+  python: {name: Python library (Spectral-BLDC), version: "1.20"}
+  parol6_api: {name: PAROL6 Python API (parol6), version: "0.9.1"}
+
+issues:
+  - id: KI-1
+    component: firmware
+    summary: A gripper E-stop raises the E-stop error again at every control cycle for as long as the last gripper
+      command carries the E-stop bit, so Send_Clear_Error (or `#Clear`) seems to do nothing.
+    workaround: Send a gripper command with the E-stop bit at 0 and the action bit at 0 (or `#Gripstop 0`), then
+      clear.
+    page: 06-operation/errors.md#clearing
+    title: Errors and recovery, clearing
+    status: open
+    since: 2026-11-03
+
+  - id: KI-2
+    component: firmware
+    summary: The answer to a full Send_gripper_data_pack is sent before the gripper acts on the command, so it carries
+      the state from before it.
+    workaround: Ignore that answer; poll with empty frames, and give a move about 100 ms before you trust its object
+      detection.
+    page: 06-operation/can.md#host-checklist
+    title: Over CAN, host checklist
+    status: open
+    since: 2026-11-03
+
+  - id: KI-3
+    component: firmware
+    summary: A full gripper command or a clear sent during the gripper calibration ends it, and the gripper stays
+      uncalibrated. The routine's counters are not reset, so the next calibration starts where the stopped one was
+      (it can skip the opening) and counts the time already spent towards its 30 s limit.
+    workaround: Send only empty frames until the calibrated bit is 1. If a calibration was stopped, calibrate again
+      and check the bit; if it does not come, switch the gripper off and on and calibrate.
+    page: 06-operation/can.md#host-checklist
+    title: Over CAN, host checklist
+    status: open
+    since: 2026-11-03
+
+  - id: KI-4
+    component: firmware
+    summary: The action status in the gripper's answer is the action bit of the last command; the firmware never
+      clears it, neither at the end of a move nor in the calibration.
+    workaround: Follow a move by its object detection and the position, not by the action status.
+    page: reference/errors.md#the-grippers-state-byte
+    title: The gripper's state byte
+    status: open
+    since: 2026-11-03
+
+  - id: KI-5
+    component: firmware
+    summary: The motor calibration (`#Cal`) sets the driver's current limit to 1600 mA and leaves it there, and
+      `#Save` stores it. Gripper moves are not affected, they use each command's current; the driver's own modes,
+      such as the current and position modes of the teleoperation guide, run with up to 1600 mA.
+    workaround: On a self-built gripper, set `#Ilim` (1000 mA, the default, suits the GBM5208-75) after `#Cal` and
+      before `#Save`.
+    page: build/first-run.md#current-limit
+    title: Driver setup and first run, current limit
+    status: open
+    since: 2026-11-03
+
+  - id: KI-6
+    component: firmware
+    summary: With braking in idle switched on (Send_Settings, or `#Brake 1`), the current that turning the motor
+      drives through its shorted phases is not limited, and the setting is not saved; the gripper coasts again after
+      every power-up.
+    workaround: Leave the default, coasting, unless you need the brake; set it again after each power-up, and do not
+      force the jaws by hand while it brakes.
+    page: reference/can/system.md#send_idle
+    title: Send_Idle
+    status: open
+    since: 2026-11-03
+
+  - id: KI-7
+    component: python
+    summary: "`gripper_object_detection` has its two bits swapped: the library reports 1 where the gripper sends 2
+      (object found while opening) and 2 where it sends 1 (object found while closing); 0 and 3 are right."
+    workaround: Swap 1 and 2 in your program, or test for "1 or 2" when any object will do.
+    page: 06-operation/python.md
+    title: With Python
+    status: open
+    since: 2026-11-03
+
+  - id: KI-8
+    component: parol6_api
+    summary: "In `rbt.tool.status()`, `engaged` is always true (it is read from the speed field, which the robot
+      always reports as 1), and `part_detected` reads bits 3 and 2 of the gripper's state byte, the temperature and
+      timeout errors, not the object detection in bits 5 and 4."
+    workaround: To know that a part is held, check the position the jaws stopped at, or use a sensor.
+    page: 06-operation/robots.md#driving-it
+    title: On PAROL6 and PAR6, driving it
+    status: open
+    since: 2026-11-03
+
+  - id: KI-9
+    component: parol6_api
+    summary: "`rbt.tool.calibrate()` counts the calibration done after a fixed 2 s without reading the calibrated
+      bit, and the SSG-48 takes about 3 s, longer when the jaws start far from the open end. The API has no action
+      to clear a gripper error."
+    workaround: Wait for the calibration before the first move, as the example on the PAROL6 page does; clear an error
+      in the commander's Gripper tab or with Motor GUI, then calibrate.
+    page: 06-operation/robots.md#driving-it
+    title: On PAROL6 and PAR6, driving it
+    status: open
+    since: 2026-11-03

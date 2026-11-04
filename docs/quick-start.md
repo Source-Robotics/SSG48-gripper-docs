@@ -51,7 +51,7 @@ Choose **CAN (slcan)** at **1 Mbit/s**, press **Connect**, and choose the adapte
 Select node **0** (or your assigned ID) and switch from **Motor** to **Gripper**.
 
 **Check:** position and current feedback arrive. *Not calibrated* after power-up is normal. If feedback is
-missing, check the power, port, node ID and termination: [Troubleshooting](09-troubleshooting.md).
+missing, check the power, port, node ID and termination: [Troubleshooting](09-troubleshooting/index.md).
 If a fault disables the controls, resolve it using [Errors and recovery](06-operation/errors.md).
 The [illustrated Motor GUI guide](05-setup/motor-gui.md) shows the panel.
 
@@ -65,7 +65,7 @@ faults.
 
 **Check:** the panel says **Calibrated**, **Activated**, and **No errors** before you command a move.
 A calibration that times out after 30 seconds has not found its end stops; do not continue as if it passed.
-Use [Calibration troubleshooting](09-troubleshooting.md#calibration).
+Use [Calibration troubleshooting](09-troubleshooting/index.md#calibration).
 
 ## 6. Make the first move
 
@@ -73,7 +73,7 @@ Set **Speed 30** and **Current 300 mA**, applying each with its **Set** button. 
 After that works, put a light test object between the jaws and repeat, keeping fingers clear.
 
 **Check:** the position follows the command; on an object the jaws stop before fully closed and the panel reports
-an object. If it does not move, slips or reports an error, use [Troubleshooting](09-troubleshooting.md).
+an object. If it does not move, slips or reports an error, use [Troubleshooting](09-troubleshooting/index.md).
 The current limit sets an approximate force limit; [Force and speed](03-technical-data/force-and-speed.md)
 explains the relationship and the motor's limits.
 
@@ -87,4 +87,4 @@ switch off the supply before changing cables.
 | Control it from a program | [With Python](06-operation/python.md), [With ROS 2](06-operation/ros2.md) |
 | Put it on a robot | [On PAROL6 and PAR6](06-operation/robots.md) |
 | Inspect a CAN frame or download DBC definitions | [CAN frame tool and downloads](reference/can-tools.md) |
-| Diagnose a problem | [Troubleshooting](09-troubleshooting.md), [Errors and recovery](06-operation/errors.md) |
+| Diagnose a problem | [Troubleshooting](09-troubleshooting/index.md), [Errors and recovery](06-operation/errors.md) |
