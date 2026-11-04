@@ -15,10 +15,10 @@ rows:
   - firmware: "107"
     date: 2026-08-26
     bootloader: required (installed on grippers shipped with 105 or newer)
-    gripper: V1.1
+    gripper: V2, V1.1
     python: 1.20 or newer
     ros2: ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2
-    docs: "1.1"
+    docs: "2"
   - firmware: "106"
     date: 2026-07-06
     bootloader: required

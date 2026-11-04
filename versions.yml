@@ -8,14 +8,14 @@
 # without its V. The publishing workflow publishes the site under this name (the version selector in the header)
 # and points "latest" at it. A new gripper release gets a new version of the site; a new firmware release for the
 # same gripper updates this version in place (firmware.version below).
-docs_version: "1.1"
+docs_version: "2"
 
 # The gripper release: the product repository and its tag, which must be V<docs_version>.
 product:
   name: SSG-48 gripper
   repository: https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper
-  tag: V1.1
-  released: 2024-06-02
+  tag: V2
+  released: 2026-11-04
 
 # The driver firmware release the gripper runs and the pages describe; the generated reference is read from its
 # source at this tag. The gripper has no firmware of its own: it is a Spectral Micro BLDC driver in gripper mode.
@@ -54,9 +54,9 @@ manuals:
   ssg48:
     number: SR-5004
     title: SSG-48 Gripper Manual
-    revision: 2026.A
+    revision: 2026.B
     status: published
-    published: 2026-11-03
+    published: 2026-11-04
     firmware: true
     applies_to: with the Spectral Micro driver PCB v2.0
     covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides"

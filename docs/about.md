@@ -37,4 +37,5 @@ by any of these.
 
 | Revision | Date | Changes |
 |---|---|---|
+| 2026.B | 2026-11-04 | Gripper release 2, with the files as downloads on the release; known issues; data for robot integration (frame, mass, inertia, TCP); check boxes after each step and Windows, Linux and macOS tabs; numbered figure captions; the downloads with their versions; safety at the jaws, static and cleaning; the thermistor and the thermal cement in the BOM; the hardware licence CERN-OHL-S-2.0 |
 | 2026.A | 2026-11-03 | First version in this form: the manual chapters, the generated CAN and UART reference; gripper release 1.1, firmware 107 |
