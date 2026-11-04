@@ -3,7 +3,8 @@
 The repository's assembly manual, page by page: the jaws, the gear and magnet on the motor, the motor into the
 body, the connector and its wires, the driver and the thermistor, the calibration, the linear guide, the lid, the
 coupler connector, the cable. Read it once before you start: some steps cannot be undone without taking the body
-apart again.
+apart again. Static electricity damages the driver: touch earthed metal before you handle it, and hold it by the
+edges.
 
 <object data="../../assets/pdf/SSG48_assembly_manual.pdf#view=FitH&amp;navpanes=0" type="application/pdf" width="100%" height="820">
   <p>Your browser does not show PDFs inline: <a href="../../assets/pdf/SSG48_assembly_manual.pdf">download the assembly manual (PDF, 3 MB)</a>.</p>

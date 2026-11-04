@@ -2,7 +2,8 @@
 
 The gripper needs little: every wearing part is printed, so a worn part is replaced by printing a new one, and
 the mechanism is a rail, two racks and a pinion that want a little grease now and then. Power the gripper off
-before any work on it.
+before any work on it. Before you open the body, to reach the driver or its termination switch, unplug the
+supply and touch earthed metal: static electricity damages the driver.
 
 ## Before each session
 
@@ -16,10 +17,16 @@ before any work on it.
   the linear rail to reach the mechanism, wipe off the old grease and the dust, grease, refit, and move the jaws
   over the whole stroke by hand before you power up. A grinding noise, a stiff motion or a calibration that
   stops short of an end are the signs that it is due.
-- **Clean** with a dry cloth. The gripper is not waterproof or dustproof: keep it out of wet and dusty places,
-  and blow chips out of the rail rather than wash them out.
+- **Clean** the rail, the racks and the body, as in [Cleaning](#cleaning).
 - **Screws**: the finger screws, the rail screws, the lid and the coupler connector; threadlocker where the
   assembly manual uses it.
+
+## Cleaning
+
+Clean the gripper switched off and unplugged. Wipe the body and the fingers with a dry or slightly damp cloth; use
+no solvents on the printed parts, and never spray or pour anything into the body, where the driver and the motor
+are open to it. The gripper is not waterproof or dustproof: keep it out of wet and dusty places, and blow chips
+out of the rail rather than wash them out. Grease the rail again if the cleaning took its grease off.
 
 ## Replacing worn parts
 

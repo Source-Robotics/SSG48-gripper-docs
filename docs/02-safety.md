@@ -21,6 +21,11 @@ hand or destroy the gripper when they are ignored.
     A gripped object that slips, or that the jaws crush, can fly or fall. The grip force is a current limit, not a
     measurement: a hard object takes the full force, a soft one deforms until the force is reached.
 
+!!! warning "Hair, clothing and jewellery"
+    The jaws catch more than fingers: long hair, loose sleeves, gloves, lanyards, rings and bracelets. Tie back
+    long hair and take off what can be caught before you work at a powered gripper, and keep it out of the jaws'
+    reach while they move. Wear safety glasses where a part can slip out of the grip and fly.
+
 ## Electrical
 
 !!! danger "The cable"
@@ -33,6 +38,10 @@ hand or destroy the gripper when they are ignored.
 
 !!! warning "Do not unplug a powered gripper"
     Connect and disconnect the cable with the supply off. Hot-plugging the connector can damage the driver.
+
+!!! warning "Static"
+    Static electricity damages the Spectral Micro driver inside the body. Unplug the supply and touch earthed metal
+    before you open the body, set the termination switch or handle the driver, and hold the board by its edges.
 
 ## Temperature
 
