@@ -6,10 +6,7 @@ motor's current, so a move sets not only where the jaws go and how fast, but how
 limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA. The jaws stop on an object, hold it with that force, and the
 driver reports that an object was found.
 
-<figure markdown="span">
-  ![The SSG-48 gripper](../assets/SSG48_gripper_angle.webp){ width="600" }
-  <figcaption>Figure 1: The SSG-48 gripper with pinch fingers.</figcaption>
-</figure>
+![The SSG-48 gripper with pinch fingers](../assets/SSG48_gripper_angle.webp){ width="600" }
 
 ## The parts
 

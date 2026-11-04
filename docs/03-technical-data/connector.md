@@ -2,10 +2,7 @@
 
 The gripper has one connector, an M8 4-pin male on the side of the body, and one cable: 24 V and the CAN bus.
 
-<figure markdown="span">
-  ![The M8 connector and its signals](../assets/GRPCON.webp){ width="700" }
-  <figcaption>Figure 3: The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V.</figcaption>
-</figure>
+![The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V](../assets/GRPCON.webp){ width="700" }
 
 ## Pin numbers
 
@@ -30,7 +27,7 @@ They describe the **gripper end**. PAROL6 and PAR6 use different connections at 
 
 !!! danger "The wrong cable destroys the driver"
     A cable with 24 V on a CAN pin destroys the driver inside the gripper the moment it is powered. Use the cable
-    made for your robot; check a self-made cable pin by pin against Figure 3 and the wiring diagram before you
+    made for your robot; check a self-made cable pin by pin against the pinout above and the wiring diagram before you
     plug it in.
 
 ## Inside the body

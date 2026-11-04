@@ -10,10 +10,7 @@ for PAROL6, PAR6 and the UR5 flange, and a STEP template for your own.
 | UR5 | `UR_coupler_gripper.STEP` | [STEPS/UR5 adapter plate](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS/UR5%20adapter%20plate) |
 | your own | `coupler_connector_generic_STEP.STEP`, the template | [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) |
 
-<figure markdown="span">
-  ![The generic coupler connector](../assets/Capture.webp){ width="520" }
-  <figcaption>Figure 10: The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle.</figcaption>
-</figure>
+![The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle](../assets/Capture.webp){ width="520" }
 
 ## PAROL6
 

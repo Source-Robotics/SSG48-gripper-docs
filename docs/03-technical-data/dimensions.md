@@ -13,30 +13,19 @@
 gripper's URDF, the fingers its printed options; the current URDF and MuJoCo models are linked from the repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description">ssg48_description</a> guide. The shop sells the body in black and grey.</p>
 </div>
 
-<figure markdown="span">
-  ![Front view](../assets/DIM2.webp){ width="700" }
-  <figcaption>Figure 4: Front view, in millimetres, without a coupler connector: 104 mm over the jaw plates, 75 mm across the body, 26 mm jaw plates, 60.7 mm from the top of the jaw plates to the bottom of the driver board.</figcaption>
-</figure>
+![Front view, in millimetres, without a coupler connector: 104 mm over the jaw plates, 75 mm across the body, 26 mm jaw plates, 60.7 mm from the top of the jaw plates to the bottom of the driver board](../assets/DIM2.webp#only-light){ width="700" }
+![Front view, in millimetres, without a coupler connector: 104 mm over the jaw plates, 75 mm across the body, 26 mm jaw plates, 60.7 mm from the top of the jaw plates to the bottom of the driver board](../assets/DIM2_dark.webp#only-dark){ width="700" }
 
-<figure markdown="span">
-  ![Side view](../assets/DIM3.webp){ width="700" }
-  <figcaption>Figure 5: Side view.</figcaption>
-</figure>
+![Side view, across the jaw travel: 75 mm across the body, 31.4 mm jaw plates](../assets/DIM4.webp#only-light){ width="600" }
+![Side view, across the jaw travel: 75 mm across the body, 31.4 mm jaw plates](../assets/DIM4_dark.webp#only-dark){ width="600" }
 
-<figure markdown="span">
-  ![Top view](../assets/DIM4.webp){ width="600" }
-  <figcaption>Figure 6: Top view, with the jaw plates and their hole pattern.</figcaption>
-</figure>
+![Top view, with the jaw plates and their hole pattern](../assets/DIM3.webp#only-light){ width="700" }
+![Top view, with the jaw plates and their hole pattern](../assets/DIM3_dark.webp#only-dark){ width="700" }
 
-<figure markdown="span">
-  ![With the PAROL6 coupler](../assets/DIM1.webp){ width="700" }
-  <figcaption>Figure 7: The gripper with the PAROL6 coupler connector.</figcaption>
-</figure>
+![The gripper with the PAROL6 coupler connector: 76.35 mm from the top of the jaw plates to the end of the coupler](../assets/DIM1.webp#only-light){ width="700" }
+![The gripper with the PAROL6 coupler connector: 76.35 mm from the top of the jaw plates to the end of the coupler](../assets/DIM1_dark.webp#only-dark){ width="700" }
 
-<figure markdown="span">
-  ![The stroke](../assets/gripper_stroke.webp){ width="520" }
-  <figcaption>Figure 8: 48 mm of stroke between the jaw plates, 104 mm overall.</figcaption>
-</figure>
+![48 mm of stroke between the jaw plates, 104 mm overall](../assets/gripper_stroke.webp){ width="520" }
 
 ## CAD
 
@@ -50,10 +39,7 @@ The STEP files of every part are in the product repository, the reference for an
 - [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws):
   the fin-ray fingers and their jaw plate.
 
-<figure markdown="span">
-  ![The STEP model](../assets/GRIP_MODEL.webp){ width="600" }
-  <figcaption>Figure 9: The STEP model of the gripper.</figcaption>
-</figure>
+![The STEP model of the gripper](../assets/GRIP_MODEL.webp){ width="600" }
 
 ## For simulation
 

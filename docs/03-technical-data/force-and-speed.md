@@ -18,11 +18,8 @@ $$
 $K_t$ = 0.325 Nm/A is the assumed torque constant used by this model and $r$ the pitch radius of the pinion.
 They give an ideal combined force of about 54 N per ampere: about 8 N at 150 mA and 80 N at 1.5 A.
 
-<figure markdown="span">
-  ![Grip force against the current limit](../assets/grip_force_light.webp#only-light){ width="820" }
-  ![Grip force against the current limit](../assets/grip_force_dark.webp#only-dark){ width="820" }
-  <figcaption>Figure 2: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
-</figure>
+![The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses](../assets/grip_force_light.webp#only-light){ width="820" }
+![The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses](../assets/grip_force_dark.webp#only-dark){ width="820" }
 
 The curve is computed from the assumed torque constant, rather than a measured force calibration. `#Kt`
 over UART prints the driver's torque constant; that value must match its $q$-axis current convention. A
