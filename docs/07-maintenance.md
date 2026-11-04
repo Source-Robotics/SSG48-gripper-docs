@@ -23,8 +23,8 @@ supply and touch earthed metal: static electricity damages the driver.
 
 ## Cleaning
 
-Clean the gripper switched off and unplugged. Wipe the body and the fingers with a dry or slightly damp cloth; use
-no solvents on the printed parts, and never spray or pour anything into the body, where the driver and the motor
+Clean the gripper switched off and unplugged. Wipe the body and the fingers with a dry or slightly damp cloth, or with a
+little isopropyl alcohol on the cloth for grease; use no other solvents on the printed parts, and never spray or pour anything into the body, where the driver and the motor
 are open to it. The gripper is not waterproof or dustproof: keep it out of wet and dusty places, and blow chips
 out of the rail rather than wash them out. Grease the rail again if the cleaning took its grease off.
 
