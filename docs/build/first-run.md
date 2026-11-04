@@ -12,6 +12,11 @@ This page is that procedure; the commands are the driver's, and the
 ## What you need
 
 - The gripper assembled up to that point, with the encoder magnet on the motor shaft and the driver mounted.
+- The 100K NTC thermistor in the motor windings, held by thermal cement, its leads on the driver's TERM and 3V3
+  pads. Both parts are in the [Bill of materials](bill-of-materials.md#electronics);
+  [Thermistor](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/04-mounting/thermistor/) on the
+  Spectral Micro site shows how it is fitted. `#Term 1` below needs it: without it the driver reads below −20 °C
+  and stops with a temperature error.
 - A 3.3 V [USB-to-serial adapter](https://source-robotics.com/products/usb-to-serial-adapter) on the driver's
   UART connector, a terminal at 256000 baud with CR+LF line endings, and 24 V on the driver's power connector.
   [The serial terminal](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/terminal/) on the

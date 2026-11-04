@@ -2,7 +2,7 @@
 
 !!! note "This is a copy"
     The original is [BOM/BOM.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md) in the gripper's repository; this page is that file as of
-    2026-10-31 (commit `c2976a1`), with the reference images shown inline. If a link is broken or a part is wrong,
+    2026-11-04 (commit `37e3488`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -64,6 +64,8 @@ This BOM lists all components required to build the SSG48 gripper. Quantities ar
 | XH 2.54 mm, 300 mm, 2P, double-ended | 1 | Cable for 24 V<br>![XH_cable](../assets/bom/XH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9) |
 | ZH 1.5 mm, 300 mm, 2P, double-ended | 1 | Cable for CAN bus<br>![ZH_cable](../assets/bom/ZH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9) |
 | Male 4-pin connector | 1 | ![M8connectormale4pin](../assets/bom/M8connectormale4pin.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff) |
+| 100K NTC thermistor | 1 | NTC 100K 3950, glued into the motor windings: the driver stops the gripper at 75 °C<br>![Thermistor](../assets/bom/Thermistor.webp){ width="120" } | [Link](https://source-robotics.com/products/100k-ntc-thermistor) |
+| Thermal cement | 1 | Holds the thermistor in the windings and conducts the heat to it<br>![Thermal_cement](../assets/bom/Thermal_cement.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c3dBOwTD) |
 
 
 ## Cables

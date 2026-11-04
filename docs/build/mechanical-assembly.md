@@ -12,6 +12,16 @@ apart again.
 [Download the assembly manual (PDF, 3 MB)](../assets/pdf/SSG48_assembly_manual.pdf){ .md-button }
 [The assembly video](https://www.youtube.com/watch?v=127zXHKuqIg){ .md-button }
 
+## The thermistor
+
+The motor has a 100K NTC thermistor in its windings; the driver stops the gripper when it reads 75 °C. Put the
+bead between the windings and fix it with a drop of thermal cement, which sets hard and conducts the heat:
+thermal paste stays soft and lets the bead move, ordinary glue insulates it. Solder the leads to the driver's
+TERM and 3V3 pads and keep them clear of the rotor. The thermistor and the cement are in the
+[Bill of materials](bill-of-materials.md#electronics), and the starter kit has the thermistor;
+[Thermistor](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/04-mounting/thermistor/) on the
+Spectral Micro site has photos of it on the board and in a gimbal motor.
+
 ## Calibrate on the way
 
 The motor is calibrated during the assembly, not before it: once the motor and the driver are in the body, the
