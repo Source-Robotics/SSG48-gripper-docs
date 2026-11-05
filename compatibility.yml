@@ -28,14 +28,14 @@ rows:
     docs: not published
   - firmware: "105"
     date: 2026-07-05
-    bootloader: required (the first release that needs it)
+    bootloader: required
     gripper: V1.1
     python: 1.19 or newer
     ros2: ssg48_adaptive_electric_gripper_ros2
     docs: not published
   - firmware: "104"
     date: 2026-06-19
-    bootloader: none (flashed with a programming adapter); the last release of the main branch
+    bootloader: required (the first release built for the bootloader, from Bootloader_main)
     gripper: V1.1
     python: 1.19 or newer
     ros2: ssg48_adaptive_electric_gripper_ros2
