@@ -23,9 +23,9 @@ Full text of every page, in the order of the site's navigation. Source: https://
 
 **Firmware:** Spectral 107
 
-**Revision:** 2026.B
+**Revision:** 2026.C
 
-**Published:** 2026-11-04
+**Published:** 2026-11-05
 
 **Applies to:** SSG-48 gripper release 2 with the Spectral Micro driver PCB v2.0, Spectral firmware 107
 
@@ -112,7 +112,7 @@ For a gripper already connected to a robot, use [On PAROL6 and PAR6](https://doc
 
 !!! danger "Before connecting power"
     Keep fingers and loose objects out of the stroke. Calibration opens and closes the jaws fully. A wrong
-    cable can put 24 V on the CAN pins and destroy the driver: check the [numbered pinout](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/connector/#pin-numbers).
+    cable can reverse the supply or put 24 V on a CAN pin, and either destroys the driver: check the [numbered pinout](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/connector/#pin-numbers).
 
 ## 1. Choose your starting point
 
@@ -133,8 +133,8 @@ the parts; [Mounting](https://docs.source-robotics.com/SSG48-gripper-docs/2/04-i
 
 ## 3. Wire with power off
 
-1. Check the cable against [Connector and pinout](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/connector/): gripper pin 3 is +24 V,
-   pin 4 GND, pin 2 CANH, pin 1 CANL. Check continuity before the first power-up.
+1. Check the cable against [Connector and pinout](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/connector/): gripper pin 1 is +24 V,
+   pin 3 GND, pin 4 CANH, pin 2 CANL. Check continuity before the first power-up.
 2. Connect the supply and the CANvas adapter as shown below.
 3. Set the gripper's CAN termination ON for this two-node bench bus; the CANvas adapter provides the other end.
    Leave the gripper at its shipped node ID, **0**, unless you already assigned another.
@@ -142,10 +142,10 @@ the parts; [Mounting](https://docs.source-robotics.com/SSG48-gripper-docs/2/04-i
 ```mermaid
 flowchart LR
     PC[PC USB] --> A[CANvas adapter]
-    A -- CANH --> P2[Gripper pin 2: CANH]
-    A -- CANL --> P1[Gripper pin 1: CANL]
-    S[24 V supply] -- positive --> P3[Gripper pin 3: +24 V]
-    S -- return --> P4[Gripper pin 4: GND]
+    A -- CANH --> P4[Gripper pin 4: CANH]
+    A -- CANL --> P2[Gripper pin 2: CANL]
+    S[24 V supply] -- positive --> P1[Gripper pin 1: +24 V]
+    S -- return --> P3[Gripper pin 3: GND]
 ```
 
 !!! success "Check, unpowered"
@@ -262,6 +262,7 @@ by any of these.
 
 | Revision | Date | Changes |
 |---|---|---|
+| 2026.C | 2026-11-05 | The M8 pinout corrected to the one the gripper is built with (1 +24 V, 2 CANL, 3 GND, 4 CANH; page 17 of the SSG-48 assembly manual): the pin table, its drawing and the quick start of 2026.B had all four pins wrong; the bootloader comes with Spectral release 104, the first built for it; the cable warnings: the other robot's cable reverses the supply, it does not put 24 V on the CAN pins; the PAROL6 cable's pin pairs |
 | 2026.B | 2026-11-04 | Gripper release 2, with the files as downloads on the release; known issues; data for robot integration (frame, mass, inertia, TCP); check boxes after each step and Windows, Linux and macOS tabs; numbered figure captions; the downloads with their versions; safety at the jaws, static and cleaning; the thermistor and the thermal cement in the BOM; the hardware licence CERN-OHL-S-2.0 |
 | 2026.A | 2026-11-03 | First version in this form: the manual chapters, the generated CAN and UART reference; gripper release 1.1, firmware 107 |
 
@@ -470,8 +471,9 @@ hand or destroy the gripper when they are ignored.
 ## Electrical
 
 !!! danger "The cable"
-    The gripper's M8 connector carries 24 V next to the CAN bus. A cable with the wrong pinout, including the
-    cable of the other Source Robotics robot, puts 24 V on the CAN pins and destroys the driver. Use the cable
+    The gripper's M8 connector carries 24 V next to the CAN bus. A cable with the wrong pinout destroys the driver:
+    the cable of the other Source Robotics robot reverses the supply, and a self-made one with a wrong pin can
+    put 24 V on a CAN pin. Use the cable
     made for your robot or check every pin of your own; see [The cable](https://docs.source-robotics.com/SSG48-gripper-docs/2/04-installation/cable/).
 
 !!! warning "Supply"
@@ -729,18 +731,20 @@ than matching wire colours or the installed housing's rotation.
 
 | Gripper pin | Signal | Connection |
 |---|---|---|
-| **1** | **CANL** | CAN low |
-| **2** | **CANH** | CAN high, 1 Mbit/s with CANL |
-| **3** | **+24 V** | positive motor supply |
-| **4** | **GND** | power-supply return |
+| **1** | **+24 V** | positive motor supply |
+| **2** | **CANL** | CAN low |
+| **3** | **GND** | power-supply return |
+| **4** | **CANH** | CAN high, 1 Mbit/s with CANL |
 
-These pin numbers combine the gripper's signal drawing above with the male contact numbering in the
-repository's [cable drawing](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Photos/Gripper_cable_contact%20layout.png).
+These are the pin numbers the gripper is built with, from page 17 of the
+[assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf): the photo there
+shows the connector from the back, where the wires are soldered, so it is the mirror image of the picture above.
 They describe the **gripper end**. PAROL6 and PAR6 use different connections at the robot end:
 [The cable](https://docs.source-robotics.com/SSG48-gripper-docs/2/04-installation/cable/) gives both diagrams. Check continuity with the supply disconnected.
 
 !!! danger "The wrong cable destroys the driver"
-    A cable with 24 V on a CAN pin destroys the driver inside the gripper the moment it is powered. Use the cable
+    A reversed supply or 24 V on a CAN pin destroys the driver inside the gripper the moment it is powered; the
+    other robot's cable reverses the supply. Use the cable
     made for your robot; check a self-made cable pin by pin against the pinout above and the wiring diagram before you
     plug it in.
 
@@ -968,7 +972,7 @@ to robot.
 
 !!! danger "PAROL6 and PAR6 cables are different"
     The two robots put the four signals on different pins of their gripper port. The PAROL6 cable in a PAR6, or
-    the other way round, puts 24 V on the CAN bus and destroys the gripper's driver. Use the cable sold for your
+    the other way round, reverses the gripper's supply, 24 V on its GND pin, and destroys its driver. Use the cable sold for your
     robot, and check a self-made cable pin by pin.
 
 ## The cables from the shop
@@ -1000,6 +1004,9 @@ colours are those of the cable in the BOM.
 
 === "PAROL6"
     ![The PAROL6 cable: the pins are crossed between the two ends](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/PAROL6_cable.webp){ width="320" }
+
+    Male end at the robot, female end at the gripper: pin 1 to 3, 2 to 4, 3 to 1, 4 to 2. The PAROL6 socket has
+    GND on pin 1, CANH on 2, 24 V on 3 and CANL on 4; the cable brings each signal to the gripper's pin for it.
 
 === "PAR6"
     ![The PAR6 cable: pin to pin](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/PAR6_cable.png){ width="200" }
@@ -2043,7 +2050,7 @@ The fingers, the jaw plates and every other printed part are in the product repo
 [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts)
 and [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws);
 the rail, the carriages and the screws are in the
-[BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md). A replacement
+[BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/BOM). A replacement
 finger is the same part as a new one, and the gripper calibration at the next power-up takes care of the end
 stops.
 
@@ -2071,7 +2078,7 @@ which Python library and bootloader.
 
 ## Updating
 
-A gripper shipped with firmware 105 or newer carries the driver's bootloader and updates over its CAN cable: the
+A gripper whose driver runs firmware 104 or newer carries the driver's bootloader and updates over its CAN cable: the
 host tells the driver to reset, the bootloader waits two seconds for a host, and the host streams the new image
 into it. Nothing is opened. The image is `spectral-bldc-firmware-V<number>.bin` from the driver's
 [GitHub releases](https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller/releases), with a manifest
@@ -2102,7 +2109,7 @@ and [The bootloader](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/
 
 ## Grippers shipped before 2026
 
-Grippers shipped with firmware 104 or older, which is every SSG-48 before the bootloader releases of 2026, have
+Grippers shipped with firmware 101 or older, which is every SSG-48 before the bootloader releases of 2026, have
 no bootloader. Their driver is updated once with a programming adapter on its JTAG pads, inside the body under
 the coupler connector, as described in
 [Installing the bootloader on an older board](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/07-firmware/bootloader/).
@@ -2290,8 +2297,8 @@ is in the shop too.
 # Bill of materials
 
 !!! note "This is a copy"
-    The original is [BOM/BOM.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md) in the gripper's repository; this page is that file as of
-    2026-11-04 (commit `37e3488`), with the reference images shown inline. If a link is broken or a part is wrong,
+    The original is [BOM/README.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/README.md) in the gripper's repository; this page is that file as of
+    2026-11-05 (commit `599b987`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](https://docs.source-robotics.com/SSG48-gripper-docs/2/build/#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -2702,8 +2709,8 @@ describes it.
 |---|---|---|---|---|---|---|
 | 107 | 2026-08-26 | required (installed on grippers shipped with 105 or newer) | V2, V1.1 | 1.20 or newer | ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2 | 2 |
 | 106 | 2026-07-06 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
-| 105 | 2026-07-05 | required (the first release that needs it) | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
-| 104 | 2026-06-19 | none (flashed with a programming adapter); the last release of the main branch | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
+| 105 | 2026-07-05 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
+| 104 | 2026-06-19 | required (the first release built for the bootloader, from Bootloader_main) | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
 | 101 | 2025-09-29 | none (flashed with a programming adapter) | V1.1 | 1.17 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
 
 Send_Respond_Device_Info returns the firmware release a gripper runs; `#Info` prints it over UART.
@@ -2838,7 +2845,7 @@ The latest files, on the main branch of the
 | STEP files: the body parts, the whole gripper, the jaw plate and pinch jaws, the coupler connector template, the UR5 adapter plate | [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) in the product repository |
 | Printable parts (STL) of both hardware versions and the coupler connectors for PAROL6 and PAR6 | [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts) |
 | Fin-ray fingers and their jaw plate | [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws) |
-| Bill of materials | [BOM.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md), and on this site: [Bill of materials](https://docs.source-robotics.com/SSG48-gripper-docs/2/build/bill-of-materials/) |
+| Bill of materials | [BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/BOM), and on this site: [Bill of materials](https://docs.source-robotics.com/SSG48-gripper-docs/2/build/bill-of-materials/) |
 | Assembly manual (PDF) and the motor's datasheet | [Assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Assembly%20manual) |
 | Assembly video | [YouTube](https://www.youtube.com/watch?v=127zXHKuqIg) |
 | Cable wiring diagrams | [Building_cables.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Building_cables.md) |

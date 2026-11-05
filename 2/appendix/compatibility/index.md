@@ -8,8 +8,8 @@ describes it.
 |---|---|---|---|---|---|---|
 | 107 | 2026-08-26 | required (installed on grippers shipped with 105 or newer) | V2, V1.1 | 1.20 or newer | ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2 | 2 |
 | 106 | 2026-07-06 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
-| 105 | 2026-07-05 | required (the first release that needs it) | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
-| 104 | 2026-06-19 | none (flashed with a programming adapter); the last release of the main branch | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
+| 105 | 2026-07-05 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
+| 104 | 2026-06-19 | required (the first release built for the bootloader, from Bootloader_main) | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
 | 101 | 2025-09-29 | none (flashed with a programming adapter) | V1.1 | 1.17 or newer | ssg48_adaptive_electric_gripper_ros2 | the Spectral Micro site, version 101 |
 
 Send_Respond_Device_Info returns the firmware release a gripper runs; `#Info` prints it over UART.

@@ -10,9 +10,9 @@
 
 **Firmware:** Spectral 107
 
-**Revision:** 2026.B
+**Revision:** 2026.C
 
-**Published:** 2026-11-04
+**Published:** 2026-11-05
 
 **Applies to:** SSG-48 gripper release 2 with the Spectral Micro driver PCB v2.0, Spectral firmware 107
 
