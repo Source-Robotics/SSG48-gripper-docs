@@ -34,7 +34,7 @@ The fingers, the jaw plates and every other printed part are in the product repo
 [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts)
 and [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws);
 the rail, the carriages and the screws are in the
-[BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md). A replacement
+[BOM](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/BOM). A replacement
 finger is the same part as a new one, and the gripper calibration at the next power-up takes care of the end
 stops.
 

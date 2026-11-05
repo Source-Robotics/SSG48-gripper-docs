@@ -1,8 +1,8 @@
 # Bill of materials
 
 !!! note "This is a copy"
-    The original is [BOM/BOM.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/BOM.md) in the gripper's repository; this page is that file as of
-    2026-11-04 (commit `37e3488`), with the reference images shown inline. If a link is broken or a part is wrong,
+    The original is [BOM/README.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/README.md) in the gripper's repository; this page is that file as of
+    2026-11-05 (commit `599b987`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
