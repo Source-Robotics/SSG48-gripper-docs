@@ -54,9 +54,9 @@ manuals:
   ssg48:
     number: SR-5004
     title: SSG-48 Gripper Manual
-    revision: 2026.B
+    revision: 2026.C
     status: published
-    published: 2026-11-04
+    published: 2026-11-05
     firmware: true
     applies_to: with the Spectral Micro driver PCB v2.0
     covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides"
