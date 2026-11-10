@@ -61,9 +61,10 @@ prints before you start if you need it.
 | `#Save` | nothing above survives a power cycle until it is saved |
 
 The current loop gains the calibration computes for the motor are what the shipped grippers use. Motor GUI's
-*SSG-48* preset, on its setup page over UART, writes this step for you: the gains of a calibrated shop gripper
-(`#Kpiq 7.0381`, `#Kiiq 4.2557`), gripper mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it
-before applying for another robot), then saves.
+*SSG-48* preset, on its setup page over UART, writes this step for you: the current gains (firmware 107 and older:
+`#Kpiq 7.0381`, `#Kiiq 4.2557`; from 109: `#Cbw 300`, `#Kpiq 4.9018`, `#Kiiq 2.6993` and tool id 1), gripper
+mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it before applying for another robot), then
+saves.
 
 !!! success "Check"
     After a power cycle, `#Gripper` and `#Term` print 1, `#Tlim` 75 and `#CANID` the node ID; `#Temp` prints the
