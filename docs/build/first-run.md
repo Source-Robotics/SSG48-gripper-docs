@@ -84,5 +84,5 @@ gripper's state, including the end stops the calibration found.
 
 ## Current limit
 
-The gripper's moves use the current limit of each command, not the driver's `#Ilim`. The firmware does not clamp
-it; [Force and speed](../03-technical-data/force-and-speed.md) says what is safe for the motor.
+The gripper's moves use the current limit of each command, not the driver's `#Ilim`. The firmware clamps it only
+at 2800 mA; [Force and speed](../03-technical-data/force-and-speed.md) says what is safe for the motor.

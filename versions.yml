@@ -21,15 +21,15 @@ product:
 # source at this tag. The gripper has no firmware of its own: it is a Spectral Micro BLDC driver in gripper mode.
 firmware:
   name: Spectral
-  version: "107"
+  version: "109"
   repository: https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller
-  tag: V107
-  released: 2026-08-26
+  tag: V109
+  released: 2026-11-10
   # The firmware's source folder in that repository, and its Controller_mode numbers with their names (for the
   # "enters mode" column of the UART reference). tools/sync_firmware.py reads both.
   src: Spectral BLDC Firmware/src
   modes: {0: idle, 1: position, 2: velocity, 3: current, 4: PD, 5: open loop, 6: gripper, 7: gripper calibration,
-          8: voltage torque}
+          8: voltage torque, 12: encoder table}
 
 # The other components the pages name with their version: the Python library the pages describe, and the gripper's
 # URDF and MuJoCo models (the CAD and downloads page, Data for robot integration). <!-- version: GROUP.KEY --> and the
@@ -38,7 +38,8 @@ software:
   python:
     name: Spectral-BLDC-Python
     repository: https://github.com/Source-Robotics/Spectral-BLDC-Python
-    tag: v1.20
+    tag: v1.21
+    released: 2026-11-10
 models:
   robot_descriptions:
     name: robot_descriptions
@@ -54,9 +55,9 @@ manuals:
   ssg48:
     number: SR-5004
     title: SSG-48 Gripper Manual
-    revision: 2026.C
+    revision: 2026.D
     status: published
-    published: 2026-11-05
+    published: 2026-11-10
     firmware: true
     applies_to: with the Spectral Micro driver PCB v2.0
     covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides"

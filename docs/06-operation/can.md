@@ -69,7 +69,7 @@ The answer to every frame tells the whole state, so a host never has to ask twic
   reset it; Send_Clear_Error and Send_gripper_calibrate do not. After a timeout, fix the host, clear, and
   resume.
 - **Current:** keep the commanded current at 1500 mA or less for a grip, and low for a long hold; the firmware
-  does not clamp it ([Force and speed](../03-technical-data/force-and-speed.md)).
+  clamps it only at 2800 mA ([Force and speed](../03-technical-data/force-and-speed.md)).
 
 ## From a PC
 
