@@ -6,6 +6,7 @@ describes it.
 
 | Firmware (Spectral) | Released | Bootloader | SSG-48 gripper | Python library (Spectral-BLDC) | ROS 2 driver | Docs (gripper release) |
 |---|---|---|---|---|---|---|
+| 109 | 2026-11-10 | required | V2, V1.1 | 1.21 or newer (1.20 swaps object detection 1 and 2) | ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2 | 2 |
 | 107 | 2026-08-26 | required (installed on grippers shipped with 105 or newer) | V2, V1.1 | 1.20 or newer | ssg48_adaptive_electric_gripper_ros2, msg_gripper_ros2 | 2 |
 | 106 | 2026-07-06 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |
 | 105 | 2026-07-05 | required | V1.1 | 1.19 or newer | ssg48_adaptive_electric_gripper_ros2 | not published |

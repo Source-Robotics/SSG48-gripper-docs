@@ -2264,9 +2264,10 @@ encoder magnet, and see <a href="https://docs.source-robotics.com/Spectral-BLDC-
 </tbody>
 </table>
 <p>The current loop gains the calibration computes for the motor are what the shipped grippers use. Motor GUI's
-<em>SSG-48</em> preset, on its setup page over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr>, writes this step for you: the gains of a calibrated shop gripper
-(<code>#Kpiq 7.0381</code>, <code>#Kiiq 4.2557</code>), gripper mode, the thermistor and the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID (6, the PAR6 gripper's; change it
-before applying for another robot), then saves.</p>
+<em>SSG-48</em> preset, on its setup page over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr>, writes this step for you: the current gains (firmware 107 and older:
+<code>#Kpiq 7.0381</code>, <code>#Kiiq 4.2557</code>; from 109: <code>#Cbw 300</code>, <code>#Kpiq 4.9018</code>, <code>#Kiiq 2.6993</code> and tool id 1), gripper
+mode, the thermistor and the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID (6, the PAR6 gripper's; change it before applying for another robot), then
+saves.</p>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
 <p>After a power cycle, <code>#Gripper</code> and <code>#Term</code> print 1, <code>#Tlim</code> 75 and <code>#CANID</code> the node ID; <code>#Temp</code> prints the
@@ -2284,8 +2285,8 @@ gripper's state, including the end stops the calibration found.</p>
 positions. If the calibration gives up after 30 s: <a href="../../09-troubleshooting/#calibration">Calibration</a>.</p>
 </div>
 <h2 id="current-limit">Current limit<a class="headerlink" href="#current-limit" title="Permanent link">&para;</a></h2>
-<p>The gripper's moves use the current limit of each command, not the driver's <code>#Ilim</code>. The firmware does not clamp
-it; <a href="../../03-technical-data/force-and-speed/">Force and speed</a> says what is safe for the motor.</p>
+<p>The gripper's moves use the current limit of each command, not the driver's <code>#Ilim</code>. The firmware clamps it only
+at 2800 mA; <a href="../../03-technical-data/force-and-speed/">Force and speed</a> says what is safe for the motor.</p>
 
 
 
@@ -2306,7 +2307,7 @@ it; <a href="../../03-technical-data/force-and-speed/">Force and speed</a> says 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 08:46:30 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 10, 2026 15:30:17 UTC">November 10, 2026</span>
   </span>
 
     

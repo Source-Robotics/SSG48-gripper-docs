@@ -15,7 +15,7 @@ The gripper command, for a driver set up as a gripper (`#Gripper 1`, saved). Pos
 |---|---|---|---|---|
 | 0 |  | Position | unsigned 8-bit | 0 fully open, 255 fully closed |
 | 1 |  | Speed | unsigned 8-bit | 0 slowest, 255 fastest |
-| 2-3 |  | Current | signed 16-bit | current limit of the move in mA, the grip force; not clamped by the firmware, see Force and speed for the safe range |
+| 2-3 |  | Current | signed 16-bit | current limit of the move in mA, the grip force; clamped by the firmware only at 2800 mA, see Force and speed for the safe range |
 | 4 | 7 | Activate | bit | 1 activate the gripper, 0 deactivate |
 | 4 | 6 | Action | bit | 1 go to the position, 0 idle |
 | 4 | 5 | E-stop | bit | 1 raises the gripper E-stop error, again at every cycle while the last command's bit is 1 |

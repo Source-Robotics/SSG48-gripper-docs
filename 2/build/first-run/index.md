@@ -61,9 +61,10 @@ prints before you start if you need it.
 | `#Save` | nothing above survives a power cycle until it is saved |
 
 The current loop gains the calibration computes for the motor are what the shipped grippers use. Motor GUI's
-*SSG-48* preset, on its setup page over UART, writes this step for you: the gains of a calibrated shop gripper
-(`#Kpiq 7.0381`, `#Kiiq 4.2557`), gripper mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it
-before applying for another robot), then saves.
+*SSG-48* preset, on its setup page over UART, writes this step for you: the current gains (firmware 107 and older:
+`#Kpiq 7.0381`, `#Kiiq 4.2557`; from 109: `#Cbw 300`, `#Kpiq 4.9018`, `#Kiiq 2.6993` and tool id 1), gripper
+mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it before applying for another robot), then
+saves.
 
 !!! success "Check"
     After a power cycle, `#Gripper` and `#Term` print 1, `#Tlim` 75 and `#CANID` the node ID; `#Temp` prints the
@@ -83,5 +84,5 @@ gripper's state, including the end stops the calibration found.
 
 ## Current limit
 
-The gripper's moves use the current limit of each command, not the driver's `#Ilim`. The firmware does not clamp
-it; [Force and speed](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/force-and-speed/) says what is safe for the motor.
+The gripper's moves use the current limit of each command, not the driver's `#Ilim`. The firmware clamps it only
+at 2800 mA; [Force and speed](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/force-and-speed/) says what is safe for the motor.

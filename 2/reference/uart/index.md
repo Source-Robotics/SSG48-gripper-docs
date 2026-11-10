@@ -22,10 +22,10 @@ used.
 
 | Command | Kind | Argument | Group |
 |---|---|---|---|
-| [`#Cal`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Action |  | Driver setup |
+| [`#Cal`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Get |  | Driver setup |
 | [`#Calibrated`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Set/Get | int | Status and utility |
 | [`#CANID`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | int | Driver setup |
-| [`#Cbw`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | float | Driver setup |
+| [`#Cbw`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get |  | Driver setup |
 | [`#Clear`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Action |  | Status and utility |
 | [`#Default`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Action |  | Driver setup |
 | [`#Error`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Get |  | Status and utility |
@@ -39,10 +39,10 @@ used.
 | [`#Gripvel`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/gripper/) | Set/Get | int | Gripper |
 | [`#Help`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Action |  | Status and utility |
 | [`#Ilim`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | int | Driver setup |
-| [`#Info`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Get |  | Status and utility |
-| [`#Kiiq`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | float | Driver setup |
-| [`#Kpiq`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | float | Driver setup |
-| [`#Kt`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get | float | Driver setup |
+| [`#Info`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Action |  | Status and utility |
+| [`#Kiiq`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get |  | Driver setup |
+| [`#Kpiq`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get |  | Driver setup |
+| [`#Kt`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/setup/) | Set/Get |  | Driver setup |
 | [`#LED`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Set/Get | int | Status and utility |
 | [`#Magnet`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Get |  | Status and utility |
 | [`#Mode`](https://docs.source-robotics.com/SSG48-gripper-docs/2/reference/uart/utility/) | Get |  | Status and utility |

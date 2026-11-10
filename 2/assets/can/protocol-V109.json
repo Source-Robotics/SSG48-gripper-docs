@@ -1,7 +1,7 @@
 {
   "product": "SSG-48 gripper",
-  "firmware": "V107",
-  "commit": "2e7febc4de63",
+  "firmware": "V109",
+  "commit": "655c72a00839",
   "byte_order": "big-endian",
   "bitrate": 1000000,
   "commands": [
@@ -48,7 +48,7 @@
               "signed": true,
               "float": false,
               "lsb_first": false,
-              "meaning": "current limit of the move in mA, the grip force; not clamped by the firmware, see Force and speed for the safe range"
+              "meaning": "current limit of the move in mA, the grip force; clamped by the firmware only at 2800 mA, see Force and speed for the safe range"
             },
             {
               "name": "Activate",

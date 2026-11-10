@@ -1293,27 +1293,34 @@ is the procedure.</p>
 <tr>
 <td><code>#Kpiq</code></td>
 <td>Set/Get</td>
-<td>float: gain</td>
+<td>gain</td>
 <td>Kp of the Iq current loop; also sets Kpid.</td>
 <td>the current value</td>
 </tr>
 <tr>
 <td><code>#Kiiq</code></td>
 <td>Set/Get</td>
-<td>float: gain</td>
+<td>gain</td>
 <td>Ki of the Iq current loop; also sets Kiid.</td>
 <td>the current value</td>
 </tr>
 <tr>
 <td><code>#Kt</code></td>
 <td>Set/Get</td>
-<td>float: Nm/A</td>
+<td>Nm/A</td>
 <td>The torque constant, found by calibration.</td>
 <td>the current value</td>
 </tr>
 <tr>
 <td><code>#Cal</code></td>
-<td>Action</td>
+<td>Get</td>
+<td></td>
+<td>Runs the calibration routine (see Calibration): it measures R and L, finds the pole pairs, the phase order and the angle offset, and measures Kt, KV and the flux linkage.</td>
+<td>the calibration log</td>
+</tr>
+<tr>
+<td><code>#Cal</code></td>
+<td>Get</td>
 <td></td>
 <td>Runs the calibration routine (see Calibration): it measures R and L, finds the pole pairs, the phase order and the angle offset, and measures Kt, KV and the flux linkage.</td>
 <td>the calibration log</td>
@@ -1356,7 +1363,7 @@ is the procedure.</p>
 <tr>
 <td><code>#Cbw</code></td>
 <td>Set/Get</td>
-<td>float: bandwidth in Hz</td>
+<td>bandwidth in Hz</td>
 <td>The current loop bandwidth calibration uses to compute Kpiq and Kiiq.</td>
 <td>the bandwidth</td>
 </tr>

@@ -8,13 +8,13 @@
 
 **SSG-48 gripper release:** 2
 
-**Firmware:** Spectral 107
+**Firmware:** Spectral 109
 
-**Revision:** 2026.C
+**Revision:** 2026.D
 
-**Published:** 2026-11-05
+**Published:** 2026-11-10
 
-**Applies to:** SSG-48 gripper release 2 with the Spectral Micro driver PCB v2.0, Spectral firmware 107
+**Applies to:** SSG-48 gripper release 2 with the Spectral Micro driver PCB v2.0, Spectral firmware 109
 
 *Original instructions*
 
