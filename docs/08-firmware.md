@@ -14,7 +14,9 @@ which Python library and bootloader.
 
 A gripper whose driver runs firmware 104 or newer carries the driver's bootloader and updates over its CAN cable: the
 host tells the driver to reset, the bootloader waits two seconds for a host, and the host streams the new image
-into it. Nothing is opened. The image is `spectral-bldc-firmware-V<number>.bin` from the driver's
+into it.
+
+Nothing is opened. The image is `spectral-bldc-firmware-V<number>.bin` from the driver's
 [GitHub releases](https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller/releases), with a manifest
 `firmware.json` and the release notes.
 
@@ -47,6 +49,7 @@ Grippers shipped with firmware 101 or older, which is every SSG-48 before the bo
 no bootloader. Their driver is updated once with a programming adapter on its JTAG pads, inside the body under
 the coupler connector, as described in
 [Installing the bootloader on an older board](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/07-firmware/bootloader/).
+
 From then on the gripper updates over CAN like any other. A gripper on firmware 101 or 104 works as this manual
 describes, with the differences the [Spectral Micro site's version 101](https://docs.source-robotics.com/Spectral-BLDC-docs/101/)
 documents: the calibration messages and a few commands.

@@ -1,10 +1,13 @@
 # Driver setup and first run
 
 A gripper from the shop arrives with its driver configured: the motor calibrated, gripper mode on, the
-thermistor on, everything saved. A gripper you build has a bare Spectral Micro driver that is brought to the same
+thermistor on, everything saved.
+
+A gripper you build has a bare Spectral Micro driver that is brought to the same
 state once, over its UART port, **during the assembly**: after the motor and the driver are in the body, the wires
 soldered and the thermistor in the windings, and before the linear guide with the jaws goes on (page 22 of the
 [assembly manual](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf)).
+
 The motor calibration turns the motor several revolutions in both directions, which the racks could not follow.
 This page is that procedure; the commands are the driver's, and the
 [Spectral Micro documentation](https://docs.source-robotics.com/Spectral-BLDC-docs/) explains each in depth.
@@ -60,7 +63,9 @@ prints before you start if you need it.
 | `#CANID 0` | the node ID on the robot's bus; 0 to 13, see [Over CAN](../06-operation/can.md) |
 | `#Save` | nothing above survives a power cycle until it is saved |
 
-The current loop gains the calibration computes for the motor are what the shipped grippers use. Motor GUI's
+The current loop gains the calibration computes for the motor are what the shipped grippers use.
+
+Motor GUI's
 *SSG-48* preset, on its setup page over UART, writes this step for you: the current gains (firmware 107 and older:
 `#Kpiq 7.0381`, `#Kiiq 4.2557`; from 109: `#Cbw 300`, `#Kpiq 4.9018`, `#Kiiq 2.6993` and tool id 1), gripper
 mode, the thermistor and the CAN ID (6, the PAR6 gripper's; change it before applying for another robot), then
@@ -75,6 +80,7 @@ saves.
 
 Fit the linear guide with the jaws, the lid and the coupler connector, power the gripper up through its cable,
 and run the gripper calibration (`#Gripcal`, or Motor GUI's **Calibrate**): the jaws open fully and close fully.
+
 Then a first move at a low current, as in [Calibrate, activate, move](../05-setup/first-moves.md). `#Gripinfo` prints the
 gripper's state, including the end stops the calibration found.
 

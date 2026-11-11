@@ -1,7 +1,9 @@
 # Basic control in Python
 
 The shortest program that drives the gripper: it connects through the CANvas adapter, clears the errors,
-calibrates, then closes and opens every three seconds and prints what the gripper answers. It is the example from
+calibrates, then closes and opens every three seconds and prints what the gripper answers.
+
+It is the example from
 the product repository's README; `pip install Spectral-BLDC` is the only requirement. Change `COM20` to your
 adapter's port (`/dev/ttyACM0` on Linux) and `node_id` to the gripper's CAN ID if you changed it from 0.
 
@@ -44,6 +46,7 @@ while True:
 Each answer printed is the one to the command just sent, so it still shows the state from before that move.
 The arguments of `Send_gripper_data_pack`, in order: the position (0 open, 255 closed), the speed (0 to 255), the
 current limit in mA (the force), then the activate bit, the action bit, the E-stop bit and the release direction.
+
 [With Python](../06-operation/python.md) explains the library's calls, [How the gripper works](../06-operation/how-it-works.md)
 the state the gripper answers with, and [Force and speed](../03-technical-data/force-and-speed.md) what the
 current means in newtons.

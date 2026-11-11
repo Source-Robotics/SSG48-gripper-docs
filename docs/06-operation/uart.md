@@ -7,6 +7,7 @@ reports when something is wrong.
 ## Reaching the port
 
 The UART connector of the driver (JST SH, 4 pins, 3.3 V) is inside the body, under the coupler connector.
+
 Unscrew the coupler connector, plug in the [USB-to-serial adapter](https://source-robotics.com/products/usb-to-serial-adapter) with
 the UART cable, and open a terminal at 256000 baud with CR+LF line endings; the gripper's 24 V must be on for
 anything but reading settings. [The serial terminal](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/terminal/)

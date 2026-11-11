@@ -45,7 +45,9 @@ at 0 before you clear. [Errors and recovery](../06-operation/errors.md) says wha
 ## 3. Calibrate
 
 The gripper calibration finds the two end stops: the jaws open fully, pause, then close fully, at low force
-(500 mA) and low speed. Each end is recognised when the jaws have stood still against it for a little over half a
+(500 mA) and low speed.
+
+Each end is recognised when the jaws have stood still against it for a little over half a
 second. It takes a few seconds; the result is not kept over a power cycle, so this runs at every power-up.
 
 === "Motor GUI"
@@ -63,7 +65,9 @@ second. It takes a few seconds; the result is not kept over a power cycle, so th
     ```
 
 If the jaws do not move at all, or move to one end and stop: the gripper is in an error state (clear it first, see
-step 2), or the motor is not calibrated. If the routine runs for 30 seconds and gives up, an end stop was not
+step 2), or the motor is not calibrated.
+
+If the routine runs for 30 seconds and gives up, an end stop was not
 found: something blocks the jaws short of the end, or the mechanism is too stiff for 500 mA.
 
 Until the gripper reports *Calibrated*, send nothing but status polls: a move command or a clear during the

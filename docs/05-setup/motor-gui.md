@@ -78,7 +78,9 @@ SSG-48; MSG uses the same controls.
 
 Connected over **UART** instead, through the [serial adapter](https://source-robotics.com/products/usb-to-serial-adapter)
 on the driver's UART port, Motor GUI's setup page has tuned presets for the grippers: *SSG-48*, and the three *MSG*
-steppers for the other gripper. A preset writes the
+steppers for the other gripper.
+
+A preset writes the
 motor's parameters, the loop gains, gripper mode, the thermistor and the CAN ID to the driver and saves them; its
 CAN ID is 6, the PAR6 gripper's, so change it before applying for another robot.
 [Driver configuration](../build/first-run.md) says when to apply it, and lists the same settings as commands

@@ -1,9 +1,13 @@
 # The gripper at a glance
 
-The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control. The
+The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control.
+
+The
 [Spectral Micro driver](https://docs.source-robotics.com/Spectral-BLDC-docs/) inside the body regulates the
 motor's current, so a move sets not only where the jaws go and how fast, but how hard they press: the current
-limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA. The jaws stop on an object, hold it with that force, and the
+limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA.
+
+The jaws stop on an object, hold it with that force, and the
 driver reports that an object was found.
 
 ![The SSG-48 gripper with pinch fingers](../assets/SSG48_gripper_angle.webp){ width="600" }
@@ -27,9 +31,13 @@ connector.
 ## What the firmware does
 
 After power-up the gripper calibrates by finding both end stops. Then it takes move commands: a position from 0
-(open) to 255 (closed), a speed from 0 to 255 and a current limit in mA. When the jaws stop short of the target
+(open) to 255 (closed), a speed from 0 to 255 and a current limit in mA.
+
+When the jaws stop short of the target
 with the current at its limit, an object is in the way and is held; when they reach the target, the position is
-held. Every answer carries the state: moving, object found while closing or opening, or at the position. The
+held. Every answer carries the state: moving, object found while closing or opening, or at the position.
+
+The
 gripper stops itself on an over-temperature, an E-stop bit from the host, a CAN watchdog that runs out, and every
 fault the driver detects. [How the gripper works](../06-operation/how-it-works.md) and
 [Errors and recovery](../06-operation/errors.md) have the details.

@@ -1,7 +1,9 @@
 # Over CAN
 
 CAN is the gripper's interface: the one cable carries it next to the power, and a robot's control board, a PC with
-the CANvas adapter or any microcontroller with a CAN transceiver drives the gripper with it. The gripper is a
+the CANvas adapter or any microcontroller with a CAN transceiver drives the gripper with it.
+
+The gripper is a
 Spectral Micro driver on the bus, so the frames are the driver's; this page is the part a gripper needs.
 
 ## The frame
