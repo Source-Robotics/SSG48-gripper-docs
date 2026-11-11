@@ -39,7 +39,18 @@ The STEP files of every part are in the product repository, the reference for an
 - [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws):
   the fin-ray fingers and their jaw plate.
 
-![The STEP model of the gripper](../assets/GRIP_MODEL.webp){ width="600" }
+<div class="grid" markdown>
+
+![The robot model of the SSG-48 with the fin-ray fingers](../assets/renders/ssg48_fin_ray.webp#only-light){ width="380" }
+![The robot model of the SSG-48 with the fin-ray fingers](../assets/renders/ssg48_fin_ray_dark.webp#only-dark){ width="380" }
+
+![The robot model of the SSG-48 with the solid fingers](../assets/renders/ssg48_solid.webp#only-light){ width="380" }
+![The robot model of the SSG-48 with the solid fingers](../assets/renders/ssg48_solid_dark.webp#only-dark){ width="380" }
+
+</div>
+
+<!-- Rendered from projects/robot_descriptions (v2.19.0-1-ga626564, mujoco/ssg48/scene_fin_ray.xml and
+     scene_solid.xml) with a transparent background and a thin outline per theme. -->
 
 ## For simulation
 
