@@ -834,7 +834,7 @@
    }
   }
  },
- "commit": "64c9dfbd367a",
+ "commit": "38d210d2ca99",
  "defaults": [
   {
    "comment": "",
@@ -1732,11 +1732,6 @@
    "value": "0"
   }
  ],
- "prerelease": {
-  "commit": "64c9dfbd367a",
-  "firmware_version_in_source": "110",
-  "ref": "64c9dfb"
- },
  "tag": "V110",
  "uart": {
   "accepted": [],

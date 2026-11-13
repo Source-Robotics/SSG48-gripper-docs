@@ -24,9 +24,7 @@ firmware:
   version: "110"
   repository: https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller
   tag: V110
-  # PROVISIONAL: V110 is not released yet (the pages are written from commit 64c9dfb, sync_firmware.py
-  # --prerelease). Set the release date here on the release day; null shows the version without a date.
-  released: null
+  released: 2026-11-13
   # The firmware's source folder in that repository, and its Controller_mode numbers with their names (for the
   # "enters mode" column of the UART reference). tools/sync_firmware.py reads both.
   src: Spectral BLDC Firmware/src
@@ -58,9 +56,8 @@ manuals:
     number: SR-5004
     title: SSG-48 Gripper Manual
     revision: 2026.E
-    # PROVISIONAL until firmware 110 is released: then status: published and the publication date
-    status: draft
-    published: null
+    status: published
+    published: 2026-11-13
     firmware: true
     applies_to: with the Spectral Micro driver PCB v2.0
     covers: "the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides"
