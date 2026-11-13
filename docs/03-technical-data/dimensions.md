@@ -31,13 +31,12 @@ gripper's URDF, the fingers its printed options; the current URDF and MuJoCo mod
 
 The STEP files of every part are in the product repository, the reference for anything that has to fit:
 
-- [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS): the body parts
-  (`Gripper STEP files`), the whole gripper (`3D MODEL`), the jaw plate template, the pinch jaws, the generic
-  coupler connector template and the UR5 adapter plate.
-- [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts):
-  the printable parts of both hardware versions and the coupler connectors for PAROL6 and PAR6.
-- [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws):
-  the fin-ray fingers and their jaw plate.
+- [STEP files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files): the body parts
+  (`Body`), the whole gripper (`Whole gripper`), the jaw plate template, the fin-ray fingers and the pinch jaws
+  (`Jaws`), the generic coupler connector template and the UR5 adapter plate (`Couplers`).
+- [Print files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files):
+  the printable parts (STL) of both hardware versions (`V2`, `V1`), the fin-ray fingers and their jaw plate
+  (`Jaws`), and the coupler connectors for PAROL6 and PAR6 (`Couplers`).
 
 <div class="grid" markdown>
 

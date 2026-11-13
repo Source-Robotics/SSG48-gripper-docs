@@ -1,7 +1,7 @@
 # Hardware versions
 
 The SSG-48 exists in two mechanical versions, both in the product repository's
-[Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts):
+[Print files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files):
 
 | Version | Folder | What differs |
 |---|---|---|

@@ -6,6 +6,16 @@
   <script type="importmap">{"imports": {"three": "https://unpkg.com/three@0.170.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>
 {% endblock %}
 
+{#- The announcement bar above the header on every page (owner, 2026-11-11): builders who cannot get the BLDC
+    motor are pointed to the MSG grippers. It can be closed (feature announce.dismiss) and comes back when its text
+    changes. Remove the block to hide it. -#}
+{% block announce %}
+  <strong>Hard to get the BLDC motor for the SSG-48?</strong>
+  The <a href="https://docs.source-robotics.com/MSG-gripper-docs/">MSG grippers</a> do the same job with a standard
+  stepper motor, in three rail lengths and three motor sizes, and were designed around a built-in camera for AI,
+  physical AI and teleoperation.
+{% endblock %}
+
 {#- Banner shown on a version that is not the default alias ("latest"); needs extra.version (mike). -#}
 {% block outdated %}
   You are reading the documentation for an older gripper release.

@@ -47,6 +47,7 @@ theme:
     - content.action.edit
     - content.tooltips          # title="..." on links and abbreviations become tooltips
     - content.footnote.tooltips
+    - announce.dismiss          # the announcement bar (overrides/main.html) can be closed
   palette:                      # the same as the PAR6 docs
     - scheme: slate            # dark by default
       primary: black

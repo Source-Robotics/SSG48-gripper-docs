@@ -7,8 +7,8 @@ and a template for your own.
 
 | Fingers | Files | Use |
 |---|---|---|
-| Fin-ray fingers | `fin_ray_1`, `fin_ray_3`, `Finger_1` and `Jaw_plate_fin_ray` in [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws) | fingers that wrap around round and irregular objects; printed in a flexible filament |
-| Pinch jaws | `solid_jaws_pinch` and `solid_jaws_pinch_foam` in [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) | solid jaws for small and flat objects, with or without a foam pad |
+| Fin-ray fingers | `fin_ray_1`, `fin_ray_3`, `Finger_1` and `Jaw_plate_fin_ray` in the `Jaws` folders of [Print files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Jaws) and [STEP files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Jaws) | fingers that wrap around round and irregular objects; printed in a flexible filament |
+| Pinch jaws | `solid_jaws_pinch` and `solid_jaws_pinch_foam` in [STEP files/Jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Jaws) | solid jaws for small and flat objects, with or without a foam pad |
 | Your own | `Jaw_plate.STEP`, the template | keep the hole pattern, shape the rest |
 
 ## Limits

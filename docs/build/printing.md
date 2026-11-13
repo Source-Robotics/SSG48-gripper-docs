@@ -12,9 +12,9 @@ part needs them: clean every support off before assembly, the bearing seats and 
 
 | What | Where |
 |---|---|
-| The body, the lid, the gear and the magnet shaft, in two hardware versions: print the `V2` set, the large-bearing version ([Hardware versions](../01-overview/hardware-versions.md)) | [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts) |
-| The jaws, the guide cover, and the coupler connectors for PAROL6 and PAR6 | the same folder |
-| The fin-ray fingers and their jaw plate | [gripper jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws) |
-| The STEP files, for a coupler connector of your own (the generic template) or your own fingers on the jaw plate | [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) |
+| The body, the lid, the gear and the magnet shaft, in two hardware versions: print the `V2` set, the large-bearing version ([Hardware versions](../01-overview/hardware-versions.md)) | [Print files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files) |
+| The jaws and the guide cover (in the `V2` set), and the coupler connectors for PAROL6 and PAR6 (in `Couplers`) | the same folder |
+| The fin-ray fingers and their jaw plate | [Print files/Jaws](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Jaws) |
+| The STEP files, for a coupler connector of your own (the generic template) or your own fingers on the jaw plate | [STEP files](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files) |
 
 The brass inserts go in with a soldering iron after printing, as the assembly manual shows for each part.

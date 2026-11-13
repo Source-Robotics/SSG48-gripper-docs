@@ -5,10 +5,10 @@ for PAROL6, PAR6 and the UR5 flange, and a STEP template for your own.
 
 | Robot | Part | Where |
 |---|---|---|
-| PAROL6 | `coupler_connector_PAROL6.STL` | [Gripper STL parts](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts) |
+| PAROL6 | `coupler_connector_PAROL6.STL` | [Print files/Couplers](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Couplers) |
 | PAR6 | `coupler_connector_PAR6.STL` | the same folder |
-| UR5 | `UR_coupler_gripper.STEP` | [STEPS/UR5 adapter plate](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS/UR5%20adapter%20plate) |
-| your own | `coupler_connector_generic_STEP.STEP`, the template | [STEPS](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS) |
+| UR5 | `UR_coupler_gripper.STEP` | [STEP files/Couplers](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Couplers) |
+| your own | `coupler_connector_generic_STEP.STEP`, the template | the same folder |
 
 ![The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle](../assets/Capture.webp#only-light){ width="520" }
 ![The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle](../assets/Capture_dark.webp#only-dark){ width="520" }
