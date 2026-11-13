@@ -114,11 +114,20 @@ $$
 | 128 | 40200 ticks/s, 2.5 rev/s | 92 mm/s | 185 mm/s |
 | 255 | 80000 ticks/s, 4.9 rev/s | 184 mm/s | 370 mm/s |
 
-Both jaws move, so the gap closes at twice the speed of one jaw. At speed 255 the 48 mm stroke takes well under a
-quarter of a second. The gripper calibration runs at speed 40 and 500 mA.
+Both jaws move, so the gap closes at twice the speed of one jaw. At full speed the 48 mm stroke takes well under a
+quarter of a second. A move picks up speed over its first 0.1 s and slows down before the target, so a full open
+or close at speed 255 takes about 0.3 s.
+
+The gripper calibration runs at speed 40 and 500 mA, and reads each end under a light 100 mA push.
 
 ## Position
 
 The position byte is linear over the stroke: 0 is the fully open end stop found by the gripper calibration, 255
-the fully closed one. One step of the byte is 48 mm divided by 255, 0.19 mm. The driver considers the position
-reached within 5 encoder ticks, about 0.01 mm.
+the fully closed one.
+
+Both lie a little inside their stop: 0 by 32 encoder ticks, 255 by 16, about 0.07 and 0.04 mm at each jaw. A
+move to either end so arrives in free travel and does not press on the stop.
+
+One step of the byte is 48 mm divided by 255, 0.19 mm. The driver considers the position reached within 5
+encoder ticks, about 0.01 mm. It then holds without pushing while the jaws stay within a quarter of a step
+(about 9 ticks).

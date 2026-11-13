@@ -102,8 +102,9 @@ More: [Calibrate, activate, move](05-setup/first-moves.md), the full procedure.
 ![Calibrated and activated gripper demo with command controls and plots](assets/motor-gui/gripper-ready-demo.jpg){ width="700" }
 
 !!! success "Check"
-    The position follows the command; on an object the jaws stop before fully closed and the panel reports an
-    object. If it does not move, slips or reports an error, use [Troubleshooting](09-troubleshooting/index.md).
+    The position follows the command, and **Open** and **Close** end *at position* without pressing on the
+    stops; on an object the jaws stop before fully closed and the panel reports an object. If it does not move,
+    slips or reports an error, use [Troubleshooting](09-troubleshooting/index.md).
 
 The current limit sets an approximate force limit; [Force and speed](03-technical-data/force-and-speed.md)
 explains the relationship and the motor's limits.
