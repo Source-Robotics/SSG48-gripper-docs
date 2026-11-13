@@ -343,3 +343,11 @@
 }
 #print-site-page .page-nav { display: none !important; }
 @media print { .page-nav { display: none !important; } }
+
+/* The announcement bar (overrides/main.html, block announce): orange with dark text in both themes (owner,
+   2026-11-13), the docs' amber of the usage restrictions; the old-version warning bar keeps its own colours. */
+.md-banner:not(.md-banner--warning) { background-color: #e8a33d; color: #111216; }
+.md-banner:not(.md-banner--warning) .md-typeset a,
+.md-banner:not(.md-banner--warning) .md-typeset a:hover,
+.md-banner:not(.md-banner--warning) .md-typeset a:focus { color: #111216; text-decoration: underline; }
+.md-banner:not(.md-banner--warning) .md-banner__button { color: #111216; }
