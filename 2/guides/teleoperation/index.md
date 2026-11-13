@@ -31,7 +31,9 @@ I_1 = K_p\,(p_0 - p_1) + K_d\,(v_0 - v_1) - K_k\, v_1
 $$
 
 $p$ is the jaw position of each gripper in the same units, $v$ its speed. When the two positions agree, both
-currents are zero and the grippers rest. Move one by hand and the difference drives the other after it; block
+currents are zero and the grippers rest.
+
+Move one by hand and the difference drives the other after it; block
 the other, and the difference drives the one in your hand back with the same current, which is the force you
 feel. $K_p$ is the stiffness of the virtual spring between them, $K_d$ its damping.
 
@@ -89,7 +91,9 @@ numbers in `REFERENCE`.
 ## Tuning
 
 Start with `Kp` at a tenth of the value above and raise it until the follower tracks the leader without lagging;
-raise `Kd` if the pair oscillates. The current the formula produces is in mA and is clamped by each driver's
+raise `Kd` if the pair oscillates.
+
+The current the formula produces is in mA and is clamped by each driver's
 `#Ilim`, so the motor's rating is the ceiling of the force feedback. A fixed loop rate matters: a loop that
 runs at an uneven rate makes the damping terms noisy.
 

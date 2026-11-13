@@ -1,7 +1,9 @@
 # Data for robot integration
 
 What a robot's software needs to carry the gripper: the frame it is mounted by, the mass, the centre of mass, the
-inertia and the tool centre point (TCP). The numbers come from the gripper's URDF and MJCF (MuJoCo) models in
+inertia and the tool centre point (TCP).
+
+The numbers come from the gripper's URDF and MJCF (MuJoCo) models in
 [robot_descriptions](https://github.com/Source-Robotics/robot_descriptions/tree/v2.18.1), version 2.18.1,
 moved into the frame below; the two files give the same values. Both models are on
 [CAD and downloads](https://docs.source-robotics.com/SSG48-gripper-docs/2/cad-files/).
@@ -40,20 +42,28 @@ towards the Z axis, which lowers Ixx and Izz by about 0.65e-4 kg·m² at the clo
 
 The point stays on the Z axis at every opening, because the jaws move symmetrically. The middle of the gripping
 faces is lower: at z = 75.9 mm for the pinch jaws (faces from 60.4 to 91.4 mm) and 87.6 mm for the fin-ray
-fingers (60.4 to 114.8 mm). The models have one `tcp` frame for both finger types, at 0, 0, 83.8 mm with the
-frame's orientation; the PAROL6 and PAR6 robot models move it (on PAROL6, a6 = 134.3 mm = 50.5 + 83.8 mm).
+fingers (60.4 to 114.8 mm).
+
+The models have one `tcp` frame for both finger types, at 0, 0, 83.8 mm with the frame's orientation; the PAROL6
+and PAR6 robot models move it (on PAROL6, a6 = 134.3 mm = 50.5 + 83.8 mm).
+
 robot_descriptions keeps it as a control frame, not a measured grasp centre: it is 7.6 mm short of the pinch tips
 and 31.0 mm short of the fin-ray tips.
 
 ## How accurate the numbers are
 
 The masses are measured: 440 g for the whole gripper, 39.3 g for each moving assembly (carriage, jaw and finger)
-and 361.4 g for the rest. The centre of mass and the inertia are not: robot_descriptions
+and 361.4 g for the rest.
+
+The centre of mass and the inertia are not: robot_descriptions
 (2.18.1, [MODEL_DETAILS.md](https://github.com/Source-Robotics/robot_descriptions/tree/v2.18.1/docs/maintenance/MODEL_DETAILS.md))
 says that the gripper COM and central inertia remain unverified estimates. Both finger types share one set of mass
-properties in the model, so the two rows are the same. In both files each finger's centre of mass lies on the
+properties in the model, so the two rows are the same.
+
+In both files each finger's centre of mass lies on the
 other side of the Z axis from the finger, and 8 to 13 mm closer to the mounting face than the finger meshes'
 centres: the open-jaw values above come out close, but the files' own inertia at other openings is not reliable.
+
 The geometry, and with it the frame and the finger tips, is the CAD's.
 
 ## Where the numbers go

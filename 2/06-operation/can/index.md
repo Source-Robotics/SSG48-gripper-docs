@@ -1,7 +1,9 @@
 # Over CAN
 
 CAN is the gripper's interface: the one cable carries it next to the power, and a robot's control board, a PC with
-the CANvas adapter or any microcontroller with a CAN transceiver drives the gripper with it. The gripper is a
+the CANvas adapter or any microcontroller with a CAN transceiver drives the gripper with it.
+
+The gripper is a
 Spectral Micro driver on the bus, so the frames are the driver's; this page is the part a gripper needs.
 
 ## The frame
@@ -9,7 +11,8 @@ Spectral Micro driver on the bus, so the frames are the driver's; this page is t
 CAN 2.0 data frames with 11-bit identifiers at 1 Mbit/s. The identifier carries the node, the command and the
 error state:
 
-![Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/CANID.PNG){ width="600" }
+![Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/can-id.svg){ width="600" }
+![Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/can-id_dark.svg){ width="600" }
 
 - **Node ID**, bits 10 to 7: which device. Every gripper ships as node 0; set another with Send_CAN_ID or `#CANID`
   and save it. Use 0 to 13: the driver's bootloader reserves 14 and 15, and a device on one of those cannot be

@@ -101,6 +101,26 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  <strong>Hard to get the BLDC motor for the SSG-48?</strong>
+  The <a href="https://docs.source-robotics.com/MSG-gripper-docs/">MSG grippers</a> do the same job with a standard
+  stepper motor, in three rail lengths and three motor sizes, and were designed around a built-in camera for AI,
+  physical AI and teleoperation.
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
@@ -1879,26 +1899,44 @@ cable can reverse the supply or put 24 V on a <abbr title="Controller Area Netwo
 </table>
 <h2 id="quick-start-2-gather-and-mount">2. Gather and mount<a class="headerlink" href="#quick-start-2-gather-and-mount" title="Permanent link">&para;</a></h2>
 <p>You need a mounted gripper with jaws/fingers fitted, a <strong>24 V supply</strong>, a correctly wired <strong>M8 cable</strong>, a
-<strong>CANvas USB-to-<abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> adapter</strong>, and Chrome or Edge. The <a href="#01-overview-what-you-need">What you need</a> page lists
-the parts; <a href="#04-installation-mounting">Mounting</a> and <a href="#04-installation-jaws">Jaws</a> cover the mechanics.</p>
+<strong>CANvas USB-to-<abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> adapter</strong>, and Chrome or Edge.</p>
+<ol>
+<li>Mount the gripper: <a href="#04-installation-mounting">Mounting</a>.</li>
+<li>Fit the jaws: <a href="#04-installation-jaws">Jaws</a>.</li>
+</ol>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
 <p>The body cannot shift, the jaws travel freely, and the cable cannot enter their path.</p>
 </div>
+<p>More: the <a href="#01-overview-what-you-need">What you need</a> page lists the parts.</p>
 <h2 id="quick-start-3-wire-with-power-off">3. Wire with power off<a class="headerlink" href="#quick-start-3-wire-with-power-off" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Check the cable against <a href="#03-technical-data-connector">Connector and pinout</a>: gripper pin 1 is +24 V,
-   pin 3 GND, pin 4 CANH, pin 2 CANL. Check continuity before the first power-up.</li>
-<li>Connect the supply and the CANvas adapter as shown below.</li>
-<li>Set the gripper's <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> termination ON for this two-node bench bus; the CANvas adapter provides the other end.
-   Leave the gripper at its shipped node ID, <strong>0</strong>, unless you already assigned another.</li>
-</ol>
+<li>
+<p>Check the cable against <a href="#03-technical-data-connector">Connector and pinout</a>: gripper pin 1 is CANL,
+   pin 2 CANH, pin 3 +24 V, pin 4 GND.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/gripper-m8-face.svg#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="M8 male on the gripper, as it sits in the gripper: the numbered signals" src="../assets/gripper-m8-face.svg#only-light" width="520" /></a>
+  <a class="glightbox" href="../assets/gripper-m8-face_dark.svg#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="M8 male on the gripper, as it sits in the gripper: the numbered signals" src="../assets/gripper-m8-face_dark.svg#only-dark" width="520" /></a>
+  <figcaption>Figure 1: M8 male on the gripper, as it sits in the gripper: the numbered signals.</figcaption>
+</figure></p>
+</li>
+<li>
+<p>Check continuity before the first power-up.</p>
+</li>
+<li>
+<p>Connect the supply and the CANvas adapter as shown below.</p>
 <pre class="mermaid"><code>flowchart LR
     PC[PC USB] --&gt; A[CANvas adapter]
-    A -- CANH --&gt; P4[Gripper pin 4: CANH]
-    A -- CANL --&gt; P2[Gripper pin 2: CANL]
-    S[24 V supply] -- positive --&gt; P1[Gripper pin 1: +24 V]
-    S -- return --&gt; P3[Gripper pin 3: GND]</code></pre>
+    A -- CANH --&gt; P2[Gripper pin 2: CANH]
+    A -- CANL --&gt; P1[Gripper pin 1: CANL]
+    S[24 V supply] -- positive --&gt; P3[Gripper pin 3: +24 V]
+    S -- return --&gt; P4[Gripper pin 4: GND]</code></pre>
+</li>
+<li>
+<p>Set the gripper's <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> termination ON for this two-node bench bus; the CANvas adapter provides the other end.</p>
+</li>
+<li>Leave the gripper at its shipped node ID, <strong>0</strong>, unless you already assigned another.</li>
+</ol>
 <div class="admonition success">
 <p class="admonition-title">Check, unpowered</p>
 <p>The supply polarity and cable pinout match, and CANH-to-CANL measures about <strong>60 Ω</strong> with the bus connected.
@@ -1906,31 +1944,58 @@ Otherwise check <a href="#04-installation-cable">The cable</a> and <a href="#04-
 before powering it.</p>
 </div>
 <h2 id="quick-start-4-connect-motor-gui">4. Connect Motor GUI<a class="headerlink" href="#quick-start-4-connect-motor-gui" title="Permanent link">&para;</a></h2>
-<p>Power the gripper, plug the CANvas adapter into USB, and open <a href="https://motorgui.com/">motorgui.com</a>.
-Choose <strong><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> (slcan)</strong> at <strong>1 Mbit/s</strong>, press <strong>Connect</strong>, and choose the adapter's serial port.
-Select node <strong>0</strong> (or your assigned ID) and switch from <strong>Motor</strong> to <strong>Gripper</strong>.</p>
+<ol>
+<li>Power the gripper.</li>
+<li>Plug the CANvas adapter into USB.</li>
+<li>Open <a href="https://motorgui.com/">motorgui.com</a>.</li>
+<li>Choose <strong><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> (slcan)</strong> at <strong>1 Mbit/s</strong>.</li>
+<li>Press <strong>Connect</strong>, and choose the adapter's serial port.</li>
+<li>Select node <strong>0</strong> (or your assigned ID).</li>
+<li>Switch from <strong>Motor</strong> to <strong>Gripper</strong>.</li>
+</ol>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
 <p>Position and current feedback arrive. <em>Not calibrated</em> after power-up is normal. If feedback is missing, check
 the power, port, node ID and termination: <a href="#09-troubleshooting">Troubleshooting</a>. If a fault disables
 the controls, resolve it using <a href="#06-operation-errors">Errors and recovery</a>.</p>
 </div>
-<p>The <a href="#05-setup-motor-gui">illustrated Motor GUI guide</a> shows the panel.</p>
+<p>More: the <a href="#05-setup-motor-gui">illustrated Motor GUI guide</a> shows the panel.</p>
 <h2 id="quick-start-5-calibrate-and-activate">5. Calibrate and activate<a class="headerlink" href="#quick-start-5-calibrate-and-activate" title="Permanent link">&para;</a></h2>
-<p>If the panel shows an error, press <strong>Clear errors</strong> first. With the stroke empty and the gripper deactivated,
-press <strong>Calibrate</strong>, read the prompt, and press <strong>Start calibration</strong>. Let the jaws find both end stops, and
-press nothing else until the panel says <strong>Calibrated</strong>: a move or a clear during the calibration ends it. Follow
-<a href="#05-setup-first-moves">Calibrate, activate, move</a> for the full procedure, then <strong>Activate</strong> and check for
-faults.</p>
+<ol>
+<li>If the panel shows an error, press <strong>Clear errors</strong> first.</li>
+<li>With the stroke empty and the gripper deactivated, press <strong>Calibrate</strong>.</li>
+<li>
+<p>Read the prompt, and press <strong>Start calibration</strong>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/motor-gui/gripper-calibration-demo.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Mock gripper calibration prompt warning that the jaws travel through their full range" src="../assets/motor-gui/gripper-calibration-demo.jpg" width="700" /></a>
+  <figcaption>Figure 2: Mock gripper calibration prompt warning that the jaws travel through their full range.</figcaption>
+</figure></p>
+</li>
+<li>
+<p>Let the jaws find both end stops, and press nothing else until the panel says <strong>Calibrated</strong>: a move or a clear
+   during the calibration ends it.</p>
+</li>
+<li>Press <strong>Activate</strong>, and check for faults.</li>
+</ol>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
 <p>The panel says <strong>Calibrated</strong>, <strong>Activated</strong>, and <strong>No errors</strong> before you command a move. A calibration that
 times out after 30 seconds has not found its end stops; do not continue as if it passed. Use
 <a href="#09-troubleshooting-calibration">Calibration troubleshooting</a>.</p>
 </div>
+<p>More: <a href="#05-setup-first-moves">Calibrate, activate, move</a>, the full procedure.</p>
 <h2 id="quick-start-6-make-the-first-move">6. Make the first move<a class="headerlink" href="#quick-start-6-make-the-first-move" title="Permanent link">&para;</a></h2>
-<p>Set <strong>Speed 30</strong> and <strong>Current 300 mA</strong>, applying each with its <strong>Set</strong> button. Press <strong>Open</strong>, then <strong>Close</strong>.
-After that works, put a light test object between the jaws and repeat, keeping fingers clear.</p>
+<ol>
+<li>Set <strong>Speed 30</strong>, and apply it with its <strong>Set</strong> button.</li>
+<li>Set <strong>Current 300 mA</strong>, and apply it with its <strong>Set</strong> button.</li>
+<li>Press <strong>Open</strong>, then <strong>Close</strong>.</li>
+<li>After that works, put a light test object between the jaws and repeat, keeping fingers clear.</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../assets/motor-gui/gripper-ready-demo.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Calibrated and activated gripper demo with command controls and plots" src="../assets/motor-gui/gripper-ready-demo.jpg" width="700" /></a>
+<br />
+<figcaption>Figure 3: Calibrated and activated gripper demo with command controls and plots.</figcaption>
+</figure>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
 <p>The position follows the command; on an object the jaws stop before fully closed and the panel reports an
@@ -2075,10 +2140,12 @@ gripping.</p>
 <li><a href="#01-overview-hardware-versions">Hardware versions</a></li>
 <li><a href="#01-overview-what-you-need">What you need</a></li>
 </ul></section><section class="print-page" id="01-overview-gripper-at-a-glance" heading-number="1.3.1.2"><h1 id="01-overview-gripper-at-a-glance-the-gripper-at-a-glance">The gripper at a glance<a class="headerlink" href="#01-overview-gripper-at-a-glance-the-gripper-at-a-glance" title="Permanent link">&para;</a></h1>
-<p>The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control. The
+<p>The SSG-48 is a two-jaw parallel gripper driven by a brushless gimbal motor under field-oriented control.</p>
+<p>The
 <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/">Spectral Micro driver</a> inside the body regulates the
 motor's current, so a move sets not only where the jaws go and how fast, but how hard they press: the current
-limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA. The jaws stop on an object, hold it with that force, and the
+limit is the grip force, from about 8 N at 150 mA to about 80 N at 1500 mA.</p>
+<p>The jaws stop on an object, hold it with that force, and the
 driver reports that an object was found.</p>
 <figure>
   <a class="glightbox" href="../assets/SSG48_gripper_angle.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The SSG-48 gripper with pinch fingers" src="../assets/SSG48_gripper_angle.webp" width="600" /></a>
@@ -2132,9 +2199,11 @@ driver reports that an object was found.</p>
 connector.</p>
 <h2 id="01-overview-gripper-at-a-glance-what-the-firmware-does">What the firmware does<a class="headerlink" href="#01-overview-gripper-at-a-glance-what-the-firmware-does" title="Permanent link">&para;</a></h2>
 <p>After power-up the gripper calibrates by finding both end stops. Then it takes move commands: a position from 0
-(open) to 255 (closed), a speed from 0 to 255 and a current limit in mA. When the jaws stop short of the target
+(open) to 255 (closed), a speed from 0 to 255 and a current limit in mA.</p>
+<p>When the jaws stop short of the target
 with the current at its limit, an object is in the way and is held; when they reach the target, the position is
-held. Every answer carries the state: moving, object found while closing or opening, or at the position. The
+held. Every answer carries the state: moving, object found while closing or opening, or at the position.</p>
+<p>The
 gripper stops itself on an over-temperature, an E-stop bit from the host, a <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> watchdog that runs out, and every
 fault the driver detects. <a href="#06-operation-how-it-works">How the gripper works</a> and
 <a href="#06-operation-errors">Errors and recovery</a> have the details.</p>
@@ -2152,7 +2221,7 @@ fault the driver detects. <a href="#06-operation-how-it-works">How the gripper w
 protocol and software, with a stepper and the STEPFOC driver, three rail lengths and a camera mount. Programs
 written for one run on the other.</p></section><section class="print-page" id="01-overview-hardware-versions" heading-number="1.3.1.3"><h1 id="01-overview-hardware-versions-hardware-versions">Hardware versions<a class="headerlink" href="#01-overview-hardware-versions-hardware-versions" title="Permanent link">&para;</a></h1>
 <p>The SSG-48 exists in two mechanical versions, both in the product repository's
-<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a>:</p>
+<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files">Print files</a>:</p>
 <table>
 <thead>
 <tr>
@@ -2474,7 +2543,8 @@ force and speed. Force and payload values are ideal model estimates, not measure
 <h2 id="03-technical-data-force-and-speed-grip-force">Grip force<a class="headerlink" href="#03-technical-data-force-and-speed-grip-force" title="Permanent link">&para;</a></h2>
 <p>The driver limits the motor's current to the value you command, so the torque the motor produces is limited to
 <span class="arithmatex">\(T = K_t \, I_q\)</span>, with <span class="arithmatex">\(K_t\)</span> the motor's torque constant in Nm/A and <span class="arithmatex">\(I_q\)</span> the current limit in amperes (the
-command is in mA). The pinion shares that torque between two racks.
+command is in mA).</p>
+<p>The pinion shares that torque between two racks.
 Here <span class="arithmatex">\(F\)</span> is the <strong>combined normal force of both jaws</strong>,
 not the force at one jaw:</p>
 <div class="arithmatex">\[
@@ -2489,7 +2559,8 @@ They give an ideal combined force of about 54 N per ampere: about 8 N at 150 mA 
 <figcaption>Figure 3.1: The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses.</figcaption>
 </figure>
 <p>The curve is computed from the assumed torque constant, rather than a measured force calibration. <code>#Kt</code>
-over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> prints the driver's torque constant; that value must match its <span class="arithmatex">\(q\)</span>-axis current convention. A
+over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> prints the driver's torque constant; that value must match its <span class="arithmatex">\(q\)</span>-axis current convention.</p>
+<p>A
 datasheet current rating or supply current cannot be substituted directly. Measure your gripper with the
 fingers and contact position you will use; below about 150 mA the motor does not move reliably.</p>
 <p>The reported force-gauge result is about 48 N/A, but its per-jaw versus combined-force convention is not
@@ -2504,7 +2575,8 @@ low current for the hold.</p>
 </div>
 <p>For a symmetric grip, each jaw applies <span class="arithmatex">\(F/2\)</span>. The torque balance is
 <span class="arithmatex">\(T = F_\mathrm{left} r + F_\mathrm{right} r = F r\)</span>; counting <span class="arithmatex">\(F\)</span> once for each jaw would count the motor's torque twice.
-These are theoretical forces before losses in the mechanism. A compression gauge between the jaws reads the
+These are theoretical forces before losses in the mechanism.</p>
+<p>A compression gauge between the jaws reads the
 force at <strong>one contact</strong>; double that reading before comparing it with the combined force here. Record the
 current, fingers and contact position when measuring; the same setup is needed for a useful comparison.</p>
 <h2 id="03-technical-data-force-and-speed-try-it">Try it<a class="headerlink" href="#03-technical-data-force-and-speed-try-it" title="Permanent link">&para;</a></h2>
@@ -2537,7 +2609,8 @@ and the object. Dividing the available friction force by a chosen safety factor 
 W = \frac{\mu\,F}{S}, \qquad m = \frac{W}{g}
 \]</div>
 <p>Using an assumed <span class="arithmatex">\(\mu\)</span> = 0.3 and <span class="arithmatex">\(S\)</span> = 2, the model gives about 12 N of supported weight (1.2 kg) at 80 N
-of combined grip force. This is a static estimate. Upward acceleration of 1 g doubles the load; acceleration
+of combined grip force. This is a static estimate.</p>
+<p>Upward acceleration of 1 g doubles the load; acceleration
 and emergency-stop loads need a separate check. Friction can be lower than 0.3, so measure it with your
 fingers on your object. A form-fit grip needs its own load assessment.</p>
 <h2 id="03-technical-data-force-and-speed-speed">Speed<a class="headerlink" href="#03-technical-data-force-and-speed-speed" title="Permanent link">&para;</a></h2>
@@ -2601,20 +2674,22 @@ the fully closed one. One step of the byte is 48 mm divided by 255, 0.19 mm. The
 reached within 5 encoder ticks, about 0.01 mm.</p></section><section class="print-page" id="03-technical-data-connector" heading-number="1.3.3.4"><h1 id="03-technical-data-connector-connector-and-pinout">Connector and pinout<a class="headerlink" href="#03-technical-data-connector-connector-and-pinout" title="Permanent link">&para;</a></h1>
 <p>The gripper has one connector, an M8 4-pin male on the side of the body, and one cable: 24 V and the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> bus.</p>
 <figure>
-  <a class="glightbox" href="../assets/GRPCON.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V" src="../assets/GRPCON.webp" width="700" /></a>
+  <a class="glightbox" href="../assets/GRPCON.webp#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V" src="../assets/GRPCON.webp#only-light" width="700" /></a>
+  <a class="glightbox" href="../assets/GRPCON_dark.webp#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V" src="../assets/GRPCON_dark.webp#only-dark" width="700" /></a>
 <br />
 <figcaption>Figure 3.2: The M8 connector on the gripper body and its four signals: CANL, CANH, GND, 24V.</figcaption>
 </figure>
 <h2 id="03-technical-data-connector-pin-numbers">Pin numbers<a class="headerlink" href="#03-technical-data-connector-pin-numbers" title="Permanent link">&para;</a></h2>
 <figure>
-  <a class="glightbox" href="../assets/m8-gripper-pinout.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="M8 male on the gripper: front mating face and numbered signals" src="../assets/m8-gripper-pinout.svg" width="650" /></a>
+  <a class="glightbox" href="../assets/gripper-m8-face.svg#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="M8 male on the gripper, as it sits in the gripper: the numbered signals" src="../assets/gripper-m8-face.svg#only-light" width="650" /></a>
+  <a class="glightbox" href="../assets/gripper-m8-face_dark.svg#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="M8 male on the gripper, as it sits in the gripper: the numbered signals" src="../assets/gripper-m8-face_dark.svg#only-dark" width="650" /></a>
 <br />
-<figcaption>Figure 3.3: M8 male on the gripper: front mating face and numbered signals.</figcaption>
+<figcaption>Figure 3.3: M8 male on the gripper, as it sits in the gripper: the numbered signals.</figcaption>
 </figure>
-<p>The drawing shows the connector's staggered contact layout. Look <strong>into the male connector on
-the gripper</strong>, with its pins visible. The female cable connector has the
-mirrored contact view. The solder side is also mirrored: use the numbers moulded into the connector, rather
-than matching wire colours or the installed housing's rotation.</p>
+<p>The drawing shows the connector's staggered contact layout. Look <strong>into the male connector on the gripper</strong>, with
+its pins visible: the mating face, where the cable plugs in. The female cable connector has the mirrored contact
+view. Use the numbers moulded into the connector, rather than matching wire colours or the installed housing's
+rotation.</p>
 <table>
 <thead>
 <tr>
@@ -2626,30 +2701,34 @@ than matching wire colours or the installed housing's rotation.</p>
 <tbody>
 <tr>
 <td><strong>1</strong></td>
-<td><strong>+24 V</strong></td>
-<td>positive motor supply</td>
-</tr>
-<tr>
-<td><strong>2</strong></td>
 <td><strong>CANL</strong></td>
 <td><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> low</td>
 </tr>
 <tr>
-<td><strong>3</strong></td>
-<td><strong>GND</strong></td>
-<td>power-supply return</td>
-</tr>
-<tr>
-<td><strong>4</strong></td>
+<td><strong>2</strong></td>
 <td><strong>CANH</strong></td>
 <td><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> high, 1 Mbit/s with CANL</td>
 </tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>+24 V</strong></td>
+<td>positive motor supply</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>GND</strong></td>
+<td>power-supply return</td>
+</tr>
 </tbody>
 </table>
-<p>These are the pin numbers the gripper is built with, from page 17 of the
-<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf">assembly manual</a>: the photo there
-shows the connector from the back, where the wires are soldered, so it is the mirror image of the picture above.
-They describe the <strong>gripper end</strong>. PAROL6 and PAR6 use different connections at the robot end:
+<p>These are the numbers of the mating face, the side you connect to.</p>
+<div class="admonition note">
+<p class="admonition-title">Building the gripper: the solder side</p>
+<p>Page 17 of the <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf">assembly manual</a>
+numbers the other side of the same connector, where the wires are soldered when the gripper is built:
+1 24V, 2 CANL, 3 GND, 4 CANH. Use those numbers for soldering only, and the table above for connecting.</p>
+</div>
+<p>They describe the <strong>gripper end</strong>. PAROL6 and PAR6 use different connections at the robot end:
 <a href="#04-installation-cable">The cable</a> gives both diagrams. Check continuity with the supply disconnected.</p>
 <div class="admonition danger">
 <p class="admonition-title">The wrong cable destroys the driver</p>
@@ -2708,19 +2787,30 @@ gripper's URDF, the fingers its printed options; the current URDF and MuJoCo mod
 <h2 id="03-technical-data-dimensions-cad">CAD<a class="headerlink" href="#03-technical-data-dimensions-cad" title="Permanent link">&para;</a></h2>
 <p>The <abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files of every part are in the product repository, the reference for anything that has to fit:</p>
 <ul>
-<li><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS">STEPS</a>: the body parts
-  (<code>Gripper STEP files</code>), the whole gripper (<code>3D MODEL</code>), the jaw plate template, the pinch jaws, the generic
-  coupler connector template and the UR5 adapter plate.</li>
-<li><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a>:
-  the printable parts of both hardware versions and the coupler connectors for PAROL6 and PAR6.</li>
-<li><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws">gripper jaws</a>:
-  the fin-ray fingers and their jaw plate.</li>
+<li><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files</a>: the body parts
+  (<code>Body</code>), the whole gripper (<code>Whole gripper</code>), the jaw plate template, the fin-ray fingers and the pinch jaws
+  (<code>Jaws</code>), the generic coupler connector template and the UR5 adapter plate (<code>Couplers</code>).</li>
+<li><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files">Print files</a>:
+  the printable parts (STL) of both hardware versions (<code>V2</code>, <code>V1</code>), the fin-ray fingers and their jaw plate
+  (<code>Jaws</code>), and the coupler connectors for PAROL6 and PAR6 (<code>Couplers</code>).</li>
 </ul>
+<div class="grid">
 <figure>
-  <a class="glightbox" href="../assets/GRIP_MODEL.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The STEP model of the gripper" src="../assets/GRIP_MODEL.webp" width="600" /></a>
+  <a class="glightbox" href="../assets/renders/ssg48_fin_ray.webp#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The robot model of the SSG-48 with the fin-ray fingers" src="../assets/renders/ssg48_fin_ray.webp#only-light" width="380" /></a>
+  <a class="glightbox" href="../assets/renders/ssg48_fin_ray_dark.webp#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The robot model of the SSG-48 with the fin-ray fingers" src="../assets/renders/ssg48_fin_ray_dark.webp#only-dark" width="380" /></a>
 <br />
-<figcaption>Figure 3.9: The STEP model of the gripper.</figcaption>
+<figcaption>Figure 3.9: The robot model of the SSG-48 with the fin-ray fingers.</figcaption>
 </figure>
+<figure>
+  <a class="glightbox" href="../assets/renders/ssg48_solid.webp#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The robot model of the SSG-48 with the solid fingers" src="../assets/renders/ssg48_solid.webp#only-light" width="380" /></a>
+  <a class="glightbox" href="../assets/renders/ssg48_solid_dark.webp#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The robot model of the SSG-48 with the solid fingers" src="../assets/renders/ssg48_solid_dark.webp#only-dark" width="380" /></a>
+<br />
+<figcaption>Figure 3.10: The robot model of the SSG-48 with the solid fingers.</figcaption>
+</figure>
+</div>
+<!-- Rendered from projects/robot_descriptions (v2.19.0-1-ga626564, mujoco/ssg48/scene_fin_ray.xml and
+     scene_solid.xml) with a transparent background and a thin outline per theme. -->
+
 <h2 id="03-technical-data-dimensions-for-simulation">For simulation<a class="headerlink" href="#03-technical-data-dimensions-for-simulation" title="Permanent link">&para;</a></h2>
 <p>The product repository's <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/ssg48_description">ssg48_description</a>
 guide links the gripper's models, which are kept in <a href="https://github.com/Source-Robotics/robot_descriptions">robot_descriptions</a>:
@@ -2728,7 +2818,8 @@ standalone <abbr title="Unified Robot Description Format, the robot description 
 shapes and mass properties, and the PAROL6 and PAR6 models with the gripper mounted.</p>
 <p><a href="#cad-files">CAD and downloads</a> lists everything that can be downloaded.</p></section><section class="print-page" id="03-technical-data-integration-data" heading-number="1.3.3.6"><h1 id="03-technical-data-integration-data-data-for-robot-integration">Data for robot integration<a class="headerlink" href="#03-technical-data-integration-data-data-for-robot-integration" title="Permanent link">&para;</a></h1>
 <p>What a robot's software needs to carry the gripper: the frame it is mounted by, the mass, the centre of mass, the
-inertia and the tool centre point (TCP). The numbers come from the gripper's <abbr title="Unified Robot Description Format, the robot description used by ROS 2">URDF</abbr> and <abbr title="MuJoCo's robot description format">MJCF</abbr> (MuJoCo) models in
+inertia and the tool centre point (TCP).</p>
+<p>The numbers come from the gripper's <abbr title="Unified Robot Description Format, the robot description used by ROS 2">URDF</abbr> and <abbr title="MuJoCo's robot description format">MJCF</abbr> (MuJoCo) models in
 <a href="https://github.com/Source-Robotics/robot_descriptions/tree/v2.18.1">robot_descriptions</a>, version 2.18.1,
 moved into the frame below; the two files give the same values. Both models are on
 <a href="#cad-files">CAD and downloads</a>.</p>
@@ -2808,19 +2899,22 @@ towards the Z axis, which lowers Ixx and Izz by about 0.65e-4 kg·m² at the clo
 </table>
 <p>The point stays on the Z axis at every opening, because the jaws move symmetrically. The middle of the gripping
 faces is lower: at z = 75.9 mm for the pinch jaws (faces from 60.4 to 91.4 mm) and 87.6 mm for the fin-ray
-fingers (60.4 to 114.8 mm). The models have one <code>tcp</code> frame for both finger types, at 0, 0, 83.8 mm with the
-frame's orientation; the PAROL6 and PAR6 robot models move it (on PAROL6, a6 = 134.3 mm = 50.5 + 83.8 mm).
-robot_descriptions keeps it as a control frame, not a measured grasp centre: it is 7.6 mm short of the pinch tips
+fingers (60.4 to 114.8 mm).</p>
+<p>The models have one <code>tcp</code> frame for both finger types, at 0, 0, 83.8 mm with the frame's orientation; the PAROL6
+and PAR6 robot models move it (on PAROL6, a6 = 134.3 mm = 50.5 + 83.8 mm).</p>
+<p>robot_descriptions keeps it as a control frame, not a measured grasp centre: it is 7.6 mm short of the pinch tips
 and 31.0 mm short of the fin-ray tips.</p>
 <h2 id="03-technical-data-integration-data-how-accurate-the-numbers-are">How accurate the numbers are<a class="headerlink" href="#03-technical-data-integration-data-how-accurate-the-numbers-are" title="Permanent link">&para;</a></h2>
 <p>The masses are measured: 440 g for the whole gripper, 39.3 g for each moving assembly (carriage, jaw and finger)
-and 361.4 g for the rest. The centre of mass and the inertia are not: robot_descriptions
+and 361.4 g for the rest.</p>
+<p>The centre of mass and the inertia are not: robot_descriptions
 (2.18.1, <a href="https://github.com/Source-Robotics/robot_descriptions/tree/v2.18.1/docs/maintenance/MODEL_DETAILS.md">MODEL_DETAILS.md</a>)
 says that the gripper COM and central inertia remain unverified estimates. Both finger types share one set of mass
-properties in the model, so the two rows are the same. In both files each finger's centre of mass lies on the
+properties in the model, so the two rows are the same.</p>
+<p>In both files each finger's centre of mass lies on the
 other side of the Z axis from the finger, and 8 to 13 mm closer to the mounting face than the finger meshes'
-centres: the open-jaw values above come out close, but the files' own inertia at other openings is not reliable.
-The geometry, and with it the frame and the finger tips, is the CAD's.</p>
+centres: the open-jaw values above come out close, but the files' own inertia at other openings is not reliable.</p>
+<p>The geometry, and with it the frame and the finger tips, is the CAD's.</p>
 <h2 id="03-technical-data-integration-data-where-the-numbers-go">Where the numbers go<a class="headerlink" href="#03-technical-data-integration-data-where-the-numbers-go" title="Permanent link">&para;</a></h2>
 <p>On PAROL6, <code>rbt.select_tool("SSG-48")</code> (with <code>variant_key="pinch"</code> for the pinch jaws) sets the Python API's own
 TCP for the gripper, and <code>set_tcp_offset</code> or <code>set_tcp_transform</code> moves it
@@ -2855,7 +2949,7 @@ for PAROL6, PAR6 and the UR5 flange, and a <abbr title="the CAD exchange format 
 <tr>
 <td>PAROL6</td>
 <td><code>coupler_connector_PAROL6.STL</code></td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a></td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Couplers">Print files/Couplers</a></td>
 </tr>
 <tr>
 <td>PAR6</td>
@@ -2865,17 +2959,18 @@ for PAROL6, PAR6 and the UR5 flange, and a <abbr title="the CAD exchange format 
 <tr>
 <td>UR5</td>
 <td><code>UR_coupler_gripper.STEP</code></td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS/UR5%20adapter%20plate">STEPS/UR5 adapter plate</a></td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Couplers"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files/Couplers</a></td>
 </tr>
 <tr>
 <td>your own</td>
 <td><code>coupler_connector_generic_STEP.STEP</code>, the template</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS">STEPS</a></td>
+<td>the same folder</td>
 </tr>
 </tbody>
 </table>
 <figure>
-  <a class="glightbox" href="../assets/Capture.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle" src="../assets/Capture.webp" width="520" /></a>
+  <a class="glightbox" href="../assets/Capture.webp#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle" src="../assets/Capture.webp#only-light" width="520" /></a>
+  <a class="glightbox" href="../assets/Capture_dark.webp#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle" src="../assets/Capture_dark.webp#only-dark" width="520" /></a>
 <br />
 <figcaption>Figure 4.1: The generic coupler connector template: the bolt circle of the gripper on the outside, your flange's pattern in the middle.</figcaption>
 </figure>
@@ -2982,8 +3077,11 @@ colours are those of the cable in the <abbr title="Bill Of Materials, the list o
   <a class="glightbox" href="../assets/PAROL6_cable.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The PAROL6 cable: the pins are crossed between the two ends" src="../assets/PAROL6_cable.webp" width="320" /></a>
   <figcaption>Figure 4.3: The PAROL6 cable: the pins are crossed between the two ends.</figcaption>
 </figure></p>
-<p>Male end at the robot, female end at the gripper: pin 1 to 3, 2 to 4, 3 to 1, 4 to 2. The PAROL6 socket has
-GND on pin 1, CANH on 2, 24 V on 3 and CANL on 4; the cable brings each signal to the gripper's pin for it.</p>
+<p>Male end at the robot, female end at the gripper. The cable mirrors the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> pair and the power pair between its
+ends, so each signal reaches the gripper's pin for the same signal: +24 V to +24 V, GND to GND, CANH to CANH,
+CANL to CANL. Wire a cable of your own by signal, and check each end against its own pin table: the PAROL6
+<a href="https://docs.source-robotics.com/PAROL-docs/latest/end-effectors/flange/#the-gripper-socket">gripper socket</a>
+and the gripper's <a href="#03-technical-data-connector-pin-numbers">pin numbers</a>.</p>
 </div>
 <div class="tabbed-block">
 <p><figure markdown="span">
@@ -3022,12 +3120,12 @@ and a template for your own.</p>
 <tbody>
 <tr>
 <td>Fin-ray fingers</td>
-<td><code>fin_ray_1</code>, <code>fin_ray_3</code>, <code>Finger_1</code> and <code>Jaw_plate_fin_ray</code> in <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws">gripper jaws</a></td>
+<td><code>fin_ray_1</code>, <code>fin_ray_3</code>, <code>Finger_1</code> and <code>Jaw_plate_fin_ray</code> in the <code>Jaws</code> folders of <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Jaws">Print files</a> and <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Jaws"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files</a></td>
 <td>fingers that wrap around round and irregular objects; printed in a flexible filament</td>
 </tr>
 <tr>
 <td>Pinch jaws</td>
-<td><code>solid_jaws_pinch</code> and <code>solid_jaws_pinch_foam</code> in <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS">STEPS</a></td>
+<td><code>solid_jaws_pinch</code> and <code>solid_jaws_pinch_foam</code> in <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Jaws"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files/Jaws</a></td>
 <td>solid jaws for small and flat objects, with or without a foam pad</td>
 </tr>
 <tr>
@@ -3076,11 +3174,16 @@ is normally the last node on a robot's bus, where the switch must be <strong>ON<
 </tr>
 </tbody>
 </table>
-<p>To change it, unplug the supply, touch earthed metal (static electricity damages the driver) and unscrew the
-coupler connector: the switch is on the Spectral Micro driver inside the body, next to its <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> connectors; <strong>ON</strong>
-connects the resistor. The driver's
-<a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/03-technical-data/connectors/">connector page</a> shows
-where it is on the board.</p>
+<p>To change it:</p>
+<ol>
+<li>Unplug the supply.</li>
+<li>Touch earthed metal (static electricity damages the driver).</li>
+<li>Unscrew the coupler connector: the switch is on the Spectral Micro driver inside the body, next to its <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr>
+   connectors.</li>
+<li>Set the switch; <strong>ON</strong> connects the resistor.</li>
+</ol>
+<p>The driver's <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/03-technical-data/connectors/">connector page</a>
+shows where it is on the board.</p>
 <p>A bus with the right termination measures about 60 Ω between CANH and CANL with everything unpowered. A missing
 or doubled termination shows up as lost frames and a gripper that answers only sometimes.</p>
 <div class="admonition success">
@@ -3209,7 +3312,8 @@ SSG-48; MSG uses the same controls.</p>
 <h2 id="05-setup-motor-gui-presets-for-a-self-built-gripper">Presets for a self-built gripper<a class="headerlink" href="#05-setup-motor-gui-presets-for-a-self-built-gripper" title="Permanent link">&para;</a></h2>
 <p>Connected over <strong><abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr></strong> instead, through the <a href="https://source-robotics.com/products/usb-to-serial-adapter">serial adapter</a>
 on the driver's <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> port, Motor GUI's setup page has tuned presets for the grippers: <em>SSG-48</em>, and the three <em>MSG</em>
-steppers for the other gripper. A preset writes the
+steppers for the other gripper.</p>
+<p>A preset writes the
 motor's parameters, the loop gains, gripper mode, the thermistor and the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID to the driver and saves them; its
 <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID is 6, the PAR6 gripper's, so change it before applying for another robot.
 <a href="#build-first-run">Driver configuration</a> says when to apply it, and lists the same settings as commands
@@ -3271,7 +3375,8 @@ at 0 before you clear. <a href="#06-operation-errors">Errors and recovery</a> sa
 </div>
 <h2 id="05-setup-first-moves-3-calibrate">3. Calibrate<a class="headerlink" href="#05-setup-first-moves-3-calibrate" title="Permanent link">&para;</a></h2>
 <p>The gripper calibration finds the two end stops: the jaws open fully, pause, then close fully, at low force
-(500 mA) and low speed. Each end is recognised when the jaws have stood still against it for a little over half a
+(500 mA) and low speed.</p>
+<p>Each end is recognised when the jaws have stood still against it for a little over half a
 second. It takes a few seconds; the result is not kept over a power cycle, so this runs at every power-up.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="05-setup-first-moves-__tabbed_2_1" name="05-setup-first-moves-__tabbed_2" type="radio" /><input id="05-setup-first-moves-__tabbed_2_2" name="05-setup-first-moves-__tabbed_2" type="radio" /><input id="05-setup-first-moves-__tabbed_2_3" name="05-setup-first-moves-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="05-setup-first-moves-__tabbed_2_1">Motor GUI</label><label for="05-setup-first-moves-__tabbed_2_2">Python</label><label for="05-setup-first-moves-__tabbed_2_3"><abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr></label></div>
 <div class="tabbed-content">
@@ -3290,7 +3395,8 @@ second. It takes a few seconds; the result is not kept over a power cycle, so th
 </div>
 </div>
 <p>If the jaws do not move at all, or move to one end and stop: the gripper is in an error state (clear it first, see
-step 2), or the motor is not calibrated. If the routine runs for 30 seconds and gives up, an end stop was not
+step 2), or the motor is not calibrated.</p>
+<p>If the routine runs for 30 seconds and gives up, an end stop was not
 found: something blocks the jaws short of the end, or the mechanism is too stiff for 500 mA.</p>
 <p>Until the gripper reports <em>Calibrated</em>, send nothing but status polls: a move command or a clear during the
 calibration ends it, and the gripper stays uncalibrated.</p>
@@ -3480,7 +3586,8 @@ page is what it does with them.</p>
 </tbody>
 </table>
 <p>The same command sent twice does nothing new: the driver compares every command with the previous one, and only
-a changed command resets the "at position" state and starts a move. So a host may repeat the command at any
+a changed command resets the "at position" state and starts a move.</p>
+<p>So a host may repeat the command at any
 rate, which the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> watchdog needs; to move the jaws from a held position to the same position again, change
 the speed or the current by one.</p>
 <p>An empty Send_gripper_data_pack, 0 bytes, changes nothing and is answered like a full one: it is the status poll,
@@ -3563,10 +3670,12 @@ action status only repeats the bit you sent.</p>
     Note over H: the grip is in, the next move waits for the program</code></pre>
 <h2 id="06-operation-how-it-works-object-detection-exactly">Object detection, exactly<a class="headerlink" href="#06-operation-how-it-works-object-detection-exactly" title="Permanent link">&para;</a></h2>
 <p>While a move is in progress and the jaws are not yet at the target, the driver reads <em>moving</em> (0) as long as the
-motor turns faster than 500 encoder ticks per second, about 1 mm/s at the jaws. When it is slower than that and
+motor turns faster than 500 encoder ticks per second, about 1 mm/s at the jaws.</p>
+<p>When it is slower than that and
 the motor current is above 80 % of the commanded limit, something stops them: <em>object found</em>, 1 or 2 by the sign of
 the current. Below 80 % with the jaws slow, it still reads <em>moving</em>: the object is soft and still being
-squeezed. At the very start of a move the jaws are slow too, and with the current already near its limit the
+squeezed.</p>
+<p>At the very start of a move the jaws are slow too, and with the current already near its limit the
 state can briefly read 1 or 2; a host gives a move about 100 ms before it trusts the state. Once the target is
 reached, 3, and it stays 3 until a different command arrives.</p>
 <p>The state is therefore a snapshot of each answer. A host that wants to know "did the grip succeed" sends the move,
@@ -3575,21 +3684,25 @@ exactly that.</p>
 <h2 id="06-operation-how-it-works-what-the-current-limit-does">What the current limit does<a class="headerlink" href="#06-operation-how-it-works-what-the-current-limit-does" title="Permanent link">&para;</a></h2>
 <p>The current limit of a move is the driver's Iq limit for the duration of the move and the hold. It bounds the
 torque, so the force on an object, and it also bounds how fast the jaws accelerate: a low limit with a high speed
-gives a gentle, slow-starting move. The temperature of the motor is the other bound: holding an object at a high
+gives a gentle, slow-starting move.</p>
+<p>The temperature of the motor is the other bound: holding an object at a high
 current for minutes heats the windings, and at 75 °C the thermistor stops the gripper.</p>
 <h2 id="06-operation-how-it-works-timing">Timing<a class="headerlink" href="#06-operation-how-it-works-timing" title="Permanent link">&para;</a></h2>
 <p>The driver runs its loops at 5 kHz; a move command takes effect at the next cycle, and the answer leaves within
-a millisecond. The <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> bus at 1 Mbit/s carries a command and its answer in well under half a millisecond, so a host
+a millisecond.</p>
+<p>The <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> bus at 1 Mbit/s carries a command and its answer in well under half a millisecond, so a host
 can run the gripper at several hundred commands per second; 50 Hz is a good rate for a controller that polls the
 state.</p></section><section class="print-page" id="06-operation-can" heading-number="1.3.6.3"><h1 id="06-operation-can-over-can">Over <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr><a class="headerlink" href="#06-operation-can-over-can" title="Permanent link">&para;</a></h1>
 <p><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> is the gripper's interface: the one cable carries it next to the power, and a robot's control board, a PC with
-the CANvas adapter or any microcontroller with a <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> transceiver drives the gripper with it. The gripper is a
+the CANvas adapter or any microcontroller with a <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> transceiver drives the gripper with it.</p>
+<p>The gripper is a
 Spectral Micro driver on the bus, so the frames are the driver's; this page is the part a gripper needs.</p>
 <h2 id="06-operation-can-the-frame">The frame<a class="headerlink" href="#06-operation-can-the-frame" title="Permanent link">&para;</a></h2>
 <p><abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> 2.0 data frames with 11-bit identifiers at 1 Mbit/s. The identifier carries the node, the command and the
 error state:</p>
 <figure>
-  <a class="glightbox" href="../assets/CANID.PNG" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit" src="../assets/CANID.PNG" width="600" /></a>
+  <a class="glightbox" href="../assets/can-id.svg#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit" src="../assets/can-id.svg#only-light" width="600" /></a>
+  <a class="glightbox" href="../assets/can-id_dark.svg#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit" src="../assets/can-id_dark.svg#only-dark" width="600" /></a>
 <br />
 <figcaption>Figure 6.1: Bits 10 to 7 of the identifier are the node ID, bits 6 to 1 the command ID, bit 0 the error bit.</figcaption>
 </figure>
@@ -3703,8 +3816,8 @@ arbitration.</p></section><section class="print-page" id="06-operation-uart" hea
 is the way to configure the driver of a self-built gripper and the quickest way to look at what the driver
 reports when something is wrong.</p>
 <h2 id="06-operation-uart-reaching-the-port">Reaching the port<a class="headerlink" href="#06-operation-uart-reaching-the-port" title="Permanent link">&para;</a></h2>
-<p>The <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> connector of the driver (JST SH, 4 pins, 3.3 V) is inside the body, under the coupler connector.
-Unscrew the coupler connector, plug in the <a href="https://source-robotics.com/products/usb-to-serial-adapter">USB-to-serial adapter</a> with
+<p>The <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> connector of the driver (JST SH, 4 pins, 3.3 V) is inside the body, under the coupler connector.</p>
+<p>Unscrew the coupler connector, plug in the <a href="https://source-robotics.com/products/usb-to-serial-adapter">USB-to-serial adapter</a> with
 the <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> cable, and open a terminal at 256000 baud with CR+LF line endings; the gripper's 24 V must be on for
 anything but reading settings. <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/terminal/">The serial terminal</a>
 on the Spectral Micro site walks through the terminal setup.</p>
@@ -3839,7 +3952,8 @@ The CANvas adapter is <code>/dev/cu.usbmodem</code> and a number (<code>ls /dev/
 </span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#06-operation-python-__codelineno-3-31"></a>                <span class="k">break</span>
 </span></code></pre></div>
 <p>The answer to a move command is sent before the gripper acts on it, so it still carries the state from before:
-after a finished move, object detection 3. The example reads that answer and drops it. At the very start of a
+after a finished move, object detection 3. The example reads that answer and drops it.</p>
+<p>At the very start of a
 move the jaws are still slow, and with the current near its limit the object detection can briefly read 1 or 2;
 the pause of 0.1 s covers that. While the gripper calibration runs, send only empty frames: a full command or
 Send_Clear_Error ends the calibration, and the gripper stays uncalibrated.</p>
@@ -3955,7 +4069,8 @@ yourself to the <code>dialout</code> group to open the port without <code>sudo</
 downloads and says how to open them. Its display launch file is for ROS 1; in ROS 2, load the <abbr title="Unified Robot Description Format, the robot description used by ROS 2">URDF</abbr> with a launch
 file of your own.</p></section><section class="print-page" id="06-operation-robots" heading-number="1.3.6.7"><h1 id="06-operation-robots-on-parol6-and-par6">On PAROL6 and PAR6<a class="headerlink" href="#06-operation-robots-on-parol6-and-par6" title="Permanent link">&para;</a></h1>
 <p>The gripper is made for the Source Robotics arms. Both drive it over their own <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> bus; their software calibrates
-it, moves it and reads its state, so a program for the robot does not talk <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> itself. The tool centre point, the
+it, moves it and reads its state, so a program for the robot does not talk <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> itself.</p>
+<p>The tool centre point, the
 mass, the centre of mass and the inertia for the robot's tool settings, on these robots or any other, are on
 <a href="#03-technical-data-integration-data">Data for robot integration</a>.</p>
 <h2 id="06-operation-robots-parol6">PAROL6<a class="headerlink" href="#06-operation-robots-parol6" title="Permanent link">&para;</a></h2>
@@ -3974,7 +4089,8 @@ mass, the centre of mass and the inertia for the robot's tool settings, on these
 </ol>
 <h3 id="06-operation-robots-the-joint-5-homing-offset">The joint 5 homing offset<a class="headerlink" href="#06-operation-robots-the-joint-5-homing-offset" title="Permanent link">&para;</a></h3>
 <p>Joint 5 homes against the tool, and the SSG-48's coupler sits differently from the pneumatic gripper holder that
-the control board firmware's default offset (8900) is for. Set <code>j5_homing_offset</code> to <code>8035</code> in <code>main.cpp</code> of the
+the control board firmware's default offset (8900) is for.</p>
+<p>Set <code>j5_homing_offset</code> to <code>8035</code> in <code>main.cpp</code> of the
 control board firmware and upload it, as the PAROL6 documentation describes for the SSG-48. After the first
 homing, check joint 5 with the pin through its witness marks, and master the robot if needed.</p>
 <h3 id="06-operation-robots-driving-it">Driving it<a class="headerlink" href="#06-operation-robots-driving-it" title="Permanent link">&para;</a></h3>
@@ -4004,7 +4120,8 @@ jaws start far from the open end; the pause above waits for the calibration to f
 </div>
 </div>
 <p>The Python API's <code>current</code> is a fraction of the range 100 to 1300 mA: the gripper gets 100 + 1200 × <code>current</code> mA,
-so 1.0 is 1300 mA, within the 1500 mA a grip may use. Use a low value for a long hold
+so 1.0 is 1300 mA, within the 1500 mA a grip may use.</p>
+<p>Use a low value for a long hold
 (<a href="#03-technical-data-force-and-speed">Force and speed</a>). <code>position</code> and <code>speed</code> are fractions of the position
 and speed bytes: 0.8 is position 204, 0.5 is speed 128.</p>
 <p>The <a href="https://docs.source-robotics.com/PAROL-docs/">PAROL6 documentation</a> covers the robot's side: the gripper
@@ -4100,7 +4217,8 @@ has found the end stops.</p>
 <p>Send_Clear_Error, <strong>Clear</strong> in the GUI or <code>#Clear</code> clears every flag, the gripper's E-stop included, and goes to
 idle. An error whose cause is still present comes straight back: a hot motor, a supply that is still low.</p>
 <p>The gripper's E-stop counts as such a cause while the E-stop bit of the last gripper command is 1: the driver
-raises the error again at every cycle. So after an E-stop, first send a gripper command with the E-stop bit at 0
+raises the error again at every cycle.</p>
+<p>So after an E-stop, first send a gripper command with the E-stop bit at 0
 and the action bit at 0 (or <code>#Gripstop 0</code> over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr>), then clear. The next command with the action bit set moves
 the gripper again.</p>
 <p>After clearing, the gripper is idle and still calibrated and activated; the next move command moves it. A clear
@@ -4115,7 +4233,8 @@ sent while the gripper calibration runs ends the calibration, and the gripper st
 </ul>
 <p><a href="#09-troubleshooting">Troubleshooting</a> goes through the symptoms one by one.</p></section></section><section class="print-page" id="07-maintenance" heading-number="1.3.7"><h1 id="07-maintenance-maintenance">Maintenance<a class="headerlink" href="#07-maintenance-maintenance" title="Permanent link">&para;</a></h1>
 <p>The gripper needs little: every wearing part is printed, so a worn part is replaced by printing a new one, and
-the mechanism is a rail, two racks and a pinion that want a little grease now and then. Power the gripper off
+the mechanism is a rail, two racks and a pinion that want a little grease now and then.</p>
+<p>Power the gripper off
 before any work on it. Before you open the body, to reach the driver or its termination switch, unplug the
 supply and touch earthed metal: static electricity damages the driver.</p>
 <h2 id="07-maintenance-before-each-session">Before each session<a class="headerlink" href="#07-maintenance-before-each-session" title="Permanent link">&para;</a></h2>
@@ -4137,12 +4256,12 @@ supply and touch earthed metal: static electricity damages the driver.</p>
 <h2 id="07-maintenance-cleaning">Cleaning<a class="headerlink" href="#07-maintenance-cleaning" title="Permanent link">&para;</a></h2>
 <p>Clean the gripper switched off and unplugged. Wipe the body and the fingers with a dry or slightly damp cloth, or with a
 little isopropyl alcohol on the cloth for grease; use no other solvents on the printed parts, and never spray or pour anything into the body, where the driver and the motor
-are open to it. The gripper is not waterproof or dustproof: keep it out of wet and dusty places, and blow chips
+are open to it.</p>
+<p>The gripper is not waterproof or dustproof: keep it out of wet and dusty places, and blow chips
 out of the rail rather than wash them out. Grease the rail again if the cleaning took its grease off.</p>
 <h2 id="07-maintenance-replacing-worn-parts">Replacing worn parts<a class="headerlink" href="#07-maintenance-replacing-worn-parts" title="Permanent link">&para;</a></h2>
-<p>The fingers, the jaw plates and every other printed part are in the product repository,
-<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a>
-and <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws">gripper jaws</a>;
+<p>The fingers, the jaw plates and every other printed part are in the product repository's
+<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files">Print files</a> folder;
 the rail, the carriages and the screws are in the
 <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/BOM"><abbr title="Bill Of Materials, the list of parts to buy">BOM</abbr></a>. A replacement
 finger is the same part as a new one, and the gripper calibration at the next power-up takes care of the end
@@ -4161,7 +4280,8 @@ which Python library and bootloader.</p>
 <h2 id="08-firmware-updating">Updating<a class="headerlink" href="#08-firmware-updating" title="Permanent link">&para;</a></h2>
 <p>A gripper whose driver runs firmware 104 or newer carries the driver's bootloader and updates over its <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> cable: the
 host tells the driver to reset, the bootloader waits two seconds for a host, and the host streams the new image
-into it. Nothing is opened. The image is <code>spectral-bldc-firmware-V&lt;number&gt;.bin</code> from the driver's
+into it.</p>
+<p>Nothing is opened. The image is <code>spectral-bldc-firmware-V&lt;number&gt;.bin</code> from the driver's
 <a href="https://github.com/Source-Robotics/Spectral-Micro-BLDC-controller/releases">GitHub releases</a>, with a manifest
 <code>firmware.json</code> and the release notes.</p>
 <table>
@@ -4210,8 +4330,8 @@ over <abbr title="Controller Area Network, the bus between the robot or the PC a
 <p>Grippers shipped with firmware 101 or older, which is every SSG-48 before the bootloader releases of 2026, have
 no bootloader. Their driver is updated once with a programming adapter on its JTAG pads, inside the body under
 the coupler connector, as described in
-<a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/07-firmware/bootloader/">Installing the bootloader on an older board</a>.
-From then on the gripper updates over <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> like any other. A gripper on firmware 101 or 104 works as this manual
+<a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/07-firmware/bootloader/">Installing the bootloader on an older board</a>.</p>
+<p>From then on the gripper updates over <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> like any other. A gripper on firmware 101 or 104 works as this manual
 describes, with the differences the <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/101/">Spectral Micro site's version 101</a>
 documents: the calibration messages and a few commands.</p>
 <h2 id="08-firmware-release-notes">Release notes<a class="headerlink" href="#08-firmware-release-notes" title="Permanent link">&para;</a></h2>
@@ -4798,19 +4918,19 @@ part needs them: clean every support off before assembly, the bearing seats and 
 <tbody>
 <tr>
 <td>The body, the lid, the gear and the magnet shaft, in two hardware versions: print the <code>V2</code> set, the large-bearing version (<a href="#01-overview-hardware-versions">Hardware versions</a>)</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a></td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files">Print files</a></td>
 </tr>
 <tr>
-<td>The jaws, the guide cover, and the coupler connectors for PAROL6 and PAR6</td>
+<td>The jaws and the guide cover (in the <code>V2</code> set), and the coupler connectors for PAROL6 and PAR6 (in <code>Couplers</code>)</td>
 <td>the same folder</td>
 </tr>
 <tr>
 <td>The fin-ray fingers and their jaw plate</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws">gripper jaws</a></td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Jaws">Print files/Jaws</a></td>
 </tr>
 <tr>
 <td>The <abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files, for a coupler connector of your own (the generic template) or your own fingers on the jaw plate</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS">STEPS</a></td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files</a></td>
 </tr>
 </tbody>
 </table>
@@ -4847,11 +4967,12 @@ is the original.</p>
 <h2 id="build-mechanical-assembly-the-fingers">The fingers<a class="headerlink" href="#build-mechanical-assembly-the-fingers" title="Permanent link">&para;</a></h2>
 <p>The fin-ray and pinch fingers, and fingers of your own on the jaw plate: <a href="#04-installation-jaws">Jaws</a>.</p></section><section class="print-page" id="build-first-run" heading-number="1.4.5"><h1 id="build-first-run-driver-setup-and-first-run">Driver setup and first run<a class="headerlink" href="#build-first-run-driver-setup-and-first-run" title="Permanent link">&para;</a></h1>
 <p>A gripper from the shop arrives with its driver configured: the motor calibrated, gripper mode on, the
-thermistor on, everything saved. A gripper you build has a bare Spectral Micro driver that is brought to the same
+thermistor on, everything saved.</p>
+<p>A gripper you build has a bare Spectral Micro driver that is brought to the same
 state once, over its <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr> port, <strong>during the assembly</strong>: after the motor and the driver are in the body, the wires
 soldered and the thermistor in the windings, and before the linear guide with the jaws goes on (page 22 of the
-<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf">assembly manual</a>).
-The motor calibration turns the motor several revolutions in both directions, which the racks could not follow.
+<a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Gripper_assembly_manual.pdf">assembly manual</a>).</p>
+<p>The motor calibration turns the motor several revolutions in both directions, which the racks could not follow.
 This page is that procedure; the commands are the driver's, and the
 <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/">Spectral Micro documentation</a> explains each in depth.</p>
 <h2 id="build-first-run-what-you-need">What you need<a class="headerlink" href="#build-first-run-what-you-need" title="Permanent link">&para;</a></h2>
@@ -4917,7 +5038,8 @@ encoder magnet, and see <a href="https://docs.source-robotics.com/Spectral-BLDC-
 </tr>
 </tbody>
 </table>
-<p>The current loop gains the calibration computes for the motor are what the shipped grippers use. Motor GUI's
+<p>The current loop gains the calibration computes for the motor are what the shipped grippers use.</p>
+<p>Motor GUI's
 <em>SSG-48</em> preset, on its setup page over <abbr title="the serial port of the driver inside the gripper, 3.3 V, 256000 baud">UART</abbr>, writes this step for you: the current gains (firmware 107 and older:
 <code>#Kpiq 7.0381</code>, <code>#Kiiq 4.2557</code>; from 109: <code>#Cbw 300</code>, <code>#Kpiq 4.9018</code>, <code>#Kiiq 2.6993</code> and tool id 1), gripper
 mode, the thermistor and the <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID (6, the PAR6 gripper's; change it before applying for another robot), then
@@ -4930,8 +5052,8 @@ room temperature, not <code>Temp Off</code>. A temperature error at once means t
 </div>
 <h2 id="build-first-run-3-finish-the-assembly-and-calibrate-the-gripper">3. Finish the assembly and calibrate the gripper<a class="headerlink" href="#build-first-run-3-finish-the-assembly-and-calibrate-the-gripper" title="Permanent link">&para;</a></h2>
 <p>Fit the linear guide with the jaws, the lid and the coupler connector, power the gripper up through its cable,
-and run the gripper calibration (<code>#Gripcal</code>, or Motor GUI's <strong>Calibrate</strong>): the jaws open fully and close fully.
-Then a first move at a low current, as in <a href="#05-setup-first-moves">Calibrate, activate, move</a>. <code>#Gripinfo</code> prints the
+and run the gripper calibration (<code>#Gripcal</code>, or Motor GUI's <strong>Calibrate</strong>): the jaws open fully and close fully.</p>
+<p>Then a first move at a low current, as in <a href="#05-setup-first-moves">Calibrate, activate, move</a>. <code>#Gripinfo</code> prints the
 gripper's state, including the end stops the calibration found.</p>
 <div class="admonition success">
 <p class="admonition-title">Check</p>
@@ -5337,15 +5459,15 @@ When it is set and runs out, the gripper reports a timeout error and stops.</dd>
 <tbody>
 <tr>
 <td><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files: the body parts, the whole gripper, the jaw plate and pinch jaws, the coupler connector template, the UR5 adapter plate</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEPS">STEPS</a> in the product repository</td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files</a> in the product repository</td>
 </tr>
 <tr>
-<td>Printable parts (STL) of both hardware versions and the coupler connectors for PAROL6 and PAR6</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Gripper%20STL%20parts">Gripper STL parts</a></td>
+<td>Printable parts (STL) of both hardware versions, the fin-ray fingers and the coupler connectors for PAROL6 and PAR6</td>
+<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files">Print files</a></td>
 </tr>
 <tr>
 <td>Fin-ray fingers and their jaw plate</td>
-<td><a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/gripper%20jaws">gripper jaws</a></td>
+<td>the <code>Jaws</code> folders of <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/Print%20files/Jaws">Print files</a> and <a href="https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/tree/main/STEP%20files/Jaws"><abbr title="the CAD exchange format the gripper's parts are published in">STEP</abbr> files</a></td>
 </tr>
 <tr>
 <td>Bill of materials</td>
@@ -6963,7 +7085,8 @@ for the driver as much as for the gripper, are in the
 <a href="https://github.com/Source-Robotics/Spectral-BLDC-Python/tree/main/examples">Spectral-BLDC-Python examples</a> and in
 the <a href="https://docs.source-robotics.com/Spectral-BLDC-docs/latest/guides/">Spectral guides</a>.</p></section><section class="print-page" id="guides-basic-control" heading-number="3.2"><h1 id="guides-basic-control-basic-control-in-python">Basic control in Python<a class="headerlink" href="#guides-basic-control-basic-control-in-python" title="Permanent link">&para;</a></h1>
 <p>The shortest program that drives the gripper: it connects through the CANvas adapter, clears the errors,
-calibrates, then closes and opens every three seconds and prints what the gripper answers. It is the example from
+calibrates, then closes and opens every three seconds and prints what the gripper answers.</p>
+<p>It is the example from
 the product repository's README; <code>pip install Spectral-BLDC</code> is the only requirement. Change <code>COM20</code> to your
 adapter's port (<code>/dev/ttyACM0</code> on Linux) and <code>node_id</code> to the gripper's <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> ID if you changed it from 0.</p>
 <div class="admonition danger">
@@ -7003,8 +7126,8 @@ if the gripper is new to you.</p>
 </span></code></pre></div>
 <p>Each answer printed is the one to the command just sent, so it still shows the state from before that move.
 The arguments of <code>Send_gripper_data_pack</code>, in order: the position (0 open, 255 closed), the speed (0 to 255), the
-current limit in mA (the force), then the activate bit, the action bit, the E-stop bit and the release direction.
-<a href="#06-operation-python">With Python</a> explains the library's calls, <a href="#06-operation-how-it-works">How the gripper works</a>
+current limit in mA (the force), then the activate bit, the action bit, the E-stop bit and the release direction.</p>
+<p><a href="#06-operation-python">With Python</a> explains the library's calls, <a href="#06-operation-how-it-works">How the gripper works</a>
 the state the gripper answers with, and <a href="#03-technical-data-force-and-speed">Force and speed</a> what the
 current means in newtons.</p></section><section class="print-page" id="guides-teleoperation" heading-number="3.3"><h1 id="guides-teleoperation-teleoperation-with-two-grippers">Teleoperation with two grippers<a class="headerlink" href="#guides-teleoperation-teleoperation-with-two-grippers" title="Permanent link">&para;</a></h1>
 <p>Two grippers on one <abbr title="Controller Area Network, the bus between the robot or the PC and the gripper">CAN</abbr> bus, coupled so that each follows the other: squeeze one by hand and the other closes;
@@ -7034,7 +7157,8 @@ I_0 = K_p\,(p_1 - p_0) + K_d\,(v_1 - v_0) - K_k\, v_0, \qquad
 I_1 = K_p\,(p_0 - p_1) + K_d\,(v_0 - v_1) - K_k\, v_1
 \]</div>
 <p><span class="arithmatex">\(p\)</span> is the jaw position of each gripper in the same units, <span class="arithmatex">\(v\)</span> its speed. When the two positions agree, both
-currents are zero and the grippers rest. Move one by hand and the difference drives the other after it; block
+currents are zero and the grippers rest.</p>
+<p>Move one by hand and the difference drives the other after it; block
 the other, and the difference drives the one in your hand back with the same current, which is the force you
 feel. <span class="arithmatex">\(K_p\)</span> is the stiffness of the virtual spring between them, <span class="arithmatex">\(K_d\)</span> its damping.</p>
 <p>The two drivers' encoders do not read the same number at the same jaw position, so each position is referred to
@@ -7085,7 +7209,8 @@ driver's position as the loop receives it (print <code>motors[i].position</code>
 numbers in <code>REFERENCE</code>.</p>
 <h2 id="guides-teleoperation-tuning">Tuning<a class="headerlink" href="#guides-teleoperation-tuning" title="Permanent link">&para;</a></h2>
 <p>Start with <code>Kp</code> at a tenth of the value above and raise it until the follower tracks the leader without lagging;
-raise <code>Kd</code> if the pair oscillates. The current the formula produces is in mA and is clamped by each driver's
+raise <code>Kd</code> if the pair oscillates.</p>
+<p>The current the formula produces is in mA and is clamped by each driver's
 <code>#Ilim</code>, so the motor's rating is the ceiling of the force feedback. A fixed loop rate matters: a loop that
 runs at an uneven rate makes the damping terms noisy.</p>
 <p>The full example, with a timer for a precise loop rate, is
@@ -7304,6 +7429,7 @@ source, and GitHub turns your change into a pull request. For anything larger, o
 
 
 
+
   
 
 
@@ -7424,7 +7550,18 @@ Code examples <a href="https://github.com/Source-Robotics/SSG48-gripper-docs/blo
       
       
     
-    <a href="https://www.instagram.com/5arcrnjak/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+    <a href="https://www.youtube.com/@source-robotics" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/source_robotics/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
     </a>
   
@@ -7446,7 +7583,7 @@ Code examples <a href="https://github.com/Source-Robotics/SSG48-gripper-docs/blo
       
       
     
-    <a href="https://www.linkedin.com/in/petar-crnjak-009b43180/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+    <a href="https://www.linkedin.com/company/source-robotics" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
@@ -7459,6 +7596,17 @@ Code examples <a href="https://github.com/Source-Robotics/SSG48-gripper-docs/blo
     
     <a href="https://discord.gg/prjUvjmGpZ" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.tiktok.com/@source.robotics" target="_blank" rel="noopener" title="www.tiktok.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M448.5 209.9c-44 .1-87-13.6-122.8-39.2v178.7c0 33.1-10.1 65.4-29 92.6s-45.6 48-76.6 59.6-64.8 13.5-96.9 5.3-60.9-25.9-82.7-50.8-35.3-56-39-88.9 2.9-66.1 18.6-95.2 40-52.7 69.6-67.7 62.9-20.5 95.7-16v89.9c-15-4.7-31.1-4.6-46 .4s-27.9 14.6-37 27.3-14 28.1-13.9 43.9 5.2 31 14.5 43.7 22.4 22.1 37.4 26.9 31.1 4.8 46-.1 28-14.4 37.2-27.1 14.2-28.1 14.2-43.8V0h88c-.1 7.4.6 14.9 1.9 22.2 3.1 16.3 9.4 31.9 18.7 45.7s21.3 25.6 35.2 34.6c19.9 13.1 43.2 20.1 67 20.1V210z"/></svg>
     </a>
   
 </div>
@@ -7557,7 +7705,7 @@ Code examples <a href="https://github.com/Source-Robotics/SSG48-gripper-docs/blo
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/SSG48-gripper-docs/2", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.prune", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.view", "content.action.edit", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "/SSG48-gripper-docs/2", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.prune", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.view", "content.action.edit", "content.tooltips", "content.footnote.tooltips", "announce.dismiss"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

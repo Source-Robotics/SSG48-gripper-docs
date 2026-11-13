@@ -7,7 +7,9 @@ force and speed. Force and payload values are ideal model estimates, not measure
 
 The driver limits the motor's current to the value you command, so the torque the motor produces is limited to
 $T = K_t \, I_q$, with $K_t$ the motor's torque constant in Nm/A and $I_q$ the current limit in amperes (the
-command is in mA). The pinion shares that torque between two racks.
+command is in mA).
+
+The pinion shares that torque between two racks.
 Here $F$ is the **combined normal force of both jaws**,
 not the force at one jaw:
 
@@ -22,7 +24,9 @@ They give an ideal combined force of about 54 N per ampere: about 8 N at 150 mA 
 ![The grip force against the current limit, from the formula above, up to the 1.5 A a grip uses](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/grip_force_dark.webp){ width="820" }
 
 The curve is computed from the assumed torque constant, rather than a measured force calibration. `#Kt`
-over UART prints the driver's torque constant; that value must match its $q$-axis current convention. A
+over UART prints the driver's torque constant; that value must match its $q$-axis current convention.
+
+A
 datasheet current rating or supply current cannot be substituted directly. Measure your gripper with the
 fingers and contact position you will use; below about 150 mA the motor does not move reliably.
 
@@ -39,7 +43,9 @@ contact force is reached. Mechanism friction, finger flex and the contact positi
 
 For a symmetric grip, each jaw applies $F/2$. The torque balance is
 $T = F_\mathrm{left} r + F_\mathrm{right} r = F r$; counting $F$ once for each jaw would count the motor's torque twice.
-These are theoretical forces before losses in the mechanism. A compression gauge between the jaws reads the
+These are theoretical forces before losses in the mechanism.
+
+A compression gauge between the jaws reads the
 force at **one contact**; double that reading before comparing it with the combined force here. Record the
 current, fingers and contact position when measuring; the same setup is needed for a useful comparison.
 
@@ -78,7 +84,9 @@ W = \frac{\mu\,F}{S}, \qquad m = \frac{W}{g}
 $$
 
 Using an assumed $\mu$ = 0.3 and $S$ = 2, the model gives about 12 N of supported weight (1.2 kg) at 80 N
-of combined grip force. This is a static estimate. Upward acceleration of 1 g doubles the load; acceleration
+of combined grip force. This is a static estimate.
+
+Upward acceleration of 1 g doubles the load; acceleration
 and emergency-stop loads need a separate check. Friction can be lower than 0.3, so measure it with your
 fingers on your object. A form-fit grip needs its own load assessment.
 

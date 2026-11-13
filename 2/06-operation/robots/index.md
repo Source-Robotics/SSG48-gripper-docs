@@ -1,7 +1,9 @@
 # On PAROL6 and PAR6
 
 The gripper is made for the Source Robotics arms. Both drive it over their own CAN bus; their software calibrates
-it, moves it and reads its state, so a program for the robot does not talk CAN itself. The tool centre point, the
+it, moves it and reads its state, so a program for the robot does not talk CAN itself.
+
+The tool centre point, the
 mass, the centre of mass and the inertia for the robot's tool settings, on these robots or any other, are on
 [Data for robot integration](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/integration-data/).
 
@@ -23,7 +25,9 @@ mass, the centre of mass and the inertia for the robot's tool settings, on these
 ### The joint 5 homing offset
 
 Joint 5 homes against the tool, and the SSG-48's coupler sits differently from the pneumatic gripper holder that
-the control board firmware's default offset (8900) is for. Set `j5_homing_offset` to `8035` in `main.cpp` of the
+the control board firmware's default offset (8900) is for.
+
+Set `j5_homing_offset` to `8035` in `main.cpp` of the
 control board firmware and upload it, as the PAROL6 documentation describes for the SSG-48. After the first
 homing, check joint 5 with the pin through its witness marks, and master the robot if needed.
 
@@ -54,7 +58,9 @@ ends the calibration.
     jaws start far from the open end; the pause above waits for the calibration to finish.
 
 The Python API's `current` is a fraction of the range 100 to 1300 mA: the gripper gets 100 + 1200 × `current` mA,
-so 1.0 is 1300 mA, within the 1500 mA a grip may use. Use a low value for a long hold
+so 1.0 is 1300 mA, within the 1500 mA a grip may use.
+
+Use a low value for a long hold
 ([Force and speed](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/force-and-speed/)). `position` and `speed` are fractions of the position
 and speed bytes: 0.8 is position 204, 0.5 is speed 128.
 
