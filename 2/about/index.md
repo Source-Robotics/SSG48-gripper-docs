@@ -35,7 +35,7 @@ edit it and one to report a problem with it.
 |---|---|---|
 | SSG-48 Gripper Manual | SR-5004 | the SSG-48 adaptive electric gripper: safety, technical data, installation, setup, operation over CAN, UART, Python and ROS 2, firmware, the build guide; the gripper's API reference; guides |
 
-A document marked with a firmware release describes SSG-48 gripper release 2 running Spectral firmware 109. The version selector in the header switches between gripper releases; a new firmware release for the same gripper updates the pages in place. The compatibility table says which firmware, Python library and hardware revisions work together.
+A document marked with a firmware release describes SSG-48 gripper release 2 running Spectral firmware 110. The version selector in the header switches between gripper releases; a new firmware release for the same gripper updates the pages in place. The compatibility table says which firmware, Python library and hardware revisions work together.
 
 The driver inside the gripper is documented at [https://docs.source-robotics.com/Spectral-BLDC-docs/](https://docs.source-robotics.com/Spectral-BLDC-docs/). The MSG gripper, the SSG-48's successor on the STEPFOC stepper driver, is at [docs.source-robotics.com/MSG-gripper-docs](https://docs.source-robotics.com/MSG-gripper-docs/). The robots the gripper is
 made for: [docs.source-robotics.com/PAROL-docs](https://docs.source-robotics.com/PAROL-docs/) and
@@ -52,6 +52,7 @@ by any of these.
 
 | Revision | Date | Changes |
 |---|---|---|
+| 2026.E | 2026-11-13 | Spectral firmware 110: a move ends cleanly, with a few mA left (KI-11); a soft start; 0 and 255 reached without pressing on the stops, each end read under a light push (KI-12); an object reported after 50 ms of standstill; the gripper pushes with its own current and leaves the driver's limit alone (KI-13); the calibration restarts from the beginning and needs 1000 ticks of stroke (KI-3); brake or coast saved (KI-14); a watchdog that runs out while idle starts no hold (KI-15); parameters 90 to 93; `#Estop` over UART |
 | 2026.D | 2026-11-10 | Spectral firmware 109: the generated CAN and UART reference; the SSG-48 preset's current gains on 109; a poll right after a move no longer cancels it (KI-10); calibration puts the current limit back (KI-5); the gripper's current clamped at 2800 mA. Python library 1.21, which reads the object detection right (KI-7) |
 | 2026.C | 2026-11-05 | The M8 pinout corrected to the one the gripper is built with (1 +24 V, 2 CANL, 3 GND, 4 CANH; page 17 of the SSG-48 assembly manual): the pin table, its drawing and the quick start of 2026.B had all four pins wrong; the bootloader comes with Spectral release 104, the first built for it; the cable warnings: the other robot's cable reverses the supply, it does not put 24 V on the CAN pins; the PAROL6 cable's pin pairs |
 | 2026.B | 2026-11-04 | Gripper release 2, with the files as downloads on the release; known issues; data for robot integration (frame, mass, inertia, TCP); check boxes after each step and Windows, Linux and macOS tabs; numbered figure captions; the downloads with their versions; safety at the jaws, static and cleaning; the thermistor and the thermal cement in the BOM; the hardware licence CERN-OHL-S-2.0 |

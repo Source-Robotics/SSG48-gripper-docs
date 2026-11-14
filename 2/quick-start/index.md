@@ -102,8 +102,9 @@ More: [Calibrate, activate, move](https://docs.source-robotics.com/SSG48-gripper
 ![Calibrated and activated gripper demo with command controls and plots](https://docs.source-robotics.com/SSG48-gripper-docs/2/assets/motor-gui/gripper-ready-demo.jpg){ width="700" }
 
 !!! success "Check"
-    The position follows the command; on an object the jaws stop before fully closed and the panel reports an
-    object. If it does not move, slips or reports an error, use [Troubleshooting](https://docs.source-robotics.com/SSG48-gripper-docs/2/09-troubleshooting/).
+    The position follows the command, and **Open** and **Close** end *at position* without pressing on the
+    stops; on an object the jaws stop before fully closed and the panel reports an object. If it does not move,
+    slips or reports an error, use [Troubleshooting](https://docs.source-robotics.com/SSG48-gripper-docs/2/09-troubleshooting/).
 
 The current limit sets an approximate force limit; [Force and speed](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/force-and-speed/)
 explains the relationship and the motor's limits.

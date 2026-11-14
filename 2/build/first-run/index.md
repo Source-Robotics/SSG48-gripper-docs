@@ -37,8 +37,10 @@ itself; nothing is entered:
 #Cal
 ```
 
-The motor clicks, then turns, the driver prints each step and ends with `Calibration success!`. The whole routine
-and its messages are in [Calibration](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/calibration/)
+The motor clicks, then turns, the driver prints each step and ends with `Calibration success!`. To stop it early,
+send `#Estop`; `#Clear` then clears the E-stop before the next try.
+
+The whole routine and its messages are in [Calibration](https://docs.source-robotics.com/Spectral-BLDC-docs/latest/05-setup/calibration/)
 on the Spectral Micro site. `#Default` also resets the serial number the driver reports; note what `#SERNUM`
 prints before you start if you need it.
 
@@ -90,5 +92,6 @@ gripper's state, including the end stops the calibration found.
 
 ## Current limit
 
-The gripper's moves use the current limit of each command, not the driver's `#Ilim`. The firmware clamps it only
+The gripper's moves use the current limit of each command, not the driver's `#Ilim`, and they leave `#Ilim` as
+it is: a `#Save` after gripper moves stores the limit you set. The firmware clamps the command's current only
 at 2800 mA; [Force and speed](https://docs.source-robotics.com/SSG48-gripper-docs/2/03-technical-data/force-and-speed/) says what is safe for the motor.
