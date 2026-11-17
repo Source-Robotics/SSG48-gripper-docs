@@ -2,7 +2,7 @@
 
 !!! note "This is a copy"
     The original is [BOM/README.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/README.md) in the gripper's repository; this page is that file as of
-    2026-11-17 (commit `c45aa45`), with the reference images shown inline. If a link is broken or a part is wrong,
+    2026-11-17 (commit `cdfb3ab`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -63,7 +63,7 @@ This BOM lists all components required to build the SSG48 gripper. Quantities ar
 | Spectral micro BLDC driver | 1 | [source-robotics.com](http://source-robotics.com/)<br>![Spectral_micro](../assets/bom/Spectral_micro.webp){ width="120" } | [Link](https://source-robotics.com/products/spectral-micro-bldc-controller) |
 | XH 2.54 mm, 300 mm, 2P, double-ended | 1 | Cable for 24 V<br>![XH_cable](../assets/bom/XH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9)<br>[amazon.de](https://www.amazon.de/dp/B0CBWZLB5C?tag=sourcerobotic-20)<br>[amazon.com](https://www.amazon.com/dp/B0D6KSMK1Q?tag=sourcerobotic-20) |
 | ZH 1.5 mm, 300 mm, 2P, double-ended | 1 | Cable for CAN bus<br>![ZH_cable](../assets/bom/ZH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9)<br>[amazon.de](https://www.amazon.de/dp/B0FMCW2R5B?tag=sourcerobotic-20)<br>[amazon.com](https://www.amazon.com/dp/B0DSPCFH9D?tag=sourcerobotic-20) |
-| Male 4-pin connector | 1 | ![M8connectormale4pin](../assets/bom/M8connectormale4pin.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FKVL6772?tag=sourcerobotic-20) |
+| Male 4-pin connector | 1 | ![M8connectormale4pin](../assets/bom/M8connectormale4pin.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.de](https://www.amazon.de/dp/B0CTTQTVPK?tag=sourcerobotic-20)<br>[amazon.com](https://www.amazon.com/dp/B0FKVL6772?tag=sourcerobotic-20) |
 | 100K NTC thermistor | 1 | NTC 100K 3950, glued into the motor windings: the driver stops the gripper at 75 °C<br>![Thermistor](../assets/bom/Thermistor.webp){ width="120" } | [Link](https://source-robotics.com/products/100k-ntc-thermistor) |
 | Thermal cement | 1 | Holds the thermistor in the windings and conducts the heat to it<br>![Thermal_cement](../assets/bom/Thermal_cement.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c3dBOwTD)<br>[amazon.de](https://www.amazon.de/dp/B0BR2CK4J8?tag=sourcerobotic-20)<br>[amazon.com](https://www.amazon.com/dp/B0C5D8JQ7R?tag=sourcerobotic-20) |
 
