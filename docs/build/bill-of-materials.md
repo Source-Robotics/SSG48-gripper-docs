@@ -2,7 +2,7 @@
 
 !!! note "This is a copy"
     The original is [BOM/README.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/README.md) in the gripper's repository; this page is that file as of
-    2026-11-17 (commit `ccdb4bc`), with the reference images shown inline. If a link is broken or a part is wrong,
+    2026-11-17 (commit `9a996b6`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -74,7 +74,7 @@ Parts for the DIY cable version below:
 
 | Type | Length / Spec | Quantity | Description | Link |
 |------|---------------|----------|-------------|------|
-| 26 AWG cable | 0.15 mm², 4-wire twisted pair | 0.4 m | Usually 35 cm cable is enough<br>![Twisted_pair_cable](../assets/bom/Twisted_pair_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DeGUD4Z) |
+| 26 AWG cable | 0.15 mm², 4-wire twisted pair | 0.4 m | Usually 35 cm cable is enough<br>![Twisted_pair_cable](../assets/bom/Twisted_pair_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DeGUD4Z)<br>[amazon.com](https://www.amazon.com/dp/B0FHNWRQSB?tag=sourcerobotic-20) |
 | M8 4-pin male wire connector | — | 1 | ![M8_male](../assets/bom/M8_male.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FG3JTF1H?tag=sourcerobotic-20) |
 | M8 4-pin female wire connector | — | 1 | ![M8_female](../assets/bom/M8_female.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FG3JTF1H?tag=sourcerobotic-20) |
 
