@@ -2,7 +2,7 @@
 
 !!! note "This is a copy"
     The original is [BOM/README.md](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/BOM/README.md) in the gripper's repository; this page is that file as of
-    2026-11-17 (commit `233f95a`), with the reference images shown inline. If a link is broken or a part is wrong,
+    2026-11-17 (commit `ccdb4bc`), with the reference images shown inline. If a link is broken or a part is wrong,
     [open an issue](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/issues/new) there, and the fix lands here with the next sync. The shop's
     [starter kit](index.md#kits-and-the-shop) covers the driver and everything its setup needs.
 
@@ -32,8 +32,8 @@ This BOM lists all components required to build the SSG48 gripper. Quantities ar
 
 | Thread | Length | Outer Diameter | Quantity | Description | Link |
 |--------|--------|----------------|----------|-------------|------|
-| M3 | 3 mm | 4.5 mm | 1 | ![brass_insert](../assets/bom/brass_insert.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DnCPrW9) |
-| M3 | 5 mm | 4.5 mm | 15 | ![brass_insert](../assets/bom/brass_insert.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DnCPrW9) |
+| M3 | 3 mm | 4.5 mm | 1 | ![brass_insert](../assets/bom/brass_insert.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DnCPrW9)<br>[amazon.com](https://www.amazon.com/dp/B0F4JH1K2Z?tag=sourcerobotic-20) |
+| M3 | 5 mm | 4.5 mm | 15 | ![brass_insert](../assets/bom/brass_insert.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DnCPrW9)<br>[amazon.com](https://www.amazon.com/dp/B0FDKYTMZ8?tag=sourcerobotic-20) |
 
 
 ## Motors
@@ -61,8 +61,8 @@ This BOM lists all components required to build the SSG48 gripper. Quantities ar
 | Type | Quantity | Description | Link |
 |------|----------|-------------|------|
 | Spectral micro BLDC driver | 1 | [source-robotics.com](http://source-robotics.com/)<br>![Spectral_micro](../assets/bom/Spectral_micro.webp){ width="120" } | [Link](https://source-robotics.com/products/spectral-micro-bldc-controller) |
-| XH 2.54 mm, 300 mm, 2P, double-ended | 1 | Cable for 24 V<br>![XH_cable](../assets/bom/XH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9) |
-| ZH 1.5 mm, 300 mm, 2P, double-ended | 1 | Cable for CAN bus<br>![ZH_cable](../assets/bom/ZH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9) |
+| XH 2.54 mm, 300 mm, 2P, double-ended | 1 | Cable for 24 V<br>![XH_cable](../assets/bom/XH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9)<br>[amazon.com](https://www.amazon.com/dp/B0D6KSMK1Q?tag=sourcerobotic-20) |
+| ZH 1.5 mm, 300 mm, 2P, double-ended | 1 | Cable for CAN bus<br>![ZH_cable](../assets/bom/ZH_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c4XKzTj9)<br>[amazon.com](https://www.amazon.com/dp/B0DSPCFH9D?tag=sourcerobotic-20) |
 | Male 4-pin connector | 1 | ![M8connectormale4pin](../assets/bom/M8connectormale4pin.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FKVL6772?tag=sourcerobotic-20) |
 | 100K NTC thermistor | 1 | NTC 100K 3950, glued into the motor windings: the driver stops the gripper at 75 °C<br>![Thermistor](../assets/bom/Thermistor.webp){ width="120" } | [Link](https://source-robotics.com/products/100k-ntc-thermistor) |
 | Thermal cement | 1 | Holds the thermistor in the windings and conducts the heat to it<br>![Thermal_cement](../assets/bom/Thermal_cement.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_c3dBOwTD)<br>[amazon.com](https://www.amazon.com/dp/B0C5D8JQ7R?tag=sourcerobotic-20) |
@@ -75,8 +75,8 @@ Parts for the DIY cable version below:
 | Type | Length / Spec | Quantity | Description | Link |
 |------|---------------|----------|-------------|------|
 | 26 AWG cable | 0.15 mm², 4-wire twisted pair | 0.4 m | Usually 35 cm cable is enough<br>![Twisted_pair_cable](../assets/bom/Twisted_pair_cable.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DeGUD4Z) |
-| M8 4-pin male wire connector | — | 1 | ![M8_male](../assets/bom/M8_male.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff) |
-| M8 4-pin female wire connector | — | 1 | ![M8_female](../assets/bom/M8_female.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff) |
+| M8 4-pin male wire connector | — | 1 | ![M8_male](../assets/bom/M8_male.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FG3JTF1H?tag=sourcerobotic-20) |
+| M8 4-pin female wire connector | — | 1 | ![M8_female](../assets/bom/M8_female.webp){ width="120" } | [Link](https://s.click.aliexpress.com/e/_DCG5Rff)<br>[amazon.com](https://www.amazon.com/dp/B0FG3JTF1H?tag=sourcerobotic-20) |
 
 Check out the cable building guide [here](https://github.com/Source-Robotics/SSG-48-adaptive-electric-gripper/blob/main/Assembly%20manual/Building_cables.md)
 
